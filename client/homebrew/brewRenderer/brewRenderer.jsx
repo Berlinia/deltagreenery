@@ -122,6 +122,49 @@ const BrewRenderer = (props)=>{
 		columnGap    : 10,
 	});
 
+	useEffect(() => {
+  if (!state.isMounted) return;
+
+  const iframe = document.getElementById('BrewRenderer');
+  const doc = iframe?.contentDocument;
+  if (!doc) return;
+
+  const pages = Array.from(doc.querySelectorAll('.page'));
+  if (!pages.length) return;
+
+  let currentH1 = '';
+
+  pages.forEach((page) => {
+    // Ensure header element exists
+    let header = page.querySelector(':scope > .runningHeader');
+    if (!header) {
+      header = doc.createElement('div');
+      header.className = 'runningHeader';
+
+      const left = doc.createElement('span');
+      left.className = 'docTitle';
+
+      const right = doc.createElement('span');
+      right.className = 'sectionTitle';
+
+      header.appendChild(left);
+      header.appendChild(right);
+
+      // Insert at top of page so absolute positioning is relative to page
+      page.insertBefore(header, page.firstChild);
+    }
+
+    // Find first H1 on THIS page (if any)
+    const h1 = page.querySelector('.columnWrapper h1');
+    if (h1) currentH1 = (h1.textContent || '').trim();
+
+    // Write current known H1 into header (blank if none yet)
+    const sectionSpan = header.querySelector('.sectionTitle');
+    if (sectionSpan) sectionSpan.textContent = currentH1;
+  });
+}, [state.isMounted, props.text, displayOptions]);
+
+
 	//useEffect to store or gather toolbar state from storage
 	useEffect(()=>{
 		const toolbarState = JSON.parse(window.localStorage.getItem(TOOLBAR_STATE_KEY));
