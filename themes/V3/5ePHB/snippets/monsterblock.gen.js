@@ -1,100 +1,37 @@
 const _ = require('lodash');
 const dedent = require('dedent-tabs').default;
 
-const genList = function(list, max){
+const genList = function (list, max) {
 	return _.sampleSize(list, _.random(0, max)).join(', ') || 'None';
 };
 
-const getMonsterName = function(){
+const getMonsterName = function () {
 	return _.sample([
-		'All-devouring Baseball Imp',
-		'All-devouring Gumdrop Wraith',
-		'Chocolate Hydra',
-		'Devouring Peacock',
-		'Economy-sized Colossus of the Lemonade Stand',
-		'Ghost Pigeon',
-		'Gibbering Duck',
-		'Sparklemuffin Peacock Spider',
-		'Gum Elemental',
-		'Illiterate Construct of the Candy Store',
-		'Ineffable Chihuahua',
-		'Irritating Death Hamster',
-		'Irritating Gold Mouse',
-		'Juggernaut Snail',
-		'Juggernaut of the Sock Drawer',
-		'Koala of the Cosmos',
-		'Mad Koala of the West',
-		'Milk Djinni of the Lemonade Stand',
-		'Mind Ferret',
-		'Mystic Salt Spider',
-		'Necrotic Halitosis Angel',
-		'Pinstriped Famine Sheep',
-		'Ritalin Leech',
-		'Shocker Kangaroo',
-		'Stellar Tennis Juggernaut',
-		'Wailing Quail of the Sun',
-		'Angel Pigeon',
-		'Anime Sphinx',
-		'Bored Avalanche Sheep of the Wasteland',
-		'Devouring Nougat Sphinx of the Sock Drawer',
-		'Djinni of the Footlocker',
-		'Ectoplasmic Jazz Devil',
-		'Flatuent Angel',
-		'Gelatinous Duck of the Dream-Lands',
-		'Gelatinous Mouse',
-		'Golem of the Footlocker',
-		'Lich Wombat',
-		'Mechanical Sloth of the Past',
-		'Milkshake Succubus',
-		'Puffy Bone Peacock of the East',
-		'Rainbow Manatee',
-		'Rune Parrot',
-		'Sand Cow',
-		'Sinister Vanilla Dragon',
-		'Snail of the North',
-		'Spider of the Sewer',
-		'Stellar Sawdust Leech',
-		'Storm Anteater of Hell',
-		'Stupid Spirit of the Brewery',
-		'Time Kangaroo',
-		'Tomb Poodle',
+		'All-Consuming Case File of the Black Vault',
+		'Bureaucratic Angel of the Green Box',
+		'Devouring Archivist of the Unredacted',
+		'Impossible Asset of the Cellar Door',
+		'Incomprehensible Handler from Majestic-12',
+		'Nightmare Auditor of the Program',
+		'Sanctioned Horror of the Burn Bag',
+		'Whispering Thing in the Expense Report',
 	]);
 };
 
-const getType = function(){
+const getType = function () {
 	return `${_.sample(['Tiny', 'Small', 'Medium', 'Large', 'Gargantuan', 'Stupidly vast'])} ${_.sample(['beast', 'fiend', 'annoyance', 'guy', 'cutie'])}`;
 };
 
-const getAlignment = function(){
-	return _.sample([
-		'annoying evil',
-		'chaotic gossipy',
-		'chaotic sloppy',
-		'depressed neutral',
-		'lawful bogus',
-		'lawful coy',
-		'manic-depressive evil',
-		'narrow-minded neutral',
-		'neutral annoying',
-		'neutral ignorant',
-		'oedpipal neutral',
-		'silly neutral',
-		'unoriginal neutral',
-		'weird neutral',
-		'wordy evil',
-		'unaligned'
-	]);
-};
 
-const getStats = function(){
-	return `|${_.times(6, function(){
+const getStats = function () {
+	return `|${_.times(6, function () {
 		const num = _.random(1, 20);
-		const mod = Math.ceil(num/2 - 5);
+		const mod = Math.ceil(num / 2 - 5);
 		return `${num} (${mod >= 0 ? `+${mod}` : mod})`;
 	}).join('|')}|`;
 };
 
-const genAbilities = function(){
+const genAbilities = function () {
 	return _.sample([
 		'***Pack Tactics.*** These guys work together like peanut butter and jelly.',
 		'***Fowl Appearance.*** While the creature remains motionless, it is indistinguishable from a normal chicken.',
@@ -105,21 +42,40 @@ const genAbilities = function(){
 	]);
 };
 
-const genLongAbilities = function(){
+const genLongAbilities = function () {
 	return _.sample([
-		dedent`***Pack Tactics.*** These guys work together like peanut butter and jelly. Jelly and peanut butter.
+		dedent`These guys work together like peanut butter and jelly. Jelly and peanut butter.
 
 		When one of these guys attacks, the target is covered with, well, peanut butter and jelly.`,
-		dedent`***Hangriness.*** This creature is angry, and hungry. It will refuse to do anything with you until its hunger is satisfied.
+		dedent` This creature is angry, and hungry. It will refuse to do anything with you until its hunger is satisfied.
 
 		When in visual contact with this creature, you must purchase an extra order of fries, even if they say they aren't hungry.`,
-		dedent`***Full of Detergent.*** This creature has swallowed an entire bottle of dish detergent and is actually having a pretty good time.
+		dedent`This creature has swallowed an entire bottle of dish detergent and is actually having a pretty good time.
 
-		While walking near this creature, you must make a dexterity check or become "a soapy mess" for three hours, after which your skin will get all dry and itchy.`
+		While walking near this creature, you must make a dexterity check or become "a soapy mess" for three hours, after which your skin will get all dry and itchy.`,
+		dedent`This creature hums softly at all times, even while asleep or apparently dead. The tune changes depending on its mood, but never improves. When you can hear the humming, all attempts at quiet conversation fail. Any whispered plan is immediately rephrased out loud in the creature’s melody.`,
+
+		dedent`This creature believes itself to be extremely polite and becomes offended when treated otherwise. It has no understanding of what politeness actually is. If you address the creature without bowing, nodding, or apologizing, it will respond by correcting your manners at great length, during which it continues attacking.`,
+
+		dedent`This creature is full of static electricity and small unresolved grudges. Anyone touching the creature must make a dexterity check or receive a painful shock and involuntarily reveal one mildly embarrassing personal detail.`,
+
+		dedent`This creature smells strongly of something familiar and comforting, though no two observers can agree on what it is. While within arm’s reach of the creature, you are distracted by nostalgia and take twice as long to complete any careful or deliberate action.`,
+
+		dedent`This creature sheds continuously, leaving behind bits of itself that twitch for several minutes before becoming inert. Moving quickly through an area the creature has passed requires a dexterity check or you slip, trip, or briefly stick to the floor.`,
+
+		dedent`This creature does not understand doors and considers them a personal insult. Whenever a closed door is visible to the creature, it will abandon its current activity to address the door first, usually violently.`,
+
+		dedent`This creature is convinced it is invisible when it closes its eyes. If the creature cannot see you, it will behave as if you are not there, even if you are actively harming it.`,
+
+		dedent`This creature leaks a slow, steady stream of something that should not be leaking. Anyone standing near the creature for more than a minute must make a constitution check or become uncomfortably damp for the remainder of the encounter.`,
+
+		dedent`This creature repeats the last thing said to it, but slightly incorrectly. When spoken to, the creature immediately echoes the statement with one important detail changed, often escalating the situation.`,
+
+		dedent`This creature has an intense fear of being late, though it has no concept of time. If combat lasts longer than a few rounds, the creature becomes increasingly frantic, taking reckless actions to “wrap this up.”`
 	]);
 };
 
-const genAction = function(){
+const genAction = function () {
 	const name = _.sample([
 		'Abdominal Drop',
 		'Airplane Hammer',
@@ -153,32 +109,56 @@ const genAction = function(){
 
 
 module.exports = {
+	monster: function (classes, genLines) {
+		const str = _.random(3, 30);
+		const con = _.random(3, 30);
+		const dex = _.random(3, 30);
+		const intel = _.random(3, 30);
+		const pow = _.random(3, 30);
 
-	monster : function(classes, genLines){
+		const hp = _.random(6, 30);
+		const wp = _.random(1, 20);
+
+		// DG tends to show skills as "Name XX%"
+		const skills = [
+			`Alertness ${_.random(20, 80)}%`,
+			`Athletics ${_.random(20, 80)}%`,
+			`Grapple ${_.random(20, 80)}%`,
+			`${genList(['Stealth', 'Firearms', 'Unarmed Combat', 'Occult', 'Persuade', 'Search'], 1)} ${_.random(20, 80)}%`,
+		].join(', ');
+
+		const attacks = `${genList(['Grapple', 'Bite', 'Claw', 'Tear', 'Crush', 'Sting'], 1)} ${_.random(20, 80)}% (see ${genList(['RAVENOUS', 'CONSTRICT', 'CAUSTIC', 'INFECTIOUS'], 1)})`;
+
+		const sanLoss = `${_.random(1, 2)}D${genList(['4', '6', '8'], 1)}/${_.random(1, 2)}D${genList(['8', '10', '12'], 1)}`;
+
+		// Convert your existing ability generators into “named trait paragraphs”
+		const traits = _.times(_.random(genLines, genLines + 2), () => genAbilities()).join('\n');
+		const longTrait = genLongAbilities();
+
+		const specialNameA = genList(['AGELESS', 'UNFORMED', 'RAVENOUS', 'UNNATURAL', 'PARASITIC', 'VISCEROTIC'], 1);
+		const specialNameB = genList(['AGELESS', 'UNFORMED', 'RAVENOUS', 'UNNATURAL', 'PARASITIC', 'VISCEROTIC'], 1);
+
 		return dedent`
-			{{${classes}
-			## ${getMonsterName()}
-			*${getType()}, ${getAlignment()}*
-			___
-			**Armor Class** :: ${_.random(10, 20)} (chain mail, shield)
-			**Hit Points**  :: ${_.random(1, 150)} (1d4 + 5)
-			**Speed**       :: ${_.random(0, 50)} ft.
-			___
-			|  STR  |  DEX  |  CON  |  INT  |  WIS  |  CHA  |
-			|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-			${getStats()}
-			___
-			**Condition Immunities** :: ${genList(['groggy', 'swagged', 'weak-kneed', 'buzzed', 'groovy', 'melancholy', 'drunk'], 3)}
-			**Senses**               :: darkvision 60 ft., passive Perception ${_.random(3, 20)}
-			**Languages**            :: ${genList(['Common', 'Pottymouth', 'Gibberish', 'Latin', 'Jive'], 2)}
-			**Challenge**            :: ${_.random(0, 15)} (${_.random(10, 10000)} XP) {{bonus **Proficiency Bonus** +${_.random(2, 6)}}}
-			___
-			${_.times(_.random(genLines, genLines + 2), function(){return genAbilities();}).join('\n:\n')}
-			:
-			${genLongAbilities()}
-			### Actions
-			${_.times(_.random(genLines, genLines + 2), function(){return genAction();}).join('\n:\n')}
-			}}
-			\n`;
-	}
+      {{${classes}
+      ## ${getMonsterName()}
+      ---
+      **STR** ${str}  **CON** ${con}  **DEX** ${dex}  **INT** ${intel}  **POW** ${pow}
+
+      **HP** ${hp}  **WP** ${wp}
+      
+	  **ARMOR:** ${genList(['None', '1 (scaly paperweights)', '2 (mi-go fungal matter)', '3 (grey skin)', 'See UNFORMED'], 1)}.
+
+      **SKILLS:** ${skills}.
+
+      **ATTACKS:** ${attacks}.
+
+      **${specialNameA}:** ${longTrait}
+
+      **${specialNameB}:** ${longTrait}
+
+      **SAN LOSS:** ${sanLoss}.
+      }}
+      \n`;
+	},
 };
+

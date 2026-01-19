@@ -209,38 +209,108 @@
 	// *****************************/
 	table {
 		.useSansSerif();
-		line-height: 16px;
+
+		width: 100%;
+		border-collapse: collapse;
+		border-spacing: 0;
+
+		border: 2px solid rgba(0, 0, 0, 0.85);
+		background: rgba(255, 255, 255, 0.92);
+
+		box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.25);
 
 		&+* {
 			margin-top: 0.325cm;
 		}
 
 		thead {
-			display: table-row-group;
-			font-weight: 800;
-
-			th {
-				//padding        : 0.14em 0.4em;
-				padding: 0px 1.5px; // Both of these are temporary, just to force
-				vertical-align: bottom;
-				//line-height : 16px;        // PDF to render at same height until Chrome 108
-			}
+			display: table-header-group;
 		}
 
-		tbody {
-			tr {
-				td {
-					//padding : 0.14em 0.4em;
-					padding: 0px 1.5px; // Both of these are temporary, just to force
-					//line-height : 16px;        // PDF to render at same height until Chrome 108
-				}
+		thead tr {
+			background: #323a41;
+		}
 
-				&:nth-child(odd) {
-					background-color: var(--HB_Color_Accent);
-				}
-			}
+		thead th {
+			color: #ffffff;
+			font-family: "Header4";
+			font-weight: 800;
+			text-align: left;
+			padding: 6px 8px;
+		}
+
+		thead th:last-child {
+			border-right: none;
+		}
+
+
+
+		tbody td {
+			padding: 6px 8px;
+			font-family: "BookInsanityRemake";
+			text-align: left;
+			vertical-align: top;
+			//border-top: 1px solid rgba(0, 0, 0, 0.25);
+			//border-right: 1px solid rgba(0, 0, 0, 0.12);
+		}
+
+		tbody td:last-child {
+			border-right: none;
+		}
+
+		tbody tr:nth-child(odd) {
+			background: #caccd0;
+		}
+
+		tbody tr:nth-child(even) {
+			background: #f8f5fa;
+		}
+
+
+		tbody td:first-child {
+			font-weight: 700;
 		}
 	}
+
+	table {
+		transform-origin: center center;
+	}
+
+	/* Prefix table titles with » */
+	h5:has(+ table)::before {
+		content: "» ";
+	}
+
+	/* Optional polish */
+	h5:has(+ table) {
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		font-weight: 800;
+		margin-bottom: 0.12cm;
+	}
+
+	/* Pseudo-random rotation pool */
+	table:nth-of-type(5n + 1) {
+		transform: rotate(-0.6deg);
+	}
+
+	table:nth-of-type(5n + 2) {
+		transform: rotate(0.4deg);
+	}
+
+	table:nth-of-type(5n + 3) {
+		transform: rotate(-0.2deg);
+	}
+
+	table:nth-of-type(5n + 4) {
+		transform: rotate(0.7deg);
+	}
+
+	table:nth-of-type(5n) {
+		transform: rotate(-0.4deg);
+	}
+
+
 
 	// *****************************
 	// *          QUOTE
@@ -514,104 +584,155 @@
 	// *    MONSTER STAT BLOCK
 	// *****************************/
 	.monster {
-		.useSansSerif();
+  // DG-style: plain, printable, "typed on paper"
+  font-family: "BookInsanityRemake";
+  text-align: left; // swap away from the sans preset
+  color: #111;
+  background: none; // off-white paper
+  padding: 0.35cm 0.4cm;
+  margin-bottom: 0.325cm;
+    // 🔧 HARD RESET INDENTATION
+  p,
+  h2,
+  h3,
+  dl,
+  dt,
+  dd,
+  ul,
+  ol,
+  li,
+  table,
+  th,
+  td {
+    margin-left: 0;
+    padding-left: 0;
+    text-indent: 0;
+  }
 
-		&.frame {
-			width: calc(100% + 0.32cm);
-			padding: 4px 2px;
-			margin-right: -0.16cm;
-			margin-left: -0.16cm;
-			background-color: var(--HB_Color_MonsterStatBackground);
-			background-image: @monsterBlockBackground;
-			border-style: solid;
-			border-width: 7px 6px;
-			border-image: @monsterBorderImage 14 round;
-			border-image-outset: 0px 2px;
-			box-shadow: 1px 4px 14px #888888;
-			background-blend-mode: overlay;
-		}
+  // Optional: tighten list bullets if you still use them
+  ul,
+  ol {
+    list-style-position: inside;
+  }
 
-		position : relative;
-		padding : 0px;
-		margin-bottom : 0.325cm;
+  // If you still need your sans mixin elsewhere, do NOT call .useSansSerif() here.
+  // .useSansSerif();
 
-		//Headers
-		h2 {
-			margin: 0;
-			font-size: 0.62cm;
-			line-height: 1em;
+  &.frame {
+    // Kill ornate frame
+    width: auto;
+    margin: 0;
+    padding: 0.35cm 0.4cm;
 
-			&+p {
-				margin-bottom: 0;
-				font-size: 0.304cm; //Monster size and type subtext
-			}
-		}
+    background-image: none;           // remove texture overlay
+    background-blend-mode: normal;
 
-		h3 {
-			font-family: 'ScalySansSmallCapsRemake';
-			font-size: 0.45cm;
-			border-bottom: 1.5px solid var(--HB_Color_HeaderText);
-		}
+    border: none;                     // DG block is mostly rules, not a box frame
+    border-image: none;
+    border-image-outset: 0;
 
-		//Triangle dividers
-		hr {
-			visibility: visible;
-			height: 6px;
-			margin: 0.12cm 0cm;
-			background-image: @redTriangleImage;
-			background-size: 100% 100%;
-			border: none;
-		}
+    box-shadow: none;                 // no drop shadow in the screenshot
+  }
 
-		//Attribute Lists - All text between HRs is red
-		hr~ :is(dl, p) {
-			color: var(--HB_Color_HeaderText);
-		}
+  // Title line like the image: title + thin rule across
+h2 {
+  font-family: "Timelines";
+  margin: 0 0 0.12cm 0;
+  font-size: 13.0pt;
+  line-height: 1.05em;
+  color: #000000;
+  font-weight: 700;
+  border: none;
+  padding: 0;
+}
 
-		hr:last-of-type {
-			&~ :is(dl, p) {
-				color: inherit; // After the HRs, reset text to black
-			}
+  // Section headers: smallcaps-ish, simple underline
+  h3 {
+    font-family: "Times New Roman", "Georgia", serif;
+    font-size: 0.40cm;
+    font-weight: 700;
+    letter-spacing: 0.02em;
 
-			&+* {
-				margin-top: 0.325cm; // Space after last HR
-			}
-		}
+    margin: 0.28cm 0 0.10cm 0;
+    padding-bottom: 0.05cm;
+    border-bottom: 1.5px solid #111;
+  }
 
-		.bonus {
-			float: right;
-			padding-right: 0.5em;
-		}
+  // Replace triangle dividers with plain rules (or hide entirely if you don’t want them)
+  hr {
+    visibility: visible;
+    height: 0;
+    margin: 0.18cm 0;
+    background: none;
+    border: none;
+    border-top: 1.5px solid #111;
+  }
 
-		// Monster Ability table
-		hr+table:first-of-type {
-			margin: 0;
-			column-span: none;
-			color: var(--HB_Color_HeaderText);
-			background-color: transparent;
-			border-style: none;
-			border-image: none;
-			-webkit-column-span: none;
+  // Remove the “all text between HRs is red” behavior
+  hr ~ :is(dl, p) {
+    color: inherit;
+  }
 
-			tr {
-				background-color: transparent;
-			}
+  hr:last-of-type {
+    & ~ :is(dl, p) {
+      color: inherit;
+    }
+    & + * {
+      margin-top: 0.18cm;
+    }
+  }
 
-			td,
-			th {
-				padding: 0px;
-			}
-		}
+  // General body text tuning
+  p,
+  li,
+  dd,
+  dt {
+    font-size: 0.33cm;
+    line-height: 1.25em;
+  }
 
-		//indent fix after bulleted lists
-		:is(ul, ol)+p {
-			text-indent: 0;
-		}
+  // If your monster stat lines are in <p> blocks, this makes them feel like the screenshot
+  p {
+    margin: 0 0 0.12cm 0;
+  }
 
-		:last-child {
-			margin-bottom: 0;
-		}
-	}
+  // Make “labels” (e.g., SKILLS:, ATTACKS:) look like DG blocks
+  // If your markup wraps labels in <strong>, this will do the trick.
+  strong {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  // Ability/attribute table: keep it plain, black, no ornament
+  hr + table:first-of-type {
+    margin: 0 0 0.12cm 0;
+    color: #111;
+    background: transparent;
+    border: none;
+
+    tr { background: transparent; }
+    td, th {
+      padding: 0;
+      font-weight: 700;
+      font-size: 0.33cm;
+    }
+  }
+
+  .bonus {
+    float: right;
+    padding-right: 0.5em;
+  }
+
+  :is(ul, ol) + p {
+    text-indent: 0;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+}
+
 
 	//Full Width
 	.monster.wide {
@@ -1407,6 +1528,7 @@
 	background-repeat: no-repeat;
 	background-position: center bottom;
 	background-size: auto 100%;
+	background-color: rgba(235, 240, 245, 0.10);  // cool wash
 	pointer-events: none;
 }
 
@@ -1415,7 +1537,7 @@
 .page {
 	background-size: cover;
 	background-position: center;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 }
 
 /* Page 1, 5, 9, ... */
@@ -1495,6 +1617,19 @@
 	pointer-events: none;
 	z-index: 150;
 }
+
+.page {
+  position: relative; // needed for ::after overlay
+}
+
+
+
+/* Ensure page content stays above overlay */
+.page > * {
+  position: relative;
+  z-index: 1;
+}
+
 
 .page {
 	/* content starts AFTER header rule */

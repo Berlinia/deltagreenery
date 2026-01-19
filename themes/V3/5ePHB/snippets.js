@@ -66,12 +66,12 @@ module.exports = [
 				},
 			},
 			{
-				name: 'Class Feature',
+				name: 'Unnatural Tome (TODO)',
 				icon: 'fas fa-mask',
 				gen: ClassFeatureGen,
 			},
 			{
-				name: 'Quote',
+				name: 'Ritual (TODO)',
 				icon: 'fas fa-quote-right',
 				gen: QuoteGen,
 			},
@@ -106,20 +106,6 @@ module.exports = [
 				},
 			},
 			{
-				name: 'Descriptive Text Box',
-				icon: 'fas fa-comment-alt',
-				gen: function () {
-					return dedent`
-						{{descriptive
-						##### Time to Drop Knowledge
-						Use descriptive boxes to highlight text that should be read aloud.
-
-						**Tables and lists** both work within a descriptive box.
-						}}
-						\n`;
-				},
-			},
-			{
 				name: 'Monster Stat Block (unframed)',
 				icon: 'fas fa-paw',
 				gen: MonsterBlockGen.monster('monster', 2),
@@ -135,33 +121,10 @@ module.exports = [
 				gen: MonsterBlockGen.monster('monster,frame,wide', 4),
 			},
 			{
-				name: 'Front Cover Page',
+				name: 'Pink Bakcground (TODO)',
 				icon: 'fac book-front-cover',
 				gen: CoverPageGen.front,
 				experimental: true
-			},
-			{
-				name: 'Inside Cover Page',
-				icon: 'fac book-inside-cover',
-				gen: CoverPageGen.inside,
-				experimental: true
-			},
-			{
-				name: 'Part Cover Page',
-				icon: 'fac book-part-cover',
-				gen: CoverPageGen.part,
-				experimental: true
-			},
-			{
-				name: 'Back Cover Page',
-				icon: 'fac book-back-cover',
-				gen: CoverPageGen.back,
-				experimental: true
-			},
-			{
-				name: 'Magic Item',
-				icon: 'fas fa-hat-wizard',
-				gen: MagicGen.item,
 			},
 			{
 				name: 'Artist Credit',
