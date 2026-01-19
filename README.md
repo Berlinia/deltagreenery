@@ -48,7 +48,7 @@ insertedId: ObjectId("63c2fce9e5ac5a94fe2410cf")
 
 Checkout the repo ([documentation][github-clone-repo-docs-url]):
 ```
-git clone https://github.com/naturalcrit/homebrewery.git
+git clone https://(https://github.com/Berlinia/deltagreenery/homebrewery.git)
 ```
 
 [github-clone-repo-docs-url]: https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository
@@ -145,5 +145,6 @@ your contribution to the project, please join our [gitter chat][gitter-url].
 [github-mark-duplicate-url]: https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/about-duplicate-issues-and-pull-requests
 [github-pr-docs-url]: https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request
 [gitter-url]: https://gitter.im/naturalcrit/Lobby
+
 
 
