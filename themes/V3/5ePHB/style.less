@@ -63,6 +63,13 @@
 	font-size: 10.5pt;
 	line-height: 1.25;
 	background-image: @backgroundImage;
+
+	/* Replace bullet with » */
+	ul li::marker {
+		content: "» ";
+	}
+
+
 }
 
 // *****************************
@@ -154,6 +161,7 @@
 	h2 {
 		//margin-top    : 0px; //Font is misaligned. Shift up slightly
 		//margin-bottom : 0.05cm;
+		font-family: "EBGaramond-Regular";
 		font-size: 0.75cm;
 		line-height: 0.988em; //Font is misaligned. Shift up slightly
 	}
@@ -584,154 +592,160 @@
 	// *    MONSTER STAT BLOCK
 	// *****************************/
 	.monster {
-  // DG-style: plain, printable, "typed on paper"
-  font-family: "BookInsanityRemake";
-  text-align: left; // swap away from the sans preset
-  color: #111;
-  background: none; // off-white paper
-  padding: 0.35cm 0.4cm;
-  margin-bottom: 0.325cm;
-    // 🔧 HARD RESET INDENTATION
-  p,
-  h2,
-  h3,
-  dl,
-  dt,
-  dd,
-  ul,
-  ol,
-  li,
-  table,
-  th,
-  td {
-    margin-left: 0;
-    padding-left: 0;
-    text-indent: 0;
-  }
+		// DG-style: plain, printable, "typed on paper"
+		font-family: "BookInsanityRemake";
+		text-align: left; // swap away from the sans preset
+		color: #111;
+		background: none; // off-white paper
+		padding: 0.35cm 0.4cm;
+		margin-bottom: 0.325cm;
 
-  // Optional: tighten list bullets if you still use them
-  ul,
-  ol {
-    list-style-position: inside;
-  }
+		// 🔧 HARD RESET INDENTATION
+		p,
+		h2,
+		h3,
+		dl,
+		dt,
+		dd,
+		ul,
+		ol,
+		li,
+		table,
+		th,
+		td {
+			margin-left: 0;
+			padding-left: 0;
+			text-indent: 0;
+		}
 
-  // If you still need your sans mixin elsewhere, do NOT call .useSansSerif() here.
-  // .useSansSerif();
+		// Optional: tighten list bullets if you still use them
+		ul,
+		ol {
+			list-style-position: inside;
+		}
 
-  &.frame {
-    // Kill ornate frame
-    width: auto;
-    margin: 0;
-    padding: 0.35cm 0.4cm;
+		// If you still need your sans mixin elsewhere, do NOT call .useSansSerif() here.
+		// .useSansSerif();
 
-    background-image: none;           // remove texture overlay
-    background-blend-mode: normal;
+		&.frame {
+			// Kill ornate frame
+			width: auto;
+			margin: 0;
+			padding: 0.35cm 0.4cm;
 
-    border: none;                     // DG block is mostly rules, not a box frame
-    border-image: none;
-    border-image-outset: 0;
+			background-image: none; // remove texture overlay
+			background-blend-mode: normal;
 
-    box-shadow: none;                 // no drop shadow in the screenshot
-  }
+			border: none; // DG block is mostly rules, not a box frame
+			border-image: none;
+			border-image-outset: 0;
 
-  // Title line like the image: title + thin rule across
-h2 {
-  font-family: "Timelines";
-  margin: 0 0 0.12cm 0;
-  font-size: 13.0pt;
-  line-height: 1.05em;
-  color: #000000;
-  font-weight: 700;
-  border: none;
-  padding: 0;
-}
+			box-shadow: none; // no drop shadow in the screenshot
+		}
 
-  // Section headers: smallcaps-ish, simple underline
-  h3 {
-    font-family: "Times New Roman", "Georgia", serif;
-    font-size: 0.40cm;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+		// Title line like the image: title + thin rule across
+		h2 {
+			font-family: "Timelines";
+			margin: 0 0 0.12cm 0;
+			font-size: 13.0pt;
+			line-height: 1.05em;
+			color: #000000;
+			font-weight: 700;
+			border: none;
+			padding: 0;
+		}
 
-    margin: 0.28cm 0 0.10cm 0;
-    padding-bottom: 0.05cm;
-    border-bottom: 1.5px solid #111;
-  }
+		// Section headers: smallcaps-ish, simple underline
+		h3 {
+			font-family: "Times New Roman", "Georgia", serif;
+			font-size: 0.40cm;
+			font-weight: 700;
+			letter-spacing: 0.02em;
 
-  // Replace triangle dividers with plain rules (or hide entirely if you don’t want them)
-  hr {
-    visibility: visible;
-    height: 0;
-    margin: 0.18cm 0;
-    background: none;
-    border: none;
-    border-top: 1.5px solid #111;
-  }
+			margin: 0.28cm 0 0.10cm 0;
+			padding-bottom: 0.05cm;
+			border-bottom: 1.5px solid #111;
+		}
 
-  // Remove the “all text between HRs is red” behavior
-  hr ~ :is(dl, p) {
-    color: inherit;
-  }
+		// Replace triangle dividers with plain rules (or hide entirely if you don’t want them)
+		hr {
+			visibility: visible;
+			height: 0;
+			margin: 0.18cm 0;
+			background: none;
+			border: none;
+			border-top: 1.5px solid #111;
+		}
 
-  hr:last-of-type {
-    & ~ :is(dl, p) {
-      color: inherit;
-    }
-    & + * {
-      margin-top: 0.18cm;
-    }
-  }
+		// Remove the “all text between HRs is red” behavior
+		hr~ :is(dl, p) {
+			color: inherit;
+		}
 
-  // General body text tuning
-  p,
-  li,
-  dd,
-  dt {
-    font-size: 0.33cm;
-    line-height: 1.25em;
-  }
+		hr:last-of-type {
+			&~ :is(dl, p) {
+				color: inherit;
+			}
 
-  // If your monster stat lines are in <p> blocks, this makes them feel like the screenshot
-  p {
-    margin: 0 0 0.12cm 0;
-  }
+			&+* {
+				margin-top: 0.18cm;
+			}
+		}
 
-  // Make “labels” (e.g., SKILLS:, ATTACKS:) look like DG blocks
-  // If your markup wraps labels in <strong>, this will do the trick.
-  strong {
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
+		// General body text tuning
+		p,
+		li,
+		dd,
+		dt {
+			font-size: 0.33cm;
+			line-height: 1.25em;
+		}
 
-  // Ability/attribute table: keep it plain, black, no ornament
-  hr + table:first-of-type {
-    margin: 0 0 0.12cm 0;
-    color: #111;
-    background: transparent;
-    border: none;
+		// If your monster stat lines are in <p> blocks, this makes them feel like the screenshot
+		p {
+			margin: 0 0 0.12cm 0;
+		}
 
-    tr { background: transparent; }
-    td, th {
-      padding: 0;
-      font-weight: 700;
-      font-size: 0.33cm;
-    }
-  }
+		// Make “labels” (e.g., SKILLS:, ATTACKS:) look like DG blocks
+		// If your markup wraps labels in <strong>, this will do the trick.
+		strong {
+			font-weight: 700;
+			letter-spacing: 0.02em;
+			text-transform: uppercase;
+		}
 
-  .bonus {
-    float: right;
-    padding-right: 0.5em;
-  }
+		// Ability/attribute table: keep it plain, black, no ornament
+		hr+table:first-of-type {
+			margin: 0 0 0.12cm 0;
+			color: #111;
+			background: transparent;
+			border: none;
 
-  :is(ul, ol) + p {
-    text-indent: 0;
-  }
+			tr {
+				background: transparent;
+			}
 
-  :last-child {
-    margin-bottom: 0;
-  }
-}
+			td,
+			th {
+				padding: 0;
+				font-weight: 700;
+				font-size: 0.33cm;
+			}
+		}
+
+		.bonus {
+			float: right;
+			padding-right: 0.5em;
+		}
+
+		:is(ul, ol)+p {
+			text-indent: 0;
+		}
+
+		:last-child {
+			margin-bottom: 0;
+		}
+	}
 
 
 	//Full Width
@@ -974,7 +988,7 @@ h2 {
 	}
 
 	h2 {
-		font-family: 'NodestoCapsCondensed';
+		font-family: 'EBGaramond-Regular';
 		font-size: 0.85cm;
 		font-weight: normal;
 		color: white;
@@ -1073,7 +1087,7 @@ h2 {
 	}
 
 	h2 {
-		font-family: 'NodestoCapsCondensed';
+		font-family: 'EBGaramond-Regular';
 		font-size: 0.85cm;
 		font-weight: normal;
 		letter-spacing: 0.5cm;
@@ -1528,7 +1542,7 @@ h2 {
 	background-repeat: no-repeat;
 	background-position: center bottom;
 	background-size: auto 100%;
-	background-color: rgba(235, 240, 245, 0.10);  // cool wash
+	background-color: rgba(235, 240, 245, 0.10); // cool wash
 	pointer-events: none;
 }
 
@@ -1619,15 +1633,15 @@ h2 {
 }
 
 .page {
-  position: relative; // needed for ::after overlay
+	position: relative; // needed for ::after overlay
 }
 
 
 
 /* Ensure page content stays above overlay */
-.page > * {
-  position: relative;
-  z-index: 1;
+.page>* {
+	position: relative;
+	z-index: 1;
 }
 
 
