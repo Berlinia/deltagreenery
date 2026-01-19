@@ -65,9 +65,9 @@
 	background-image: @backgroundImage;
 
 	/* Replace bullet with » */
-	ul li::marker {
-		content: "» ";
-	}
+ul li::marker {
+  content: "» ";
+}
 
 
 }
@@ -158,14 +158,16 @@
 		}
 	}
 
-	h2 {
-		//margin-top    : 0px; //Font is misaligned. Shift up slightly
-		//margin-bottom : 0.05cm;
-		font-family: "EBGaramond-Regular";
-		font-size: 0.75cm;
-		line-height: 0.988em; //Font is misaligned. Shift up slightly
-	}
-
+h2 {
+  font-family: "Timelines";
+  margin: 0 0 0.12cm 0;
+  font-size: 13.0pt;
+  line-height: 1.05em;
+  color: #000000;
+  font-weight: 700;
+  border: none;
+  padding: 0;
+}
 	h3 {
 		//margin-top    : -0.1cm; //Font is misaligned. Shift up slightly
 		//margin-bottom : 0.1cm;
@@ -592,160 +594,154 @@
 	// *    MONSTER STAT BLOCK
 	// *****************************/
 	.monster {
-		// DG-style: plain, printable, "typed on paper"
-		font-family: "BookInsanityRemake";
-		text-align: left; // swap away from the sans preset
-		color: #111;
-		background: none; // off-white paper
-		padding: 0.35cm 0.4cm;
-		margin-bottom: 0.325cm;
+  // DG-style: plain, printable, "typed on paper"
+  font-family: "BookInsanityRemake";
+  text-align: left; // swap away from the sans preset
+  color: #111;
+  background: none; // off-white paper
+  padding: 0.35cm 0.4cm;
+  margin-bottom: 0.325cm;
+    // 🔧 HARD RESET INDENTATION
+  p,
+  h2,
+  h3,
+  dl,
+  dt,
+  dd,
+  ul,
+  ol,
+  li,
+  table,
+  th,
+  td {
+    margin-left: 0;
+    padding-left: 0;
+    text-indent: 0;
+  }
 
-		// 🔧 HARD RESET INDENTATION
-		p,
-		h2,
-		h3,
-		dl,
-		dt,
-		dd,
-		ul,
-		ol,
-		li,
-		table,
-		th,
-		td {
-			margin-left: 0;
-			padding-left: 0;
-			text-indent: 0;
-		}
+  // Optional: tighten list bullets if you still use them
+  ul,
+  ol {
+    list-style-position: inside;
+  }
 
-		// Optional: tighten list bullets if you still use them
-		ul,
-		ol {
-			list-style-position: inside;
-		}
+  // If you still need your sans mixin elsewhere, do NOT call .useSansSerif() here.
+  // .useSansSerif();
 
-		// If you still need your sans mixin elsewhere, do NOT call .useSansSerif() here.
-		// .useSansSerif();
+  &.frame {
+    // Kill ornate frame
+    width: auto;
+    margin: 0;
+    padding: 0.35cm 0.4cm;
 
-		&.frame {
-			// Kill ornate frame
-			width: auto;
-			margin: 0;
-			padding: 0.35cm 0.4cm;
+    background-image: none;           // remove texture overlay
+    background-blend-mode: normal;
 
-			background-image: none; // remove texture overlay
-			background-blend-mode: normal;
+    border: none;                     // DG block is mostly rules, not a box frame
+    border-image: none;
+    border-image-outset: 0;
 
-			border: none; // DG block is mostly rules, not a box frame
-			border-image: none;
-			border-image-outset: 0;
+    box-shadow: none;                 // no drop shadow in the screenshot
+  }
 
-			box-shadow: none; // no drop shadow in the screenshot
-		}
+  // Title line like the image: title + thin rule across
+h2 {
+  font-family: "Timelines";
+  margin: 0 0 0.12cm 0;
+  font-size: 13.0pt;
+  line-height: 1.05em;
+  color: #000000;
+  font-weight: 700;
+  border: none;
+  padding: 0;
+}
 
-		// Title line like the image: title + thin rule across
-		h2 {
-			font-family: "Timelines";
-			margin: 0 0 0.12cm 0;
-			font-size: 13.0pt;
-			line-height: 1.05em;
-			color: #000000;
-			font-weight: 700;
-			border: none;
-			padding: 0;
-		}
+  // Section headers: smallcaps-ish, simple underline
+  h3 {
+    font-family: "Times New Roman", "Georgia", serif;
+    font-size: 0.40cm;
+    font-weight: 700;
+    letter-spacing: 0.02em;
 
-		// Section headers: smallcaps-ish, simple underline
-		h3 {
-			font-family: "Times New Roman", "Georgia", serif;
-			font-size: 0.40cm;
-			font-weight: 700;
-			letter-spacing: 0.02em;
+    margin: 0.28cm 0 0.10cm 0;
+    padding-bottom: 0.05cm;
+    border-bottom: 1.5px solid #111;
+  }
 
-			margin: 0.28cm 0 0.10cm 0;
-			padding-bottom: 0.05cm;
-			border-bottom: 1.5px solid #111;
-		}
+  // Replace triangle dividers with plain rules (or hide entirely if you don’t want them)
+  hr {
+    visibility: visible;
+    height: 0;
+    margin: 0.18cm 0;
+    background: none;
+    border: none;
+    border-top: 1.5px solid #111;
+  }
 
-		// Replace triangle dividers with plain rules (or hide entirely if you don’t want them)
-		hr {
-			visibility: visible;
-			height: 0;
-			margin: 0.18cm 0;
-			background: none;
-			border: none;
-			border-top: 1.5px solid #111;
-		}
+  // Remove the “all text between HRs is red” behavior
+  hr ~ :is(dl, p) {
+    color: inherit;
+  }
 
-		// Remove the “all text between HRs is red” behavior
-		hr~ :is(dl, p) {
-			color: inherit;
-		}
+  hr:last-of-type {
+    & ~ :is(dl, p) {
+      color: inherit;
+    }
+    & + * {
+      margin-top: 0.18cm;
+    }
+  }
 
-		hr:last-of-type {
-			&~ :is(dl, p) {
-				color: inherit;
-			}
+  // General body text tuning
+  p,
+  li,
+  dd,
+  dt {
+    font-size: 0.33cm;
+    line-height: 1.25em;
+  }
 
-			&+* {
-				margin-top: 0.18cm;
-			}
-		}
+  // If your monster stat lines are in <p> blocks, this makes them feel like the screenshot
+  p {
+    margin: 0 0 0.12cm 0;
+  }
 
-		// General body text tuning
-		p,
-		li,
-		dd,
-		dt {
-			font-size: 0.33cm;
-			line-height: 1.25em;
-		}
+  // Make “labels” (e.g., SKILLS:, ATTACKS:) look like DG blocks
+  // If your markup wraps labels in <strong>, this will do the trick.
+  strong {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
 
-		// If your monster stat lines are in <p> blocks, this makes them feel like the screenshot
-		p {
-			margin: 0 0 0.12cm 0;
-		}
+  // Ability/attribute table: keep it plain, black, no ornament
+  hr + table:first-of-type {
+    margin: 0 0 0.12cm 0;
+    color: #111;
+    background: transparent;
+    border: none;
 
-		// Make “labels” (e.g., SKILLS:, ATTACKS:) look like DG blocks
-		// If your markup wraps labels in <strong>, this will do the trick.
-		strong {
-			font-weight: 700;
-			letter-spacing: 0.02em;
-			text-transform: uppercase;
-		}
+    tr { background: transparent; }
+    td, th {
+      padding: 0;
+      font-weight: 700;
+      font-size: 0.33cm;
+    }
+  }
 
-		// Ability/attribute table: keep it plain, black, no ornament
-		hr+table:first-of-type {
-			margin: 0 0 0.12cm 0;
-			color: #111;
-			background: transparent;
-			border: none;
+  .bonus {
+    float: right;
+    padding-right: 0.5em;
+  }
 
-			tr {
-				background: transparent;
-			}
+  :is(ul, ol) + p {
+    text-indent: 0;
+  }
 
-			td,
-			th {
-				padding: 0;
-				font-weight: 700;
-				font-size: 0.33cm;
-			}
-		}
-
-		.bonus {
-			float: right;
-			padding-right: 0.5em;
-		}
-
-		:is(ul, ol)+p {
-			text-indent: 0;
-		}
-
-		:last-child {
-			margin-bottom: 0;
-		}
-	}
+  :last-child {
+    margin-bottom: 0;
+  }
+}
 
 
 	//Full Width
@@ -1542,7 +1538,7 @@
 	background-repeat: no-repeat;
 	background-position: center bottom;
 	background-size: auto 100%;
-	background-color: rgba(235, 240, 245, 0.10); // cool wash
+	background-color: rgba(235, 240, 245, 0.10);  // cool wash
 	pointer-events: none;
 }
 
@@ -1633,15 +1629,15 @@
 }
 
 .page {
-	position: relative; // needed for ::after overlay
+  position: relative; // needed for ::after overlay
 }
 
 
 
 /* Ensure page content stays above overlay */
-.page>* {
-	position: relative;
-	z-index: 1;
+.page > * {
+  position: relative;
+  z-index: 1;
 }
 
 
@@ -1767,4 +1763,55 @@
 	text-align: center;
 	letter-spacing: 0.08em;
 	margin: 0.35cm 0 0.25cm 0;
+}
+
+/* *****************************
+ *          OPUNT
+ * *****************************/
+.opint {
+  position: relative;
+
+  /* typography */
+  font-family: 'BookInsanityRemake';
+  color: #f5f5f5;
+
+  /* paper background */
+  background-color: none;
+  background-image: url('/assets/opunt.png'); /* optional, see below */
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  padding: 0.4cm 0.5cm 0.45cm 0.5cm;
+  margin: 1.45cm 0;
+
+  /* rough edges */
+  border-radius: 0;
+  clip-path: polygon(
+    0% 2%, 98% 0%, 100% 6%, 99% 96%,
+    96% 100%, 4% 98%, 0% 94%
+  );
+
+  /* depth */
+  box-shadow:
+    2px 3px 6px rgba(0,0,0,0.45);
+
+  /* prevent column breaks */
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.opint h2 {
+  margin: 0.25 0 0.35cm 0;
+  margin-top: 0.8cm;
+  padding: 0;
+  text-align: center;
+
+  font-family: 'MrEavesRemake';
+  font-size: 13.0pt;
+  line-height: 1.05em;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+
+  color: #ffffff;
 }
