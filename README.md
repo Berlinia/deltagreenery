@@ -37,7 +37,7 @@ updates:
     1. Click "Environment variables", find the "path" variable, and double-click to open it.
     1. Click "New" and paste in the path to the MongoDB "bin" folder.
     1. Click "OK" three times to close all the windows.
-    1. In the second command prompt, run "mongo", which allows you to edit the database.
+    1. In the second command prompt, run "mongo", which allows you to edit the database. If you installed MonoDB Shell, run "mongosh" instead.
     1. Type `use homebrewery` to create The Homebrewery database. You should see `switched to db homebrewery`.
     1. Type `db.brews.insertOne({"title":"test"})` to create a blank document. You should see `{
 acknowledged: true,
@@ -145,6 +145,7 @@ your contribution to the project, please join our [gitter chat][gitter-url].
 [github-mark-duplicate-url]: https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/about-duplicate-issues-and-pull-requests
 [github-pr-docs-url]: https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request
 [gitter-url]: https://gitter.im/naturalcrit/Lobby
+
 
 
 
