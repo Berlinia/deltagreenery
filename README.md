@@ -7,9 +7,8 @@ You do not need to install Node.js, MongoDB, or Git on your system.
 
 Requirements
 
-- Docker Desktop (Windows / macOS / Linux)
-- Make sure Docker Desktop is running before continuing
-
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows / macOS / Linux) for your computer. 
+- Make sure Docker Desktop is running before continuing.
 That’s it.
 
 ----------------------------------------------------------------
@@ -160,5 +159,6 @@ Everything runs in isolated containers with pinned versions for consistency.
 License
 
 See the original Homebrewery project for licensing and attribution details.
+
 
 
