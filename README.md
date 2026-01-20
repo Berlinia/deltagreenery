@@ -48,13 +48,21 @@ This may take a few minutes the first time.
 
 Step 3. Open DeltaGreenery, a Homebrewery clone.
 
-Open your browser and go to:
+Open your browser and go to: [http://localhost:8000](http://localhost:8000)
 
-http://localhost:8001
+If you see a Windows / WCF service page Port 8000 is commonly used by Windows system services (WCF/IIS).
 
-Why port 8001?
-Port 8000 is commonly used by Windows system services (WCF/IIS).
-To avoid conflicts, Homebrewery is mapped to port 8001 on the host.
+If port 8000 is unavailable, edit `docker-compose.yml` and change:
+
+ports:
+  - "8000:8000"
+
+to another free port, for example:
+
+ports:
+  - "8001:8000"
+
+Then instead head to [http://localhost:8001](http://localhost:8001)
 
 ----------------------------------------------------------------
 
@@ -103,7 +111,7 @@ docker compose up
 
 Troubleshooting
 
-If you see a Windows / WCF service page
+
 You are likely visiting port 8000 by accident.
 
 Make sure you are using:
@@ -111,17 +119,7 @@ http://localhost:8001
 
 ----------------------------------------------------------------
 
-If port 8001 is unavailable
 
-Edit docker-compose.yml and change:
-
-ports:
-  - "8001:8000"
-
-to another free port, for example:
-
-ports:
-  - "8080:8000"
 
 Then restart:
 
@@ -159,6 +157,7 @@ Everything runs in isolated containers with pinned versions for consistency.
 License
 
 See the original Homebrewery project for licensing and attribution details.
+
 
 
 
