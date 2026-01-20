@@ -1,153 +1,162 @@
-# The Homebrewery
+The Homebrewery (Docker Setup)
 
-[![Homebrewery](https://circleci.com/gh/naturalcrit/homebrewery/tree/master.svg?style=svg)](https://app.circleci.com/pipelines/github/naturalcrit/homebrewery?branch=master)
+This repository provides a one-command local setup for running The Homebrewery using Docker.
+You do not need to install Node.js, MongoDB, or Git on your system.
 
-The Homebrewery is a tool for making authentic looking [D&D content][dnd-content-url]
-using [Markdown][markdown-url]. It is distributed under the terms of the [MIT License](./license).
+----------------------------------------------------------------
 
-[dnd-content-url]: https://dnd.wizards.com/products/tabletop-games/rpg-products/rpg_playershandbook
-[markdown-url]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+Requirements
 
-## Quick Start
-The easiest way to get started using The Homebrewery is to use it
-[on our website][homebrewery-url]. The code is open source, so feel free to
-clone it and tinker with it. If you want to make changes to the code, you can run
-your own local version for testing by following the installation instructions
-below.
+- Docker Desktop (Windows / macOS / Linux)
+- Make sure Docker Desktop is running before continuing
 
-[homebrewery-url]: https://homebrewery.naturalcrit.com
+That’s it.
 
-### Installation
-First, install three programs that The Homebrewery requires to run and retrieve
-updates:
+----------------------------------------------------------------
 
-1. install [node](https://nodejs.org/en/), version v16 or higher.
-1. install [mongodb](https://www.mongodb.com/try/download/community) (Community version)
+Quick Start (Recommended)
 
-    For the easiest installation, follow these steps:
-    1. In the installer, uncheck the option to run as a service.
-    1. You can install MongoDB Compass if you want a GUI to view your database documents.
-    1. If you install any version over 6.0, you will have to install [MongoDB Shell](https://www.mongodb.com/try/download/shell).
-    1. Go to the C:\ drive and create a folder called "data".
-    1. Inside the "data" folder, create a new folder called "db".
-    1. Open a command prompt or other terminal and navigate to your MongoDB install folder (C:\Program Files\Mongo\Server\6.0\bin).
-    1. In the command prompt, run "mongod", which will start up your local database server.
-    1. While MongoD is running, open a second command prompt and navigate to the MongoDB install folder.
-    1. Search in Windows for "Advanced system settings" and open it.
-    1. Click "Environment variables", find the "path" variable, and double-click to open it.
-    1. Click "New" and paste in the path to the MongoDB "bin" folder.
-    1. Click "OK" three times to close all the windows.
-    1. In the second command prompt, run "mongo", which allows you to edit the database. If you installed MonoDB Shell, run "mongosh" instead.
-    1. Type `use homebrewery` to create The Homebrewery database. You should see `switched to db homebrewery`.
-    1. Type `db.brews.insertOne({"title":"test"})` to create a blank document. You should see `{
-acknowledged: true,
-insertedId: ObjectId("63c2fce9e5ac5a94fe2410cf")
-}`
-   
-1. install [git](https://git-scm.com/downloads) (select the option that allows Git to run from the command prompt).
+1. Get the code
 
-Checkout the repo ([documentation][github-clone-repo-docs-url]):
-```
-git clone https://github.com/Berlinia/deltagreenery/homebrewery.git
-```
+Option A: Download ZIP
+- Click “Code” → “Download ZIP” on GitHub
+- Unzip the folder anywhere on your computer
 
-[github-clone-repo-docs-url]: https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository
+Option B: Git
+- git clone https://github.com/Berlinia/deltagreenery/homebrewery.git
+- cd homebrewery
 
-Second, you will need to add the environment variable `NODE_ENV=local` to allow
-the project to run locally.
+----------------------------------------------------------------
 
-You can set this **temporarily** (until you close the terminal) in your shell of choice with admin privileges:
-* Windows Powershell: `$env:NODE_ENV="local"`
-* Windows CMD: `set NODE_ENV=local`
-* Linux / macOS: `export NODE_ENV=local`
+2. Start the app
 
-If you want to add this variable **permanently** the steps are as follows:
-    1. Search in Windows for "Advanced system settings" and open it.
-    1. Click "Environment variables".
-    1. In System Variables, click "New"
-    1. Click "New" and write `NODE_ENV` as a name and `local` as the value.
-    1. Click "OK" three times to close all the windows.
-  This can be undone at any time if needed.
+From the project root (where docker-compose.yml is located):
 
-Third, you will need to install the Node dependencies, compile the app, and run
-it using the two commands:
+1. Right click anywhere and click "Open in Terminal"
+2. In the powershell window that opens, type: `docker compose up`.
 
-1. `npm install`
-1. `npm start`
+That's it!
 
-When the Homebrewery server is started for the first time, it will modify the database to create the indexes required for better Homebrewery performance. This may take a few moments to complete for each index, dependent on how much content is in your local database - a brand new, empty database should be done in seconds.
+The first run will:
+- Download Node and MongoDB Docker images
+- Install dependencies
+- Build Homebrewery assets
+- Start the server
 
-On completion, you should be able to go to [http://localhost:8000](http://localhost:8000) in your browser and use The Homebrewery offline.
+This may take a few minutes the first time.
 
-If you had any issue at all, here are some links that may be useful:
-- [Course](https://learn.mongodb.com/courses/m103-basic-cluster-administration) on cluster administration, useful for beginners
-- [Mongo community forums](https://www.mongodb.com/community/forums/)
-- Useful Stack Overflow links for your most probable errors: [1](https://stackoverflow.com/questions/44962540/mongod-and-mongo-commands-not-working-on-windows-10), [2](https://stackoverflow.com/questions/15053893/mongo-command-not-recognized-when-trying-to-connect-to-a-mongodb-server/41507803#41507803), [3](https://stackoverflow.com/questions/51224959/mongo-is-not-recognized-as-an-internal-or-external-command-operable-program-o)
+----------------------------------------------------------------
 
-If you still have problems, post in [Our Subreddit](https://www.reddit.com/r/homebrewery/) and we will help you.
+3. Open Homebrewery
 
-### Running the application via Docker
+Open your browser and go to:
 
-Please see the docs here: [README.DOCKER.md](./README.DOCKER.md)
+http://localhost:8001
 
-### Running the application on FreeBSD or FreeNAS
+Why port 8001?
+Port 8000 is commonly used by Windows system services (WCF/IIS).
+To avoid conflicts, Homebrewery is mapped to port 8001 on the host.
 
-Please see the docs here: [README.FreeBSD.md](./README.FREEBSD.md)
+----------------------------------------------------------------
 
-### Standalone PHB Stylesheet
-If you just want the stylesheet that is generated to make pages look like they
-are from the Player's Handbook, you will find it in the
-[phb.standalone.css](./phb.standalone.css) file.
+Stopping the app
 
-If you are developing locally and would like to generate your own, follow the
-above steps and then run `npm run phb`.
+Press Ctrl + C in the terminal, then run:
 
-## Issues, Suggestions, and Bugs
-If you run into any issues using The Homebrewery or have suggestions for
-improvement, please submit an issue [on GitHub][repo-issues-url].
-You can also get help for issues on the subreddit [r/homebrewery][subreddit-url]
+docker compose down
 
-[repo-issues-url]: https://github.com/naturalcrit/homebrewery/issues
-[subreddit-url]: https://www.reddit.com/r/homebrewery
+Your data will be preserved automatically.
 
-## Changelog
+----------------------------------------------------------------
 
-You can check out the [changelog](./changelog.md).
+Data persistence
 
-## License
+MongoDB data is stored in a Docker volume:
 
-This project is licensed under the [MIT license](./license), which means you
-are free to use The Homebrewery in any way that you want, except for claiming
-that you made it yourself.
+deltagreenery-master_mongo_data
 
-If you wish to sell, or in some way gain profit for, what's created on this site,
-it's your responsibility to ensure you have the proper licenses/rights for any
-images or resources used.
+This means:
+- Data survives restarts
+- Data is not lost when containers stop
 
-## Contributing
+To fully reset the database, run:
 
-You are welcome to contribute to the development and maintenance of the
-project! There are several ways of doing that:
-- At the moment, we have a huge backlog of [issues][repo-issues-url] and some
-  of them are outdated, duplicates, or don't contain any useful info. To help, you can [mark duplicates][github-mark-duplicate-url], try to
-  reproduce some complex or weird issues, try finding a workaround for a
-  reported bug, or just mention our issue managers team to let them know about
-  outdated issues via `@naturalcrit/issue-managers`.
-- Our [subreddit][subreddit-url] is constantly growing and there are number of
-  bug reports. Any help with sorting them out is very welcome.
-- And of course you can contribute by fixing a bug or implementing a new
-  feature by yourself, we are waiting for your
-  [pull requests][github-pr-docs-url]!
+docker compose down -v
 
-Anyway, if you would like to get in touch with the team and discuss/coordinate
-your contribution to the project, please join our [gitter chat][gitter-url].
+WARNING: This permanently deletes all local Homebrewery data.
 
-[github-mark-duplicate-url]: https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/about-duplicate-issues-and-pull-requests
-[github-pr-docs-url]: https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request
-[gitter-url]: https://gitter.im/naturalcrit/Lobby
+----------------------------------------------------------------
 
+Useful commands
 
+View running containers
+docker compose ps
 
+View logs
+docker compose logs -f app
+docker compose logs -f mongo
 
+Rebuild everything from scratch
+docker compose build --no-cache
+docker compose up
 
+----------------------------------------------------------------
 
+Troubleshooting
+
+If you see a Windows / WCF service page
+You are likely visiting port 8000 by accident.
+
+Make sure you are using:
+http://localhost:8001
+
+----------------------------------------------------------------
+
+If port 8001 is unavailable
+
+Edit docker-compose.yml and change:
+
+ports:
+  - "8001:8000"
+
+to another free port, for example:
+
+ports:
+  - "8080:8000"
+
+Then restart:
+
+docker compose down
+docker compose up
+
+----------------------------------------------------------------
+
+If the app starts but crashes
+
+Check logs:
+
+docker compose logs --tail=200 app
+
+Most issues are related to MongoDB connection settings and can be fixed via environment variables.
+
+----------------------------------------------------------------
+
+What Docker does for you
+
+Docker replaces all of the following manual steps:
+
+- Installing Node.js
+- Installing MongoDB
+- Managing MongoDB services
+- Creating data/db
+- Setting PATH variables
+- Running mongod
+- Running npm install and npm start
+
+Everything runs in isolated containers with pinned versions for consistency.
+
+----------------------------------------------------------------
+
+License
+
+See the original Homebrewery project for licensing and attribution details.
