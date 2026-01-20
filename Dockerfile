@@ -1,22 +1,19 @@
-FROM node:22-alpine
-RUN apk --no-cache add git
+FROM node:20-alpine
 
-ENV NODE_ENV=docker
+WORKDIR /app
 
-# Create app directory
-WORKDIR /usr/src/app
+# Copy only dependency manifests first (good caching)
+COPY package*.json ./
 
-# Copy package.json into the image, then run yarn install
-# This improves caching so we don't have to download the dependencies every time the code changes
-COPY package.json ./
-# --ignore-scripts tells yarn not to run postbuild.  We run it explicitly later
-RUN node --version
-RUN npm --version
+# Install deps, but DO NOT run postinstall/build yet
 RUN npm install --ignore-scripts
 
-# Bundle app source and build application
+# Now copy the full source tree (including /scripts)
 COPY . .
+
+# Run the build explicitly (now the scripts exist)
 RUN npm run build
 
 EXPOSE 8000
-CMD [ "npm", "start" ]
+ENV NODE_ENV=local
+CMD ["npm","start"]
