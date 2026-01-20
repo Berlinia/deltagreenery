@@ -16,11 +16,11 @@ That’s it.
 
 Quick Start (Recommended)
 
-1. Get the code
+Step 1. Get the code either manually on Github, or through Git. 
 
 Option A: Download ZIP
 - Click “Code” → “Download ZIP” on GitHub
-- Unzip the folder anywhere on your computer
+- Unzip the folder anywhere on your computer. The unzipped folder is your project root.
 
 Option B: Git
 - git clone https://github.com/Berlinia/deltagreenery/homebrewery.git
@@ -28,7 +28,7 @@ Option B: Git
 
 ----------------------------------------------------------------
 
-2. Start the app
+Step 2. Start the app
 
 From the project root (where docker-compose.yml is located):
 
@@ -47,7 +47,7 @@ This may take a few minutes the first time.
 
 ----------------------------------------------------------------
 
-3. Open Homebrewery
+Step 3. Open DeltaGreenery, a Homebrewery clone.
 
 Open your browser and go to:
 
@@ -160,3 +160,4 @@ Everything runs in isolated containers with pinned versions for consistency.
 License
 
 See the original Homebrewery project for licensing and attribution details.
+
