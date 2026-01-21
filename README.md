@@ -18,7 +18,7 @@ Now run the following file:
 
 ``run-deltagreenery.bat``
 
-which can be found in ...
+which can be found in [here](https://github.com/Berlinia/deltagreenery/releases/download/try/run-deltagreenery.bat) or in the releases tab.
 
 and you are done! You are currently localy hosting a version of homebrewery. Go to your browser and type:
 
@@ -29,6 +29,7 @@ and play around. Every time you re-run the above `.bat` file, your local version
 **Common Issues**
 1. If you can't install WSL, uninstall and re-install Microsoft Store.
 2.  
+
 
 
 
