@@ -1,16 +1,3 @@
-```css
-.page #example + table td {
-	border:1px dashed #00000030;
-}
-.page {
-	padding-bottom : 1.1cm;
-}
-
-:root {
-  --HB_DocTitle: "Your Document Title Here";
-}
-
-```
 # Delta Greenery 0.0
 
 Greetings agent, and welcome to your first operational briefing on the new Program developed interface: Delta Greenery. The art of writing convincing reports is lost on newer agents, so the Director began this initiative to improve data processing and information clarity. 
@@ -69,6 +56,11 @@ Your mother is so dumb, the Mi-Go do not care to analyze her for their goals.
    
 ## Style Editor Panel
 {{fa,fa-paint-brush}} Usually overlooked or unused by some users, the **Style Editor** tab is located on the right side of the Snippet bar. This editor accepts CSS for styling without requiring `<style>` tags-- anything that would have gone inside style tags before can now be placed here, and snippets that insert CSS styles are now located on that tab.
+
+Use the following code to define your documents title
+:root {
+  --HB_DocTitle: "Your Document Title Here";
+}
 
 {{pageNumber 2}}
 {{footnote PART 2 | BORING STUFF}}
