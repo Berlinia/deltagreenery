@@ -17,17 +17,27 @@ REM --- Check prerequisites ---
 where git >nul 2>&1 || (echo ERROR: git not found in PATH & exit /b 1)
 where docker >nul 2>&1 || (echo ERROR: docker not found in PATH & exit /b 1)
 
-REM --- Clone if missing ---
-if exist "%REPO_DIR%\.git" (
-  echo Repo exists: %REPO_DIR%
+REM --- Determine repo path (avoid recursive cloning when run inside the repo) ---
+set "REPO_PATH="
+
+if exist ".git" (
+  REM Running from inside the repo already
+  set "REPO_PATH=%CD%"
+) else if exist "%REPO_DIR%\.git" (
+  REM Repo exists as a subfolder
+  set "REPO_PATH=%CD%\%REPO_DIR%"
 ) else (
-  
+  REM Not present -> clone into REPO_DIR
   echo Cloning repo...
   git clone "%REPO_URL%" "%REPO_DIR%" || (echo ERROR: git clone failed & exit /b 1)
+  set "REPO_PATH=%CD%\%REPO_DIR%"
 )
 
+echo Using repo path: "%REPO_PATH%"
+echo.
+
 REM --- Pull updates ---
-pushd "%REPO_DIR%" || (echo ERROR: cannot cd into %REPO_DIR% & exit /b 1)
+pushd "%REPO_PATH%" || (echo ERROR: cannot cd into "%REPO_PATH%" & exit /b 1)
 
 echo Fetching latest...
 git fetch --all --prune || (echo ERROR: git fetch failed & popd & exit /b 1)
@@ -35,18 +45,17 @@ git fetch --all --prune || (echo ERROR: git fetch failed & popd & exit /b 1)
 echo Checking out branch: %BRANCH%
 git checkout "%BRANCH%" >nul 2>&1
 if errorlevel 1 (
-  echo Branch "%BRANCH%" not found locally Trying to create tracking branch
+  echo Branch "%BRANCH%" not found locally. Trying to create tracking branch...
   git checkout -b "%BRANCH%" "origin/%BRANCH%" || (echo ERROR: checkout failed & popd & exit /b 1)
 )
 
-echo Pulling latest
-git pull --ff-only || (
-  if errorlevel 1 (
+echo Pulling latest...
+git pull --ff-only
+if errorlevel 1 (
   echo ERROR: git pull failed (maybe you have local changes or need a merge)
   echo        Resolve manually, then re-run
   popd
   exit /b 1
-  )
 )
 
 REM --- Docker compose up ---

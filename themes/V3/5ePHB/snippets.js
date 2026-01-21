@@ -57,9 +57,7 @@ module.exports = [
 					{{timeline
 					* **27 OCT 1865:** A book thought to be *The King in Yellow* is reported in London for the first time.^[1]
 					* **28 MAY 1886:** Asa Daribondi is born in Paris.^[2]
-
 					##### THE BROTHERHOOD (1865–1905)
-
 					* **OCTOBER 1894:** *Le Roi en jaune* turns up in bookshops across Paris.^[3]
 					}}
 				}}\n`;
