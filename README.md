@@ -23,7 +23,7 @@ Option A: Download ZIP
 - Unzip the folder anywhere on your computer. The unzipped folder is your project root.
 
 Option B: Git
-- `git clone https://github.com/Berlinia/deltagreenery/homebrewery.git`
+- `git clone https://github.com/Berlinia/deltagreenery.git`
 - `cd homebrewery`
 
 ----------------------------------------------------------------
@@ -158,6 +158,7 @@ Everything runs in isolated containers with pinned versions for consistency.
 License
 
 See the original Homebrewery project for licensing and attribution details.
+
 
 
 
