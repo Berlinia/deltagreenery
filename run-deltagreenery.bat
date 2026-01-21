@@ -1,0 +1,60 @@
+@echo off
+setlocal enabledelayedexpansion
+
+REM === CONFIG ===
+set "REPO_URL=https://github.com/Berlinia/deltagreenery"
+set "REPO_DIR=deltagreenery"
+set "BRANCH=master"
+
+echo.
+echo === Repo bootstrap / update / docker compose up ===
+echo Repo URL : %REPO_URL%
+echo Repo dir : %REPO_DIR%
+echo Branch   : %BRANCH%
+echo.
+
+REM --- Check prerequisites ---
+where git >nul 2>&1 || (echo ERROR: git not found in PATH & exit /b 1)
+where docker >nul 2>&1 || (echo ERROR: docker not found in PATH & exit /b 1)
+
+REM --- Clone if missing ---
+if exist "%REPO_DIR%\.git" (
+  echo Repo exists: %REPO_DIR%
+) else (
+  
+  echo Cloning repo...
+  git clone "%REPO_URL%" "%REPO_DIR%" || (echo ERROR: git clone failed & exit /b 1)
+)
+
+REM --- Pull updates ---
+pushd "%REPO_DIR%" || (echo ERROR: cannot cd into %REPO_DIR% & exit /b 1)
+
+echo Fetching latest...
+git fetch --all --prune || (echo ERROR: git fetch failed & popd & exit /b 1)
+
+echo Checking out branch: %BRANCH%
+git checkout "%BRANCH%" >nul 2>&1
+if errorlevel 1 (
+  echo Branch "%BRANCH%" not found locally Trying to create tracking branch
+  git checkout -b "%BRANCH%" "origin/%BRANCH%" || (echo ERROR: checkout failed & popd & exit /b 1)
+)
+
+echo Pulling latest
+git pull --ff-only || (
+  if errorlevel 1 (
+  echo ERROR: git pull failed (maybe you have local changes or need a merge)
+  echo        Resolve manually, then re-run
+  popd
+  exit /b 1
+  )
+)
+
+REM --- Docker compose up ---
+echo.
+echo Starting docker compose...
+docker compose up -d --build || (echo ERROR: docker compose up failed & popd & exit /b 1)
+
+popd
+echo.
+echo Done.
+exit /b 0
