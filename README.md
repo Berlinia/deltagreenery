@@ -1,163 +1,39 @@
-The Homebrewery (Docker Setup)
+Delta Greenery
 
-This repository provides a one-command local setup for running The Homebrewery using Docker.
-You do not need to install Node.js, MongoDB, or Git on your system.
+This repository is a fork of [the Homebrewery](https://homebrewery.naturalcrit.com/) by the wonderful folks at Natural Crit, adapted to produce documents for [Arc Dreams' Delta Green](https://arcdream.com/home/category/delta-green/) Roleplaying Game. The goal is to be able to produce semi-authentic looking pdf's that emulate the style of the official Delta Green material, for purposes such as adventure creation and thus empower homebrew creations for its users. For a preview see here:
+
+<img width="2527" height="1207" alt="image" src="https://github.com/user-attachments/assets/c30e49dd-ea1e-4639-920a-ad39ee2c6dba" />
+
 
 ----------------------------------------------------------------
+**Installation Guide for Windows**
+First ensure you have the following dependencies installed.
 
-Requirements
-
-- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows / macOS / Linux) for your computer. 
-- Make sure Docker Desktop is running, and you are logged into it, before continuing.
+- WSL with a Linux Distribution. [How to Guide](https://learn.microsoft.com/en-us/windows/wsl/install)
 - Install [Git](https://git-scm.com/install/). 
-That’s it.
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows / macOS / Linux) for your computer, and log in. You can make an account, or use google/github.
+- Make sure Docker Desktop is running, and you are logged into it, before continuing.
 
-----------------------------------------------------------------
+Now run the following file:
 
-Quick Start (Recommended)
+``run-deltagreenery.bat``
 
-Step 1. Get the code either manually on Github, or through Git. 
+which can be found in [here](https://github.com/Berlinia/deltagreenery/releases/download/try/run-deltagreenery.bat) or in the releases tab.
 
-Option A: Download ZIP
-- Click “Code” → “Download ZIP” on GitHub
-- Unzip the folder anywhere on your computer. The unzipped folder is your project root.
+and you are done! You are currently localy hosting a version of homebrewery. Go to your browser and type:
 
-Option B: Git
-- `git clone https://github.com/Berlinia/deltagreenery.git`
-- `cd homebrewery`
+``http://localhost:8000/``
 
-----------------------------------------------------------------
+and play around. Every time you re-run the above `.bat` file, your local version of the deltagreenery syncs with the repository on github, so you can enjoy the latest features.
 
-Step 2. Start the app
-
-From the project root (where docker-compose.yml is located):
-
-1. Right click anywhere and click "Open in Terminal"
-2. In the powershell window that opens, type: `docker compose up`.
-
-That's it!
-
-The first run will:
-- Download Node and MongoDB Docker images
-- Install dependencies
-- Build Homebrewery assets
-- Start the server
-
-This may take a few minutes the first time.
-
-----------------------------------------------------------------
-
-Step 3. Open DeltaGreenery, a Homebrewery clone.
-
-Open your browser and go to: [http://localhost:8000](http://localhost:8000)
-
-If you see a Windows / WCF service page Port 8000 is commonly used by Windows system services (WCF/IIS).
-
-If port 8000 is unavailable, edit `docker-compose.yml` and change:
-
-ports:
-  - "8000:8000"
-
-to another free port, for example:
-
-ports:
-  - "8001:8000"
-
-Then instead head to [http://localhost:8001](http://localhost:8001)
-
-----------------------------------------------------------------
-
-Stopping the app
-
-Press Ctrl + C in the terminal, then run:
-
-docker compose down
-
-Your data will be preserved automatically.
-
-----------------------------------------------------------------
-
-Data persistence
-
-MongoDB data is stored in a Docker volume:
-
-deltagreenery-master_mongo_data
-
-This means:
-- Data survives restarts
-- Data is not lost when containers stop
-
-To fully reset the database, run:
-
-docker compose down -v
-
-WARNING: This permanently deletes all local Homebrewery data.
-
-----------------------------------------------------------------
-
-Useful commands
-
-View running containers
-docker compose ps
-
-View logs
-docker compose logs -f app
-docker compose logs -f mongo
-
-Rebuild everything from scratch
-docker compose build --no-cache
-docker compose up
-
-----------------------------------------------------------------
-
-Troubleshooting
-
-
-You are likely visiting port 8000 by accident.
-
-Make sure you are using:
-http://localhost:8001
-
-----------------------------------------------------------------
+**Common Issues**
+1. If you can't install WSL, uninstall and re-install Microsoft Store.
+2.  
 
 
 
-Then restart:
 
-docker compose down
-docker compose up
 
-----------------------------------------------------------------
-
-If the app starts but crashes
-
-Check logs:
-
-docker compose logs --tail=200 app
-
-Most issues are related to MongoDB connection settings and can be fixed via environment variables.
-
-----------------------------------------------------------------
-
-What Docker does for you
-
-Docker replaces all of the following manual steps:
-
-- Installing Node.js
-- Installing MongoDB
-- Managing MongoDB services
-- Creating data/db
-- Setting PATH variables
-- Running mongod
-- Running npm install and npm start
-
-Everything runs in isolated containers with pinned versions for consistency.
-
-----------------------------------------------------------------
-
-License
-
-See the original Homebrewery project for licensing and attribution details.
 
 
 
