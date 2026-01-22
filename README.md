@@ -28,7 +28,8 @@ and play around. Every time you re-run the above `.bat` file, your local version
 
 **Common Issues**
 1. If you can't install WSL, uninstall and re-install Microsoft Store.
-2.  
+2. Make sure all is good.
+
 
 
 
