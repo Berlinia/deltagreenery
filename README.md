@@ -31,6 +31,8 @@ and play around. Every time you re-run the above `.bat` file, your local version
 2. Make sure all is good.
 
 
+Special thanks to discord user TFA303 for helping me test things.
+
 
 
 
