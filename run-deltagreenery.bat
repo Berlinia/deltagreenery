@@ -50,7 +50,7 @@ if errorlevel 1 (
 )
 
 echo Pulling latest...
-git pull --ff-only
+git pull
 if errorlevel 1 (
   echo ERROR: git pull failed (maybe you have local changes or need a merge)
   echo        Resolve manually, then re-run
@@ -61,7 +61,7 @@ if errorlevel 1 (
 REM --- Docker compose up ---
 echo.
 echo Starting docker compose...
-docker compose up -d --build || (echo ERROR: docker compose up failed & popd & exit /b 1)
+docker compose up  || (echo ERROR: docker compose up failed & popd & exit /b 1)
 
 popd
 echo.
