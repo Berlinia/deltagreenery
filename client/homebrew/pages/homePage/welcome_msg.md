@@ -2,7 +2,6 @@
 
 Greetings agent, and welcome to your first operational briefing on the new Program developed interface: Delta Greenery. The art of writing convincing reports is lost on newer agents, so the Director began this initiative to improve data processing and information clarity. 
 
-
 ### Homebrew Made Easy
 
 Delta Greenery, based on the Homebrewery by Natural Crit, makes the creation and sharing of authentic looking Delta Green homebrews easy. It uses [Markdown](https://help.github.com/articles/markdown-basics/) with some CSS magic to make brews come to life, in the beloved Arc Dreams style. Try it! Simply edit the text on the left of this page, and watch it *update live* on the right. 
