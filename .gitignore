@@ -1,0 +1,16 @@
+node_modules
+storage
+.idea
+*.swp
+
+*.log
+build/*
+config/local.*
+config/docker.*
+
+todo.md
+startDB.bat
+startMViewer.bat
+.vscode
+
+coverage

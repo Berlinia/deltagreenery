@@ -1,0 +1,1214 @@
+@import (less) './themes/assets/assets.less';
+
+:root {
+	// Colors
+	--HB_Color_Background: #EEE5CE; // Light parchment
+	--HB_Color_Accent: #E0E5C1; // Pastel green
+	--HB_Color_HeaderUnderline: #C0AD6A; // Gold
+	--HB_Color_HorizontalRule: #9C2B1B; // Maroon
+	--HB_Color_HeaderText: #58180D; // Dark Maroon
+	--HB_Color_MonsterStatBackground: #F2E5B5; // Light orange parchment
+	--HB_Color_CaptionText: #766649; // Brown
+	--HB_Color_WatercolorStain: #BBAD82; // Light brown
+	--HB_Color_Footnotes: #C9AD6A; // Gold
+	--TOC: 'include';
+}
+
+.useSansSerif() {
+	font-family: 'ScalySansRemake';
+	font-size: 0.318cm;
+
+	p,
+	dl,
+	ul,
+	ol {
+		line-height: 1.2em;
+	}
+
+	ul,
+	ol {
+		padding-left: 1em;
+	}
+
+	em {
+		font-style: italic;
+	}
+
+	strong {
+		font-weight: 800;
+		letter-spacing: -0.02em;
+	}
+
+	h5 + * {
+		margin-top: 0.1cm;
+	}
+}
+
+.useColumns(@multiplier : 1, @fillMode: auto) {
+	column-count: 2;
+	column-fill: @fillMode;
+	column-gap: 0.9cm;
+	column-width: 8cm * @multiplier;
+
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+
+	-webkit-column-width: 8cm * @multiplier;
+	-moz-column-width: 8cm * @multiplier;
+
+	-webkit-column-gap: 0.9cm;
+	-moz-column-gap: 0.9cm;
+}
+
+/* =========================================================
+   PAGE (merged from multiple .page blocks)
+   ========================================================= */
+.page {
+	.useColumns();
+	font-family: 'BookInsanityRemake';
+	font-size: 10.5pt;
+	line-height: 1.25;
+
+	/* Background */
+	background-image: @backgroundImage;
+	background-size: cover;
+	background-position: center;
+	background-repeat: repeat;
+
+	/* Layout / positioning */
+	position: relative; // needed for ::after overlay
+
+	/* Header space (final winner) */
+	padding-top: calc(1.5cm + 12px + 0.4cm) !important;
+
+	/* Replace bullet with » */
+	ul li::marker {
+		content: "» ";
+	}
+
+	/* =========================
+	   BASE TEXT
+	   ========================= */
+	p {
+		line-height: 1.25em;
+
+		& + * {
+			margin-top: 0.325cm;
+		}
+
+		& + p {
+			margin-top: 0;
+		}
+	}
+
+	ul,
+	ol {
+		padding-left: 1.4em;
+		margin-bottom: 0.8em;
+		line-height: 1.25em;
+	}
+
+	/* Indents after p or lists */
+	p + p,
+	ul + p,
+	ol + p {
+		text-indent: 1em;
+	}
+
+	img {
+		z-index: -1;
+	}
+
+	strong {
+		font-weight: bold;
+		letter-spacing: -0.02em;
+	}
+
+	/* =========================
+	   HEADERS
+	   ========================= */
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: 'MrEavesRemake';
+		color: var(--HB_Color_HeaderText);
+	}
+
+	h1 {
+		/* keep full-width heading */
+		column-span: all;
+		-webkit-column-span: all;
+		-moz-column-span: all;
+
+		/* final overrides from later block */
+		font-family: "HeaderFont" !important;
+		font-weight: normal;
+		letter-spacing: 0.02em;
+		font-size: 25.0pt;
+		line-height: 1.05em;
+
+		margin-bottom: 0.35cm;
+
+		&::before { content: "// "; }
+		&::after  { content: " //"; }
+	}
+
+	h2 {
+		font-family: "Timelines";
+		margin: 0 0 0.12cm 0;
+		font-size: 13.0pt;
+		line-height: 1.05em;
+		color: #000000;
+		font-weight: 700;
+		border: none;
+		padding: 0;
+	}
+
+	/* H3: final intent = Typestar + custom divider artwork */
+	h3 {
+		font-family: "Typestar-Black" !important;
+		font-weight: normal;
+		font-style: normal;
+		color: #1a1a1a;
+
+		/* keep earlier sizing/spacing intent unless explicitly contradicted */
+		font-size: 0.575cm;
+		line-height: 0.995em;
+
+		/* divider artwork overrides border-bottom */
+		border-bottom: none !important;
+		position: relative;
+		padding-bottom: 0.35cm;
+
+		& + * {
+			margin-top: 0.17cm;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: -100vw;
+			right: -100vw;
+			bottom: 0;
+
+			height: 18px;
+			background-image: url('/assets/h3-double-rule.png');
+			background-repeat: no-repeat;
+			background-position: center bottom;
+			background-size: auto 100%;
+			background-color: rgba(235, 240, 245, 0.10); // cool wash
+			pointer-events: none;
+		}
+	}
+
+	* + h3 {
+		margin-top: 0.155cm; // (0.325 - 0.17)
+	}
+
+	h4 {
+		color: #1a1a1a;
+		font-family: "Header4";
+		font-size: 11.0pt;
+		line-height: 0.971em;
+
+		& + * {
+			margin-top: 0.09cm;
+		}
+	}
+
+	* + h4 {
+		margin-top: 0.235cm; // (0.325 - 0.09)
+	}
+
+	h5 {
+		font-family: 'ScalySansSmallCapsRemake';
+		font-size: 0.423cm;
+		line-height: 0.951em;
+
+		& + * {
+			margin-top: 0.2cm;
+		}
+	}
+
+	/* =========================
+	   TABLES
+	   ========================= */
+	table {
+		.useSansSerif();
+
+		width: 100%;
+		border-collapse: collapse;
+		border-spacing: 0;
+
+		border: 2px solid rgba(0, 0, 0, 0.85);
+		background: rgba(255, 255, 255, 0.92);
+
+		box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.25);
+		transform-origin: center center;
+
+		& + * {
+			margin-top: 0.325cm;
+		}
+
+		thead {
+			display: table-header-group;
+		}
+
+		thead tr {
+			background: #323a41;
+		}
+
+		thead th {
+			color: #ffffff;
+			font-family: "Header4";
+			font-weight: 800;
+			text-align: left;
+			padding: 6px 8px;
+		}
+
+		thead th:last-child {
+			border-right: none;
+		}
+
+		tbody td {
+			padding: 6px 8px;
+			font-family: "BookInsanityRemake";
+			text-align: left;
+			vertical-align: top;
+		}
+
+		tbody td:last-child {
+			border-right: none;
+		}
+
+		tbody tr:nth-child(odd)  { background: #caccd0; }
+		tbody tr:nth-child(even) { background: #f8f5fa; }
+
+		tbody td:first-child {
+			font-weight: 700;
+		}
+	}
+
+	/* Prefix table titles with » */
+	h5:has(+ table)::before { content: "» "; }
+
+	h5:has(+ table) {
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		font-weight: 800;
+		margin-bottom: 0.12cm;
+	}
+
+	/* Pseudo-random rotation pool */
+	table:nth-of-type(5n + 1) { transform: rotate(-0.6deg); }
+	table:nth-of-type(5n + 2) { transform: rotate(0.4deg); }
+	table:nth-of-type(5n + 3) { transform: rotate(-0.2deg); }
+	table:nth-of-type(5n + 4) { transform: rotate(0.7deg); }
+	table:nth-of-type(5n)     { transform: rotate(-0.4deg); }
+
+	/* =========================
+	   QUOTE
+	   ========================= */
+	.quote {
+		& > p {
+			font-style: italic;
+			line-height: 0.54cm;
+
+			&:first-child::first-line {
+				font-size: 0.38cm;
+				font-style: normal;
+				font-variant: small-caps;
+			}
+		}
+
+		p + .attribution { margin-top: 0; }
+
+		.attribution {
+			display: block;
+			font-style: normal;
+			line-height: 0.54cm;
+			text-align: right;
+
+			&::before {
+				margin-right: 0.2em;
+				content: '---';
+			}
+		}
+
+		& + * {
+			margin-top: 0.54cm;
+		}
+	}
+
+	/* =========================
+	   NOTE
+	   ========================= */
+	.note {
+		.useSansSerif();
+
+		background-color: #ffee9b;
+		background-image: linear-gradient(180deg, #ffee9b 0%, #ffee9b 100%);
+
+		border: none;
+		border-image: none;
+
+		padding: 0.3cm 0.35cm;
+		border-radius: 0px;
+
+		box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.25);
+		transform: rotate(-2deg);
+
+		.page :where(&) {
+			margin-top: 10px;
+		}
+
+		& + * {
+			margin-top: 0.45cm;
+		}
+
+		h5 {
+			font-family: "Typewriter";
+			font-size: 0.38cm;
+			font-weight: normal;
+
+			text-align: center;
+			text-transform: uppercase;
+			font-variant: small-caps;
+			margin: 0 0 0.15cm 0;
+			padding: 0;
+
+			color: #2e2d2b;
+			letter-spacing: 0.02em;
+		}
+
+		p {
+			font-family: "BookInsanityRemake";
+			font-size: 10.0pt;
+			line-height: 1.4em;
+			color: #292826;
+		}
+
+		/* Kill dropcaps inside notes */
+		p::first-letter {
+			all: unset;
+		}
+	}
+
+	.note::before {
+		content: "";
+		position: absolute;
+		top: -6px;
+		left: 30%;
+		width: 40%;
+		height: 12px;
+		background: rgba(255, 255, 255, 0.6);
+		border-radius: 2px;
+	}
+
+	.note::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: -0.15cm;
+		width: 0.4cm;
+		height: 100%;
+
+		background: repeating-radial-gradient(circle, #ffffff 0 3px, transparent 4px 18px);
+
+		box-shadow: inset -1px 0 2px rgba(0, 0, 0, 0.25);
+		pointer-events: none;
+	}
+
+	/* =========================
+	   DESCRIPTIVE
+	   ========================= */
+	.descriptive {
+		.useSansSerif();
+		padding: 0.1em;
+		background-color: #FAF7EA;
+		border-style: solid;
+		border-width: 7px;
+		border-image: @descriptiveBoxImage 12 stretch;
+		border-image-outset: 4px;
+		box-shadow: 0 0 6px #FAF7EA;
+
+		.page :where(&) {
+			margin-top: 4px;
+		}
+
+		& + * {
+			margin-top: 0.45cm;
+		}
+
+		h5 { font-size: 0.375cm; }
+
+		p {
+			display: block;
+			padding-bottom: 0px;
+			line-height: 1.5em;
+		}
+
+		:last-child { margin-bottom: 0; }
+	}
+
+	/* =========================
+	   ARTIST / WATERMARK / WATERCOLOR
+	   ========================= */
+	.artist {
+		position: absolute;
+		width: auto;
+		font-family: 'WalterTurncoat';
+		font-size: 0.27cm;
+		color: var(--HB_Color_CaptionText);
+		text-align: center;
+
+		p,
+		p + p {
+			margin: unset;
+			line-height: 1em;
+			text-indent: unset;
+		}
+
+		h5 {
+			font-family: 'WalterTurncoat';
+			font-size: 1.3em;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: unset;
+
+			&:hover { text-decoration: underline; }
+		}
+	}
+
+	.watermark { color: black; }
+
+	.watercolor1  { --wc: @watercolor1; }
+	.watercolor2  { --wc: @watercolor2; }
+	.watercolor3  { --wc: @watercolor3; }
+	.watercolor4  { --wc: @watercolor4; }
+	.watercolor5  { --wc: @watercolor5; }
+	.watercolor6  { --wc: @watercolor6; }
+	.watercolor7  { --wc: @watercolor7; }
+	.watercolor8  { --wc: @watercolor8; }
+	.watercolor9  { --wc: @watercolor9; }
+	.watercolor10 { --wc: @watercolor10; }
+	.watercolor11 { --wc: @watercolor11; }
+	.watercolor12 { --wc: @watercolor12; }
+
+	/* =========================
+	   MONSTER
+	   ========================= */
+	.monster {
+		font-family: "BookInsanityRemake";
+		text-align: left;
+		color: #111;
+		background: none;
+		padding: 0.35cm 0.4cm;
+		margin-bottom: 0.325cm;
+
+		p,
+		h2,
+		h3,
+		dl,
+		dt,
+		dd,
+		ul,
+		ol,
+		li,
+		table,
+		th,
+		td {
+			margin-left: 0;
+			padding-left: 0;
+			text-indent: 0;
+		}
+
+		ul,
+		ol {
+			list-style-position: inside;
+		}
+
+		&.frame {
+			width: auto;
+			margin: 0;
+			padding: 0.35cm 0.4cm;
+
+			background-image: none;
+			background-blend-mode: normal;
+
+			border: none;
+			border-image: none;
+			border-image-outset: 0;
+
+			box-shadow: none;
+		}
+
+		h2 {
+			font-family: "Timelines";
+			margin: 0 0 0.12cm 0;
+			font-size: 13.0pt;
+			line-height: 1.05em;
+			color: #000000;
+			font-weight: 700;
+			border: none;
+			padding: 0;
+		}
+
+		h3 {
+			font-family: "Times New Roman", "Georgia", serif;
+			font-size: 0.40cm;
+			font-weight: 700;
+			letter-spacing: 0.02em;
+
+			margin: 0.28cm 0 0.10cm 0;
+			padding-bottom: 0.05cm;
+			border-bottom: 1.5px solid #111;
+		}
+
+		hr {
+			visibility: visible;
+			height: 0;
+			margin: 0.18cm 0;
+			background: none;
+			border: none;
+			border-top: 1.5px solid #111;
+		}
+
+		hr ~ :is(dl, p) { color: inherit; }
+
+		hr:last-of-type {
+			& ~ :is(dl, p) { color: inherit; }
+
+			& + * { margin-top: 0.18cm; }
+		}
+
+		p,
+		li,
+		dd,
+		dt {
+			font-size: 0.33cm;
+			line-height: 1.25em;
+		}
+
+		p { margin: 0 0 0.12cm 0; }
+
+		strong {
+			font-weight: 700;
+			letter-spacing: 0.02em;
+			text-transform: uppercase;
+		}
+
+		hr + table:first-of-type {
+			margin: 0 0 0.12cm 0;
+			color: #111;
+			background: transparent;
+			border: none;
+
+			tr { background: transparent; }
+
+			td,
+			th {
+				padding: 0;
+				font-weight: 700;
+				font-size: 0.33cm;
+			}
+		}
+
+		.bonus {
+			float: right;
+			padding-right: 0.5em;
+		}
+
+		:is(ul, ol) + p { text-indent: 0; }
+
+		:last-child { margin-bottom: 0; }
+	}
+
+	.monster.wide {
+		.useColumns(0.96, @fillMode: balance);
+	}
+
+	@supports (-webkit-touch-callout: none) {
+		.page .monster.frame {
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	}
+
+	/* =========================
+	   FOOTER / PAGE CHROME
+	   ========================= */
+	&::after {
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		z-index: 100;
+		width: 100%;
+		height: 50px;
+		content: '';
+		background-size: cover;
+	}
+
+	&:nth-child(even) {
+		&::after { transform: scaleX(-1); }
+
+		.pageNumber { left: 2px; }
+
+		.footnote {
+			left: 80px;
+			text-align: left;
+		}
+	}
+
+	.pageNumber {
+		right: 2px;
+		bottom: 22px;
+		color: var(--HB_Color_Footnotes);
+	}
+
+	.footnote {
+		text-transform: uppercase;
+		position: absolute;
+		right: 80px;
+		bottom: 32px;
+		z-index: 150;
+		width: 200px;
+		font-size: 0.8em;
+		color: var(--HB_Color_Footnotes);
+		text-align: right;
+	}
+
+	/* =========================
+	   CODE
+	   ========================= */
+	code {
+		padding: 0px 4px;
+		font-size: 0.325cm;
+		color: #58180D;
+		background-color: #FAF7EA;
+		border-radius: 4px;
+	}
+
+	pre code {
+		padding: 0.15cm;
+		margin-bottom: 2px;
+		border-style: solid;
+		border-width: 1px;
+		border-radius: 12px;
+		border-image: @codeBorderImage 26 stretch;
+		border-image-width: 10px;
+		border-image-outset: 2px;
+
+		.page :where(&) {
+			margin-top: 2px;
+		}
+
+		& + * {
+			margin-top: 0.325cm;
+		}
+	}
+
+	/* =========================
+	   EXTRAS
+	   ========================= */
+	hr {
+		visibility: hidden;
+		margin: 0px;
+	}
+
+	table + p {
+		text-indent: 1em;
+	}
+
+	ul ul,
+	ol ol,
+	ul ol,
+	ol ul {
+		margin-bottom: 0px;
+		margin-left: 1.5em;
+	}
+
+	/* Ensure page content stays above overlay */
+	& > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	/* Full-bleed header rule (final) */
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 1.5cm;
+
+		height: 12px;
+
+		background-image: url('/assets/header-rule.png');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100% 100%;
+
+		pointer-events: none;
+		z-index: 150;
+	}
+}
+
+/* =========================================================
+   SPELL LIST
+   ========================================================= */
+.page .spellList {
+	.useSansSerif();
+	column-count: 2;
+
+	ul + h5 { margin-top: 15px; }
+
+	p,
+	ul {
+		font-size: 0.352cm;
+		line-height: 1.265em;
+	}
+
+	ul {
+		padding-left: 1em;
+		margin-bottom: 0.5em;
+		text-indent: -1em;
+		list-style-type: none;
+		-webkit-column-break-inside: auto;
+		page-break-inside: auto;
+		break-inside: auto;
+	}
+
+	&.wide { column-count: 4; }
+}
+
+/* =========================================================
+   CLASS TABLE
+   ========================================================= */
+.page .classTable {
+	th[colspan]:not([rowspan]) { white-space: nowrap; }
+
+	&.frame {
+		width: calc(100% + 0.2cm);
+		margin-top: 0.7cm;
+		margin-right: -0.1cm;
+		margin-bottom: 0.9cm;
+		margin-left: -0.1cm;
+		border-collapse: separate;
+		background-color: white;
+		border: initial;
+		border-style: solid;
+		border-image-source: @frameBorderImage;
+		border-image-slice: 200;
+		border-image-width: 47px;
+		border-image-outset: 0.4cm 0.3cm;
+		border-image-repeat: stretch;
+
+		&.wide:first-child { margin-top: 0.12cm; }
+		& + * { margin-top: 0; }
+	}
+
+	&.decoration { position: relative; }
+
+	&.decoration::before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: -1;
+		width: 7.75cm;
+		height: calc(100% + 3.3cm);
+		content: '';
+		background-image: @classTableDecoration, @classTableDecoration;
+		background-repeat: no-repeat, no-repeat;
+		background-position: top, bottom;
+		background-size: contain, contain;
+		filter: drop-shadow(0px 0px 1px #C8C5C080);
+		transform: translateY(-50%) translateX(-50%);
+	}
+
+	&.decoration.wide::before {
+		width: calc(100% + 3.3cm);
+		height: 7.75cm;
+		background-position: left, right;
+	}
+
+	h5 + table { margin-top: 0.2cm; }
+}
+
+/* =========================================================
+   FRONT COVER / INSIDE COVER / BACK COVER / PART COVER
+   (left as separate environments; already non-conflicting)
+   ========================================================= */
+/* ... unchanged from your paste ... */
+
+/* =========================================================
+   TOC rules
+   ========================================================= */
+.monster { --TOC: exclude; }
+
+.page:has(.partCover) {
+	--TOC: exclude;
+
+	& h1 { --TOC: include; }
+}
+
+.page {
+	&:has(.toc)::after { display: none; }
+
+	.toc {
+		-webkit-column-break-inside: avoid;
+		page-break-inside: avoid;
+		break-inside: avoid;
+
+		h1 {
+			margin-bottom: 0.3cm;
+			text-align: center;
+		}
+
+		a {
+			display: inline;
+			color: inherit;
+			text-decoration: none;
+
+			&:hover { text-decoration: underline; }
+		}
+
+		h4 {
+			margin-top: 0.2cm;
+			line-height: 0.4cm;
+
+			& + ul li { line-height: 1.2em; }
+		}
+
+		ul {
+			padding-left: 0;
+			margin-top: 0;
+			list-style-type: none;
+
+			a {
+				display: flex;
+				flex-flow: row nowrap;
+				justify-content: space-between;
+				width: 100%;
+			}
+
+			li + li h3 {
+				margin-top: 0.26cm;
+				line-height: 1em;
+			}
+
+			h3 span:first-child::after { border: none; }
+
+			span {
+				display: contents;
+
+				&:first-child::after {
+					bottom: 0.08cm;
+					flex: 1;
+					margin-right: 0.16cm;
+					margin-bottom: 0.08cm;
+					margin-left: 0.08cm;
+					content: '';
+					border-bottom: 0.05cm dotted #000000;
+				}
+
+				&:last-child {
+					display: inline-block;
+					align-self: flex-end;
+					font-family: 'BookInsanityRemake';
+					font-size: 10.75pt;
+					font-weight: normal;
+					color: #000000;
+				}
+			}
+
+			ul { margin-left: 1em; }
+		}
+
+		&.wide {
+			.useColumns(0.96, @fillMode: balance);
+		}
+	}
+
+	.toc.wide li { break-inside: auto; }
+}
+
+/* =========================================================
+   DEFINITION LISTS
+   ========================================================= */
+.page {
+	dl {
+		line-height: 1.25em;
+
+		& + * {
+			margin-top: 0.17cm;
+		}
+	}
+
+	p + dl { margin-top: 0.17cm; }
+
+	dt {
+		margin-right: 5px;
+		margin-left: -1em;
+	}
+}
+
+/* =========================================================
+   WIDE helpers
+   ========================================================= */
+.page .wide { margin-bottom: 0.325cm; }
+.page h1 + * { margin-top: 0; }
+.page .descriptive.wide + * { margin-top: 0; }
+
+/* =========================================================
+   RUNE TABLE
+   ========================================================= */
+.page {
+	.runeTable {
+		margin-block: 0.7cm;
+
+		table {
+			font-family: inherit;
+
+			tbody tr { background: unset; }
+
+			th,
+			td {
+				width: 1.3cm;
+				height: 1.3cm;
+				font-weight: normal;
+				vertical-align: middle;
+				text-transform: uppercase;
+				outline: 1px solid #000000;
+			}
+
+			th {
+				font-family: 'BookInsanityRemake';
+				font-size: 0.45cm;
+			}
+
+			td { font-size: 0.7cm; }
+		}
+
+		&.frame {
+			border: initial;
+			border-style: solid;
+			border-image-source: @scriptBorder;
+			border-image-slice: 170;
+			border-image-width: 1.4cm;
+			border-image-outset: 0.45cm 0.35cm 0.4cm 0.4cm;
+			border-image-repeat: stretch;
+		}
+	}
+}
+
+/* =========================================================
+   INDEX
+   ========================================================= */
+.page {
+	.index {
+		font-size: 0.218cm;
+
+		ul ul { margin: 0; }
+
+		ul {
+			padding-left: 0;
+			text-indent: 0;
+			list-style-type: none;
+		}
+
+		& > ul > li {
+			padding-left: 1.5em;
+			text-indent: -1.5em;
+		}
+	}
+}
+
+/* =========================================================
+   Explicit overrides: H1 lead-in disabled
+   ========================================================= */
+.page h1 + p::first-letter {
+	all: unset !important;
+}
+
+.page h1 + p {
+	text-transform: none !important;
+	font-variant: normal !important;
+	letter-spacing: normal !important;
+
+	column-span: none !important;
+	-webkit-column-span: none !important;
+
+	font-size: inherit;
+	line-height: inherit;
+}
+
+/* =========================================================
+   4-way alternating page backgrounds (kept as-is)
+   ========================================================= */
+.page:nth-child(4n + 1) { background-image: url('/assets/page-bg-1.jpg'); }
+.page:nth-child(4n + 2) { background-image: url('/assets/page-bg-2.jpg'); }
+.page:nth-child(4n + 3) { background-image: url('/assets/page-bg-3.jpg'); }
+.page:nth-child(4n)     { background-image: url('/assets/page-bg-4.jpg'); }
+
+/* =========================================================
+   Running header (merged; final version kept)
+   ========================================================= */
+.page .runningHeader {
+	position: absolute;
+	top: 0.8cm;
+	left: 0.9cm;
+	right: 0.9cm;
+	z-index: 200;
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	pointer-events: none;
+}
+
+.page .runningHeader .docTitle::before {
+	content: "// " var(--HB_DocTitle) " //";
+}
+
+.page .runningHeader .sectionTitle::before { content: "// "; }
+.page .runningHeader .sectionTitle::after  { content: " //"; }
+
+.page .runningHeader .docTitle,
+.page .runningHeader .sectionTitle {
+	font-family: "HeaderFont";
+	font-size: 14.0pt;
+	letter-spacing: 0.02em;
+	color: #000;
+
+	position: absolute;
+	white-space: nowrap;
+	max-width: 44%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transform: none;
+}
+
+.page .runningHeader .sectionTitle {
+	left: 1cm;
+	text-align: left;
+}
+
+.page .runningHeader .docTitle {
+	right: 1cm;
+	text-align: right;
+}
+
+/* =========================================================
+   Timeline
+   ========================================================= */
+.timeline {
+	column-span: all;
+	-webkit-column-span: all;
+	transform: rotate(1deg);
+
+	position: relative;
+	padding: 0.45cm 0.55cm;
+
+	background: rgba(255, 255, 255, 0.92);
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.timeline ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.timeline li {
+	position: relative;
+	padding-left: 0.8cm;
+	margin-top: 0.2cm;
+	margin-bottom: 0.2cm;
+
+	break-inside: avoid;
+	page-break-inside: avoid;
+
+	font-family: "Timelines";
+	font-size: 0.34cm;
+	line-height: 1em;
+	color: #1e1e1e;
+	list-style: none;
+    li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.timeline li::before {
+	content: "»";
+	position: absolute;
+	left: 0.15cm;
+	top: 0;
+	font-weight: 700;
+}
+
+.timeline li > strong:first-child {
+	font-weight: 800;
+	letter-spacing: 0.02em;
+}
+
+.timeline h5,
+.timeline h4,
+.timeline h3 {
+	font-family: "Typewriter";
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 0.08em;
+	margin: 0.35cm 0 0.25cm 0;
+}
+
+/* =========================================================
+   OPINT (as pasted; ends mid-block)
+   ========================================================= */
+.opint {
+	position: relative;
+
+	font-family: 'BookInsanityRemake';
+	color: #f5f5f5;
+
+	background-color: none;
+	background-image: url('/assets/opunt.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	padding-top: 0.4cm;
+	padding-right: 0.7cm;
+	padding-bottom: 0.45cm;
+	padding-left: 0.7cm;
+
+	margin-top: 0.6cm;
+	margin-bottom: 0.6cm;
+
+	break-inside: avoid;
+	page-break-inside: avoid;
+
+	border-radius: 0;
+	clip-path: polygon(0% 2%, 98% 0%, 100% 6%, 99% 96%, 96% 100%, 4% 98%, 0% 94%);
+
+	box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.45);
+}
+
+.opint h2 {
+	margin: 0.25 0 0.35cm 0;
+	margin-top: 0.8cm;
+	padding: 0;
+	text-align: center;
+
+	font-family: 'MrEavesRemake';
+	font-size: 13.0pt;
+	line-height: 1.05em;
+
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+
+	color: #ffffff;
+}

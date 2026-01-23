@@ -1,0 +1,93 @@
+.popups {
+	position         : fixed;
+	top              : calc(@navbarHeight + @viewerToolsHeight);
+	right            : 24px;
+	z-index          : 10001;
+	width            : 450px;
+	margin-top       : 5px;
+}
+
+.notificationPopup {
+	position         : relative;
+	width            : 100%;
+	padding          : 15px;
+	padding-bottom   : 10px;
+	padding-left     : 25px;
+	color            : white;
+	background-color : @blue;
+	border           : none;
+	&[open] { display : inline-block; }
+	a {
+		font-weight : 800;
+		color       : #E0E5C1;
+	}
+	i.info {
+		position  : absolute;
+		top       : 12px;
+		left      : 12px;
+		font-size : 2.5em;
+		opacity   : 0.8;
+	}
+	button.dismiss {
+		position         : absolute;
+		top              : 10px;
+		right            : 10px;
+		cursor           : pointer;
+		background-color : transparent;
+		opacity          : 0.6;
+		&:hover { opacity : 1; }
+	}
+	.header { padding-left : 50px; }
+	small {
+		font-size : 0.6em;
+		opacity   : 0.7;
+	}
+	h3 {
+		font-size   : 1.1em;
+		font-weight : 800;
+	}
+	ul {
+		margin-top          : 15px;
+		font-size           : 0.9em;
+		list-style-position : outside;
+		list-style-type     : disc;
+		li {
+			padding-left : 1em;
+			margin-top   : 1.5em;
+			font-size    : 0.9em;
+			line-height  : 1.5em;
+			em {
+				font-weight    : 800; 
+				text-transform : capitalize;
+			}
+			li {
+				margin-top      : 0;
+				line-height     : 1.2em; 
+				list-style-type : square;
+			}
+		}
+		ul ul,ol ol,ul ol,ol ul {
+			margin-bottom : 0px;
+			margin-left   : 1.5em;
+		}
+	}
+
+	/* Markdown styling */
+	code {
+		padding          : 0.1em 0.5em;
+		font-family      : 'Courier New', 'Courier', monospace;
+		overflow-wrap    : break-word;
+		white-space      : pre-wrap;
+		background       : #08115A;
+		border-radius    : 2px;
+	}
+	pre code {
+		display          : inline-block;
+		width            : 100%;
+	}
+	.blank {
+		height     : 1em;
+		margin-top : 0;
+		& + * { margin-top : 0; }
+	}
+}

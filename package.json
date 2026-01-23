@@ -1,0 +1,157 @@
+{
+  "name": "homebrewery",
+  "description": "Create authentic looking D&D homebrews using only markdown",
+  "version": "3.20.1",
+  "type": "module",
+  "engines": {
+    "npm": "^10.8.x",
+    "node": "^20.18.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/naturalcrit/homebrewery.git"
+  },
+  "scripts": {
+    "dev": "node --experimental-require-module scripts/dev.js",
+    "quick": "node --experimental-require-module scripts/quick.js",
+    "build": "node --experimental-require-module scripts/buildHomebrew.js && node --experimental-require-module scripts/buildAdmin.js",
+    "builddev": "node --experimental-require-module scripts/buildHomebrew.js --dev",
+    "lint": "eslint --fix",
+    "lint:dry": "eslint",
+    "stylelint": "stylelint --fix **/*.{less}",
+    "stylelint:dry": "stylelint **/*.less",
+    "circleci": "npm test && eslint **/*.{js,jsx} --max-warnings=0",
+    "verify": "npm run lint && npm test",
+    "test": "jest --runInBand",
+    "test:api-unit": "jest \"server/.*.spec.js\" --verbose",
+    "test:api-unit:themes": "jest \"server/.*.spec.js\" -t \"theme bundle\" --verbose",
+    "test:api-unit:css": "jest \"server/.*.spec.js\" -t \"Get CSS\" --verbose",
+    "test:api-unit:notifications": "jest \"server/.*.spec.js\" -t \"Notifications\" --verbose",
+    "test:content-negotiation": "jest \"server/middleware/.*.spec.js\" --verbose",
+    "test:coverage": "jest --coverage --silent --runInBand",
+    "test:dev": "jest --verbose --watch",
+    "test:basic": "jest tests/markdown/basic.test.js --verbose",
+    "test:variables": "jest tests/markdown/variables.test.js --verbose",
+    "test:mustache-syntax": "jest \".*(mustache-syntax).*\" --verbose --noStackTrace",
+    "test:mustache-syntax:inline": "jest \".*(mustache-syntax).*\" -t '^Inline:.*' --verbose --noStackTrace",
+    "test:mustache-syntax:block": "jest \".*(mustache-syntax).*\" -t '^Block:.*' --verbose --noStackTrace",
+    "test:mustache-syntax:injection": "jest \".*(mustache-syntax).*\" -t '^Injection:.*' --verbose --noStackTrace",
+    "test:hard-breaks": "jest tests/markdown/hard-breaks.test.js --verbose --noStackTrace",
+    "test:non-breaking-spaces": "jest tests/markdown/non-breaking-spaces.test.js --verbose --noStackTrace",
+    "test:emojis": "jest tests/markdown/emojis.test.js --verbose --noStackTrace",
+    "test:route": "jest tests/routes/static-pages.test.js --verbose",
+    "test:safehtml": "jest tests/html/safeHTML.test.js --verbose",
+    "phb": "node --experimental-require-module scripts/phb.js",
+    "prod": "set NODE_ENV=production && npm run build",
+    "postinstall": "npm run build",
+    "start": "node --experimental-require-module server.js",
+    "docker:build": "docker build -t ${DOCKERID}/homebrewery:$npm_package_version .",
+    "docker:publish": "docker login && docker push  ${DOCKERID}/homebrewery:$npm_package_version"
+  },
+  "author": "stolksdorf",
+  "license": "MIT",
+  "eslintIgnore": [
+    "build/*"
+  ],
+  "jest": {
+    "testTimeout": 30000,
+    "modulePaths": [
+      "node_modules",
+      "shared",
+      "server"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!nanoid/).*"
+    ],
+    "coveragePathIgnorePatterns": [
+      "build/*"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 50,
+        "branches": 40,
+        "functions": 40,
+        "lines": 50
+      },
+      "server/homebrew.api.js": {
+        "statements": 60,
+        "branches": 50,
+        "functions": 65,
+        "lines": 70
+      }
+    },
+    "setupFilesAfterEnv": [
+      "jest-expect-message"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/plugin-transform-runtime": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.28.5",
+    "@babel/runtime": "^7.28.4",
+    "@dmsnell/diff-match-patch": "^1.1.0",
+    "@googleapis/drive": "^19.2.0",
+    "@sanity/diff-match-patch": "^3.2.0",
+    "body-parser": "^2.2.0",
+    "classnames": "^2.5.1",
+    "codemirror": "^5.65.6",
+    "cookie-parser": "^1.4.7",
+    "core-js": "^3.47.0",
+    "cors": "^2.8.5",
+    "create-react-class": "^15.7.0",
+    "dedent-tabs": "^0.10.3",
+    "expr-eval": "^2.0.2",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "express-static-gzip": "3.0.0",
+    "fflate": "^0.8.2",
+    "fs-extra": "11.3.2",
+    "hash-wasm": "^4.12.0",
+    "idb-keyval": "^6.2.2",
+    "js-yaml": "^4.1.1",
+    "jwt-simple": "^0.5.6",
+    "less": "^3.13.1",
+    "lodash": "^4.17.21",
+    "marked": "15.0.12",
+    "marked-alignment-paragraphs": "^1.0.0",
+    "marked-definition-lists": "^1.0.1",
+    "marked-emoji": "^2.0.2",
+    "marked-extended-tables": "^2.0.1",
+    "marked-gfm-heading-id": "^4.1.3",
+    "marked-nonbreaking-spaces": "^1.0.1",
+    "marked-smartypants-lite": "^1.0.3",
+    "marked-subsuper-text": "^1.0.4",
+    "marked-variables": "^1.0.4",
+    "markedLegacy": "npm:marked@^0.3.19",
+    "moment": "^2.30.1",
+    "mongoose": "^8.20.0",
+    "nanoid": "5.1.6",
+    "nconf": "^0.13.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-frame-component": "^4.1.3",
+    "react-router": "^7.9.6",
+    "romans": "^3.1.0",
+    "sanitize-filename": "1.6.3",
+    "superagent": "^10.2.1",
+    "vitreum": "git+https://git@github.com/calculuschild/vitreum.git",
+    "written-number": "^0.11.1"
+  },
+  "devDependencies": {
+    "@stylistic/stylelint-plugin": "^4.0.0",
+    "babel-plugin-transform-import-meta": "^2.3.3",
+    "eslint": "^9.39.1",
+    "eslint-plugin-jest": "^29.1.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.4.0",
+    "jest": "^30.2.0",
+    "jest-expect-message": "^1.1.3",
+    "jsdom-global": "^3.0.2",
+    "postcss-less": "^6.0.0",
+    "stylelint": "^16.25.0",
+    "stylelint-config-recess-order": "^7.3.0",
+    "stylelint-config-recommended": "^17.0.0",
+    "supertest": "^7.1.4"
+  }
+}
