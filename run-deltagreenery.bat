@@ -49,14 +49,11 @@ if errorlevel 1 (
   git checkout -b "%BRANCH%" "origin/%BRANCH%" || (echo ERROR: checkout failed & popd & exit /b 1)
 )
 
-echo Pulling latest...
-git pull
-if errorlevel 1 (
-  echo ERROR: git pull failed (maybe you have local changes or need a merge)
-  echo        Resolve manually, then re-run
-  popd
-  exit /b 1
-)
+echo Updating by hard-reset to origin/%BRANCH% ...
+git fetch --all --prune || (echo ERROR: fetch failed & popd & exit /b 1)
+git checkout "%BRANCH%" || (echo ERROR: checkout failed & popd & exit /b 1)
+git reset --hard "origin/%BRANCH%" || (echo ERROR: reset failed & popd & exit /b 1)
+git clean -fd || (echo ERROR: clean failed & popd & exit /b 1)
 
 REM --- Docker compose up ---
 echo.
