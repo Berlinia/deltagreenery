@@ -2,15 +2,15 @@
 
 Greetings agent, and welcome to your first operational briefing on the new Program developed interface: Delta Greenery. The art of writing convincing reports is lost on newer agents, so the Director began this initiative to improve data processing and information clarity. 
 
-### Homebrew Made Easy
+## Homebrew Made Easy
 
 Delta Greenery, based on the Homebrewery by Natural Crit, makes the creation and sharing of authentic looking Delta Green homebrews easy. It uses [Markdown](https://help.github.com/articles/markdown-basics/) with some CSS magic to make brews come to life, in the beloved Arc Dreams style. Try it! Simply edit the text on the left of this page, and watch it *update live* on the right. 
 
-#### Local Installation
+### Local Installation
 
 This webapp needs to be locally hosted, and to get it for yourself, follow the instructions in my [Github](https://github.com/Berlinia/deltagreenery). I have tried my best to make this as simple as possible to install and run. Every time you run the program, it automatically updates with all the new features!
 
-### The DG Presets
+## The DG Presets
 Above, you see a menu. The DG menu contains presets which I want to illustrate here:
 
 {{wide

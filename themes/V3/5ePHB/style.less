@@ -5,7 +5,7 @@
 	--HB_Color_Background: #EEE5CE; // Light parchment
 	--HB_Color_Accent: #E0E5C1; // Pastel green
 	--HB_Color_HeaderUnderline: #C0AD6A; // Gold
-	--HB_Color_HorizontalRule: #9C2B1B; // Maroon
+	--HB_Color_HorizontalRule: #eb2910; // Maroon
 	--HB_Color_HeaderText: #58180D; // Dark Maroon
 	--HB_Color_MonsterStatBackground: #F2E5B5; // Light orange parchment
 	--HB_Color_CaptionText: #766649; // Brown
@@ -66,7 +66,7 @@
 .page {
 	.useColumns();
 	font-family: 'BookInsanityRemake';
-	font-size: 10.5pt;
+	font-size: 11pt;
 	line-height: 1.25;
 
 	/* Background */
@@ -127,10 +127,7 @@
 	/* =========================
 	   HEADERS
 	   ========================= */
-	h1,
-	h2,
-	h3,
-	h4 {
+	h1 {
 		font-family: 'MrEavesRemake';
 		color: var(--HB_Color_HeaderText);
 	}
@@ -166,7 +163,7 @@
 	}
 
 	/* H3: final intent = Typestar + custom divider artwork */
-	h3 {
+	h2 {
 		font-family: "Typestar-Black" !important;
 		font-weight: normal;
 		font-style: normal;
@@ -202,12 +199,12 @@
 		}
 	}
 
-	* + h3 {
+	* + h2 {
 		margin-top: 0.155cm; // (0.325 - 0.17)
 	}
 
-	h4 {
-		color: #1a1a1a;
+	h3 {
+		color: var(--HB_Color_HorizontalRule);
 		font-family: "Header4";
 		font-size: 11.0pt;
 		line-height: 0.971em;
@@ -217,7 +214,7 @@
 		}
 	}
 
-	* + h4 {
+	* + 3 {
 		margin-top: 0.235cm; // (0.325 - 0.09)
 	}
 
@@ -352,8 +349,10 @@
 
 		border: none;
 		border-image: none;
-
-		padding: 0.3cm 0.35cm;
+		padding: 0.6cm 0.6cm;
+		padding-left: 0.9m;
+		padding-right: 0.9cm;
+		padding-top: 0.4cm;
 		border-radius: 0px;
 
 		box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.25);
@@ -876,7 +875,7 @@
 			&:hover { text-decoration: underline; }
 		}
 
-		h4 {
+		h3 {
 			margin-top: 0.2cm;
 			line-height: 0.4cm;
 
@@ -1133,7 +1132,6 @@
 	page-break-inside: avoid;
 
 	font-family: "Timelines";
-	font-size: 0.34cm;
 	line-height: 1em;
 	color: #1e1e1e;
 	list-style: none;
@@ -1161,9 +1159,14 @@
 .timeline h3 {
 	font-family: "Typewriter";
 	text-transform: uppercase;
+	font-size: larger;
 	text-align: center;
 	letter-spacing: 0.08em;
 	margin: 0.35cm 0 0.25cm 0;
+}
+
+.timeline li::marker {
+  content: "" !important;
 }
 
 /* =========================================================
@@ -1187,6 +1190,8 @@
 
 	margin-top: 0.6cm;
 	margin-bottom: 0.6cm;
+	margin-left: 0.3cm;
+	margin-right: 0.3cm;
 
 	break-inside: avoid;
 	page-break-inside: avoid;
