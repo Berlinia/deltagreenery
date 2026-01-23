@@ -34,7 +34,7 @@ Your mother is so dumb, the Mi-Go do not care to analyze her for their goals.
 }}
 		
 {{monster,frame,wide
-   ## Sanctioned Horror of the Burn Bag
+   #### Sanctioned Horror of the Burn Bag
    ---
    **STR** 14  **CON** 15  **DEX** 27  **INT** 19  **POW** 12
 
@@ -53,6 +53,10 @@ Your mother is so dumb, the Mi-Go do not care to analyze her for their goals.
    **SAN LOSS:** 2DNone/2D8.
    }}
    
+
+\page
+
+
 ## Style Editor Panel
 {{fa,fa-paint-brush}} Usually overlooked or unused by some users, the **Style Editor** tab is located on the right side of the Snippet bar. This editor accepts CSS for styling without requiring `<style>` tags-- anything that would have gone inside style tags before can now be placed here, and snippets that insert CSS styles are now located on that tab.
 

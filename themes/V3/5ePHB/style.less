@@ -39,7 +39,7 @@
 		letter-spacing: -0.02em;
 	}
 
-	h5 + * {
+	h5+* {
 		margin-top: 0.1cm;
 	}
 }
@@ -92,11 +92,11 @@
 	p {
 		line-height: 1.25em;
 
-		& + * {
+		&+* {
 			margin-top: 0.325cm;
 		}
 
-		& + p {
+		&+p {
 			margin-top: 0;
 		}
 	}
@@ -109,9 +109,9 @@
 	}
 
 	/* Indents after p or lists */
-	p + p,
-	ul + p,
-	ol + p {
+	p+p,
+	ul+p,
+	ol+p {
 		text-indent: 1em;
 	}
 
@@ -147,8 +147,13 @@
 
 		margin-bottom: 0.35cm;
 
-		&::before { content: "// "; }
-		&::after  { content: " //"; }
+		&::before {
+			content: "// ";
+		}
+
+		&::after {
+			content: " //";
+		}
 	}
 
 	h2 {
@@ -178,7 +183,7 @@
 		position: relative;
 		padding-bottom: 0.35cm;
 
-		& + * {
+		&+* {
 			margin-top: 0.17cm;
 		}
 
@@ -199,31 +204,55 @@
 		}
 	}
 
-	* + h2 {
+	*+h2 {
 		margin-top: 0.155cm; // (0.325 - 0.17)
 	}
 
 	h3 {
 		color: var(--HB_Color_HorizontalRule);
 		font-family: "Header4";
-		font-size: 11.0pt;
+		font-size: 12.0pt;
 		line-height: 0.971em;
 
-		& + * {
+		&+* {
 			margin-top: 0.09cm;
 		}
 	}
 
-	* + 3 {
+	* + h2 {
 		margin-top: 0.235cm; // (0.325 - 0.09)
 	}
+
+	h4 {
+	/* h2 font + color */
+	font-family: "Timelines";
+	color: #000000;
+	font-weight: 700;
+
+	/* h3 scale */
+	font-size: 12.0pt;
+	line-height: 0.971em;
+
+	/* keep your existing spacing behavior (optional) */
+	& + * { margin-top: 0.09cm; }
+}
+
+.page * + h4 {
+	margin-top: 0.235cm;
+}
+
+/* Safety: ensure no divider artwork sneaks onto h4 */
+.page h4::after {
+	content: none !important;
+}
+
 
 	h5 {
 		font-family: 'ScalySansSmallCapsRemake';
 		font-size: 0.423cm;
 		line-height: 0.951em;
 
-		& + * {
+		&+* {
 			margin-top: 0.2cm;
 		}
 	}
@@ -244,7 +273,7 @@
 		box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.25);
 		transform-origin: center center;
 
-		& + * {
+		&+* {
 			margin-top: 0.325cm;
 		}
 
@@ -279,8 +308,13 @@
 			border-right: none;
 		}
 
-		tbody tr:nth-child(odd)  { background: #caccd0; }
-		tbody tr:nth-child(even) { background: #f8f5fa; }
+		tbody tr:nth-child(odd) {
+			background: #caccd0;
+		}
+
+		tbody tr:nth-child(even) {
+			background: #f8f5fa;
+		}
 
 		tbody td:first-child {
 			font-weight: 700;
@@ -288,7 +322,9 @@
 	}
 
 	/* Prefix table titles with » */
-	h5:has(+ table)::before { content: "» "; }
+	h5:has(+ table)::before {
+		content: "» ";
+	}
 
 	h5:has(+ table) {
 		text-transform: uppercase;
@@ -298,17 +334,31 @@
 	}
 
 	/* Pseudo-random rotation pool */
-	table:nth-of-type(5n + 1) { transform: rotate(-0.6deg); }
-	table:nth-of-type(5n + 2) { transform: rotate(0.4deg); }
-	table:nth-of-type(5n + 3) { transform: rotate(-0.2deg); }
-	table:nth-of-type(5n + 4) { transform: rotate(0.7deg); }
-	table:nth-of-type(5n)     { transform: rotate(-0.4deg); }
+	table:nth-of-type(5n + 1) {
+		transform: rotate(-0.6deg);
+	}
+
+	table:nth-of-type(5n + 2) {
+		transform: rotate(0.4deg);
+	}
+
+	table:nth-of-type(5n + 3) {
+		transform: rotate(-0.2deg);
+	}
+
+	table:nth-of-type(5n + 4) {
+		transform: rotate(0.7deg);
+	}
+
+	table:nth-of-type(5n) {
+		transform: rotate(-0.4deg);
+	}
 
 	/* =========================
 	   QUOTE
 	   ========================= */
 	.quote {
-		& > p {
+		&>p {
 			font-style: italic;
 			line-height: 0.54cm;
 
@@ -319,7 +369,9 @@
 			}
 		}
 
-		p + .attribution { margin-top: 0; }
+		p+.attribution {
+			margin-top: 0;
+		}
 
 		.attribution {
 			display: block;
@@ -333,7 +385,7 @@
 			}
 		}
 
-		& + * {
+		&+* {
 			margin-top: 0.54cm;
 		}
 	}
@@ -362,7 +414,7 @@
 			margin-top: 10px;
 		}
 
-		& + * {
+		&+* {
 			margin-top: 0.45cm;
 		}
 
@@ -436,11 +488,13 @@
 			margin-top: 4px;
 		}
 
-		& + * {
+		&+* {
 			margin-top: 0.45cm;
 		}
 
-		h5 { font-size: 0.375cm; }
+		h5 {
+			font-size: 0.375cm;
+		}
 
 		p {
 			display: block;
@@ -448,7 +502,9 @@
 			line-height: 1.5em;
 		}
 
-		:last-child { margin-bottom: 0; }
+		:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	/* =========================
@@ -463,7 +519,7 @@
 		text-align: center;
 
 		p,
-		p + p {
+		p+p {
 			margin: unset;
 			line-height: 1em;
 			text-indent: unset;
@@ -478,24 +534,63 @@
 			color: inherit;
 			text-decoration: unset;
 
-			&:hover { text-decoration: underline; }
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 
-	.watermark { color: black; }
+	.watermark {
+		color: black;
+	}
 
-	.watercolor1  { --wc: @watercolor1; }
-	.watercolor2  { --wc: @watercolor2; }
-	.watercolor3  { --wc: @watercolor3; }
-	.watercolor4  { --wc: @watercolor4; }
-	.watercolor5  { --wc: @watercolor5; }
-	.watercolor6  { --wc: @watercolor6; }
-	.watercolor7  { --wc: @watercolor7; }
-	.watercolor8  { --wc: @watercolor8; }
-	.watercolor9  { --wc: @watercolor9; }
-	.watercolor10 { --wc: @watercolor10; }
-	.watercolor11 { --wc: @watercolor11; }
-	.watercolor12 { --wc: @watercolor12; }
+	.watercolor1 {
+		--wc: @watercolor1;
+	}
+
+	.watercolor2 {
+		--wc: @watercolor2;
+	}
+
+	.watercolor3 {
+		--wc: @watercolor3;
+	}
+
+	.watercolor4 {
+		--wc: @watercolor4;
+	}
+
+	.watercolor5 {
+		--wc: @watercolor5;
+	}
+
+	.watercolor6 {
+		--wc: @watercolor6;
+	}
+
+	.watercolor7 {
+		--wc: @watercolor7;
+	}
+
+	.watercolor8 {
+		--wc: @watercolor8;
+	}
+
+	.watercolor9 {
+		--wc: @watercolor9;
+	}
+
+	.watercolor10 {
+		--wc: @watercolor10;
+	}
+
+	.watercolor11 {
+		--wc: @watercolor11;
+	}
+
+	.watercolor12 {
+		--wc: @watercolor12;
+	}
 
 	/* =========================
 	   MONSTER
@@ -576,12 +671,18 @@
 			border-top: 1.5px solid #111;
 		}
 
-		hr ~ :is(dl, p) { color: inherit; }
+		hr~ :is(dl, p) {
+			color: inherit;
+		}
 
 		hr:last-of-type {
-			& ~ :is(dl, p) { color: inherit; }
+			&~ :is(dl, p) {
+				color: inherit;
+			}
 
-			& + * { margin-top: 0.18cm; }
+			&+* {
+				margin-top: 0.18cm;
+			}
 		}
 
 		p,
@@ -592,7 +693,9 @@
 			line-height: 1.25em;
 		}
 
-		p { margin: 0 0 0.12cm 0; }
+		p {
+			margin: 0 0 0.12cm 0;
+		}
 
 		strong {
 			font-weight: 700;
@@ -600,13 +703,15 @@
 			text-transform: uppercase;
 		}
 
-		hr + table:first-of-type {
+		hr+table:first-of-type {
 			margin: 0 0 0.12cm 0;
 			color: #111;
 			background: transparent;
 			border: none;
 
-			tr { background: transparent; }
+			tr {
+				background: transparent;
+			}
 
 			td,
 			th {
@@ -621,10 +726,15 @@
 			padding-right: 0.5em;
 		}
 
-		:is(ul, ol) + p { text-indent: 0; }
+		:is(ul, ol)+p {
+			text-indent: 0;
+		}
 
-		:last-child { margin-bottom: 0; }
+		:last-child {
+			margin-bottom: 0;
+		}
 	}
+
 
 	.monster.wide {
 		.useColumns(0.96, @fillMode: balance);
@@ -652,9 +762,13 @@
 	}
 
 	&:nth-child(even) {
-		&::after { transform: scaleX(-1); }
+		&::after {
+			transform: scaleX(-1);
+		}
 
-		.pageNumber { left: 2px; }
+		.pageNumber {
+			left: 2px;
+		}
 
 		.footnote {
 			left: 80px;
@@ -705,7 +819,7 @@
 			margin-top: 2px;
 		}
 
-		& + * {
+		&+* {
 			margin-top: 0.325cm;
 		}
 	}
@@ -718,7 +832,7 @@
 		margin: 0px;
 	}
 
-	table + p {
+	table+p {
 		text-indent: 1em;
 	}
 
@@ -731,7 +845,7 @@
 	}
 
 	/* Ensure page content stays above overlay */
-	& > * {
+	&>* {
 		position: relative;
 		z-index: 1;
 	}
@@ -763,7 +877,9 @@
 	.useSansSerif();
 	column-count: 2;
 
-	ul + h5 { margin-top: 15px; }
+	ul+h5 {
+		margin-top: 15px;
+	}
 
 	p,
 	ul {
@@ -781,14 +897,18 @@
 		break-inside: auto;
 	}
 
-	&.wide { column-count: 4; }
+	&.wide {
+		column-count: 4;
+	}
 }
 
 /* =========================================================
    CLASS TABLE
    ========================================================= */
 .page .classTable {
-	th[colspan]:not([rowspan]) { white-space: nowrap; }
+	th[colspan]:not([rowspan]) {
+		white-space: nowrap;
+	}
 
 	&.frame {
 		width: calc(100% + 0.2cm);
@@ -806,11 +926,18 @@
 		border-image-outset: 0.4cm 0.3cm;
 		border-image-repeat: stretch;
 
-		&.wide:first-child { margin-top: 0.12cm; }
-		& + * { margin-top: 0; }
+		&.wide:first-child {
+			margin-top: 0.12cm;
+		}
+
+		&+* {
+			margin-top: 0;
+		}
 	}
 
-	&.decoration { position: relative; }
+	&.decoration {
+		position: relative;
+	}
 
 	&.decoration::before {
 		position: absolute;
@@ -834,7 +961,9 @@
 		background-position: left, right;
 	}
 
-	h5 + table { margin-top: 0.2cm; }
+	h5+table {
+		margin-top: 0.2cm;
+	}
 }
 
 /* =========================================================
@@ -846,16 +975,22 @@
 /* =========================================================
    TOC rules
    ========================================================= */
-.monster { --TOC: exclude; }
+.monster {
+	--TOC: exclude;
+}
 
 .page:has(.partCover) {
 	--TOC: exclude;
 
-	& h1 { --TOC: include; }
+	& h1 {
+		--TOC: include;
+	}
 }
 
 .page {
-	&:has(.toc)::after { display: none; }
+	&:has(.toc)::after {
+		display: none;
+	}
 
 	.toc {
 		-webkit-column-break-inside: avoid;
@@ -872,14 +1007,18 @@
 			color: inherit;
 			text-decoration: none;
 
-			&:hover { text-decoration: underline; }
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 
 		h3 {
 			margin-top: 0.2cm;
 			line-height: 0.4cm;
 
-			& + ul li { line-height: 1.2em; }
+			&+ul li {
+				line-height: 1.2em;
+			}
 		}
 
 		ul {
@@ -894,12 +1033,14 @@
 				width: 100%;
 			}
 
-			li + li h3 {
+			li+li h3 {
 				margin-top: 0.26cm;
 				line-height: 1em;
 			}
 
-			h3 span:first-child::after { border: none; }
+			h3 span:first-child::after {
+				border: none;
+			}
 
 			span {
 				display: contents;
@@ -924,7 +1065,9 @@
 				}
 			}
 
-			ul { margin-left: 1em; }
+			ul {
+				margin-left: 1em;
+			}
 		}
 
 		&.wide {
@@ -932,7 +1075,9 @@
 		}
 	}
 
-	.toc.wide li { break-inside: auto; }
+	.toc.wide li {
+		break-inside: auto;
+	}
 }
 
 /* =========================================================
@@ -942,12 +1087,14 @@
 	dl {
 		line-height: 1.25em;
 
-		& + * {
+		&+* {
 			margin-top: 0.17cm;
 		}
 	}
 
-	p + dl { margin-top: 0.17cm; }
+	p+dl {
+		margin-top: 0.17cm;
+	}
 
 	dt {
 		margin-right: 5px;
@@ -958,9 +1105,17 @@
 /* =========================================================
    WIDE helpers
    ========================================================= */
-.page .wide { margin-bottom: 0.325cm; }
-.page h1 + * { margin-top: 0; }
-.page .descriptive.wide + * { margin-top: 0; }
+.page .wide {
+	margin-bottom: 0.325cm;
+}
+
+.page h1+* {
+	margin-top: 0;
+}
+
+.page .descriptive.wide+* {
+	margin-top: 0;
+}
 
 /* =========================================================
    RUNE TABLE
@@ -972,7 +1127,9 @@
 		table {
 			font-family: inherit;
 
-			tbody tr { background: unset; }
+			tbody tr {
+				background: unset;
+			}
 
 			th,
 			td {
@@ -989,7 +1146,9 @@
 				font-size: 0.45cm;
 			}
 
-			td { font-size: 0.7cm; }
+			td {
+				font-size: 0.7cm;
+			}
 		}
 
 		&.frame {
@@ -1011,7 +1170,9 @@
 	.index {
 		font-size: 0.218cm;
 
-		ul ul { margin: 0; }
+		ul ul {
+			margin: 0;
+		}
 
 		ul {
 			padding-left: 0;
@@ -1019,7 +1180,7 @@
 			list-style-type: none;
 		}
 
-		& > ul > li {
+		&>ul>li {
 			padding-left: 1.5em;
 			text-indent: -1.5em;
 		}
@@ -1029,11 +1190,11 @@
 /* =========================================================
    Explicit overrides: H1 lead-in disabled
    ========================================================= */
-.page h1 + p::first-letter {
+.page h1+p::first-letter {
 	all: unset !important;
 }
 
-.page h1 + p {
+.page h1+p {
 	text-transform: none !important;
 	font-variant: normal !important;
 	letter-spacing: normal !important;
@@ -1048,10 +1209,21 @@
 /* =========================================================
    4-way alternating page backgrounds (kept as-is)
    ========================================================= */
-.page:nth-child(4n + 1) { background-image: url('/assets/page-bg-1.jpg'); }
-.page:nth-child(4n + 2) { background-image: url('/assets/page-bg-2.jpg'); }
-.page:nth-child(4n + 3) { background-image: url('/assets/page-bg-3.jpg'); }
-.page:nth-child(4n)     { background-image: url('/assets/page-bg-4.jpg'); }
+.page:nth-child(4n + 1) {
+	background-image: url('/assets/page-bg-1.jpg');
+}
+
+.page:nth-child(4n + 2) {
+	background-image: url('/assets/page-bg-2.jpg');
+}
+
+.page:nth-child(4n + 3) {
+	background-image: url('/assets/page-bg-3.jpg');
+}
+
+.page:nth-child(4n) {
+	background-image: url('/assets/page-bg-4.jpg');
+}
 
 /* =========================================================
    Running header (merged; final version kept)
@@ -1072,8 +1244,13 @@
 	content: "// " var(--HB_DocTitle) " //";
 }
 
-.page .runningHeader .sectionTitle::before { content: "// "; }
-.page .runningHeader .sectionTitle::after  { content: " //"; }
+.page .runningHeader .sectionTitle::before {
+	content: "// ";
+}
+
+.page .runningHeader .sectionTitle::after {
+	content: " //";
+}
 
 .page .runningHeader .docTitle,
 .page .runningHeader .sectionTitle {
@@ -1135,10 +1312,11 @@
 	line-height: 1em;
 	color: #1e1e1e;
 	list-style: none;
-    li {
-    margin: 0;
-    padding: 0;
-  }
+
+	li {
+		margin: 0;
+		padding: 0;
+	}
 }
 
 .timeline li::before {
@@ -1149,7 +1327,7 @@
 	font-weight: 700;
 }
 
-.timeline li > strong:first-child {
+.timeline li>strong:first-child {
 	font-weight: 800;
 	letter-spacing: 0.02em;
 }
@@ -1166,7 +1344,7 @@
 }
 
 .timeline li::marker {
-  content: "" !important;
+	content: "" !important;
 }
 
 /* =========================================================
