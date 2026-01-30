@@ -26,6 +26,16 @@ and you are done! You are currently localy hosting a version of homebrewery. Go 
 
 and play around. Every time you re-run the above `.bat` file, your local version of the deltagreenery syncs with the repository on github, so you can enjoy the latest features.
 
+**Installation Guide for Linux**
+The above ``.bat`` file essentially runs two commands:
+
+``git pull https://github.com/Berlinia/deltagreenery``
+and 
+``docker compose up``
+
+The rest of the installation is handled by docker (which essentially just installs Node in a container, and runs it, as well as link the Mongo database). 
+So on Linux/macOS just run the above commands in a terminal, in the directory you want delta-greenery installed on.
+
 **Common Issues**
 1. If you can't install WSL, uninstall and re-install Microsoft Store.
 2. Make sure all is good.
