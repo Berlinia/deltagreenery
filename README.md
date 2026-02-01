@@ -28,9 +28,14 @@ and play around. Every time you re-run the above `.bat` file, your local version
 
 **Installation Guide for Linux**
 The above ``.bat`` file essentially runs two commands:
-
+If it finds the git directory it runs first:
 ``git pull https://github.com/Berlinia/deltagreenery``
-and 
+
+If it does not, it creates a folder called deltagreenery, in the directory you executed the bat file in.
+
+``git clone https://github.com/Berlinia/deltagreenery``
+
+Then it runs 
 ``docker compose up``
 
 The rest of the installation is handled by docker (which essentially just installs Node in a container, and runs it, as well as link the Mongo database). 
