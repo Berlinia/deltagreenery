@@ -18,3 +18,12 @@ test('shared runtime assets support the static mount and legacy root',()=>{
  global.window = {}; expect(assetUrl('/homebrew/bundle.css')).toBe('/homebrew/bundle.css');
  global.window = previous;
 });
+
+test('versioned entry assets resolve inside the preview as well as the homepage',()=>{
+ const previous = global.window;
+ try {
+  global.window = {DELTA_GREENERY_CONFIG: {basePath:'/deltagreenery', assetVersion:'abc123', assetPaths:{'/homebrew/bundle.css':'/homebrew/bundle.abc123.css'}}};
+  expect(assetUrl('/homebrew/bundle.css')).toBe('/deltagreenery/homebrew/bundle.abc123.css?v=abc123');
+  expect(assetUrl('/themes/V3/DeltaGreen/style.css')).toBe('/deltagreenery/themes/V3/DeltaGreen/style.css?v=abc123');
+ } finally { global.window = previous; }
+});

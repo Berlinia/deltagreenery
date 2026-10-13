@@ -46,7 +46,7 @@ The public OAuth client ID is in `static/config.js`. A client ID is not a secret
 2. Configure the Google OAuth consent screen. If its audience is in Testing, add the intended Google accounts as test users.
 3. Use a **Web application** OAuth client. Add `http://localhost:8000` to **Authorized JavaScript origins** for local testing, and the exact production HTTPS origin when hosting is selected. Origins have no path. Using 127.0.0.1 or another port requires its own authorized origin.
 4. The application uses Google Identity Services' browser token flow with the limited `drive.file` scope. No backend OAuth callback or client secret is needed.
-5. Rebuild after changing `static/config.js`, or update the public `dist/config.js` on the deployed host.
+5. Rebuild after changing `static/config.js`, then redeploy `dist/`. Configuration and entry assets use content-hashed filenames to avoid stale cached releases.
 
 See Google's [browser token model](https://developers.google.com/identity/oauth2/web/guides/use-token-model) and [Drive authorization scopes](https://developers.google.com/workspace/drive/api/guides/api-specific-auth). Real authorization requires your Google Cloud settings; automated tests use mocked Google responses.
 
@@ -86,3 +86,5 @@ npm start
 ```
 
 Then open `http://localhost:8000/deltagreenery/`. Clear `BASE_PATH` and rebuild to return to the default root preview.
+
+The homepage always opens the built-in guide, including for returning users. Select a browser draft to resume editing. **Home / Guide** returns to the guide without creating extra drafts; editing the guide saves a separate local copy.

@@ -5,7 +5,7 @@ const pages = [
   [
     "# Start here",
     "",
-    "Welcome to **Delta Greenery**: write Markdown on the left and see printable pages on the right. This guide is an editable example. Choose **New** for an empty operation, or **Guide** to open another copy without replacing your current draft.",
+    "Welcome to **Delta Greenery**: write Markdown on the left and see printable pages on the right. This guide opens whenever you visit the homepage. Choose **New** for an empty operation, select a saved browser draft to continue writing, or use **Home / Guide** to return here. Editing the guide saves a separate browser copy; the original stays available.",
     "",
     "## Name your document",
     "",

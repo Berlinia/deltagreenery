@@ -1,5 +1,6 @@
 import fs from 'fs-extra';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import vitreum from 'vitreum';
 import lessTransform from 'vitreum/transforms/less.js';
 
@@ -41,11 +42,22 @@ const { bundle } = await vitreum.pack('./client/static/App.jsx', {
 	name: 'DeltaGreenery', paths: ['./shared', './'], libs: project.libs,
 	transforms: { '.js': transform, '.jsx': transform, '.less': lessTransform, '*': async (code, filename)=>{ const relative = path.relative(path.resolve('client'), filename); if(relative.startsWith('..')) throw new Error('Asset outside client: ' + filename); await fs.copy(filename, path.join(output, relative)); return 'module.exports=' + JSON.stringify(basePath + '/' + relative.replace(/\\/g, '/')) + ';'; } }
 });
-await fs.outputFile('dist/homebrew/bundle.js', bundle);
-await fs.outputFile('dist/homebrew/bundle.css', rebaseCss(await lessTransform.generate({ paths: ['./shared', './'] }), 'homebrew/bundle.css', basePath));
-await fs.outputFile('dist/config.js', (await fs.readFile('static/config.js', 'utf8')) + '\nwindow.DELTA_GREENERY_CONFIG.basePath = ' + JSON.stringify(basePath) + ';\n');
-await fs.outputFile('dist/index.html', (await fs.readFile('static/index.html', 'utf8')).replace(/(href|src)="\/(?!\/)/g, '$1="' + basePath + '/'));
+const css = rebaseCss(await lessTransform.generate({ paths: ['./shared', './'] }), 'homebrew/bundle.css', basePath);
+const config = await fs.readFile('static/config.js', 'utf8');
+const boot = await fs.readFile('static/boot.js', 'utf8');
+const version = createHash('sha256').update(bundle + css + config + boot + basePath).digest('hex').slice(0, 16);
+const assetPaths = {
+ '/homebrew/bundle.js': '/homebrew/bundle.' + version + '.js',
+ '/homebrew/bundle.css': '/homebrew/bundle.' + version + '.css',
+ '/config.js': '/config.' + version + '.js',
+ '/boot.js': '/boot.' + version + '.js'
+};
+await fs.outputFile('dist' + assetPaths['/homebrew/bundle.js'], bundle);
+await fs.outputFile('dist' + assetPaths['/homebrew/bundle.css'], css);
+await fs.outputFile('dist' + assetPaths['/config.js'], config + '\nObject.assign(window.DELTA_GREENERY_CONFIG, ' + JSON.stringify({ basePath, assetPaths, assetVersion: version }) + ');\n');
+await fs.outputFile('dist' + assetPaths['/boot.js'], boot);
+const html = (await fs.readFile('static/index.html', 'utf8')).replace(/(href|src)="(\/(?!\/)[^"]*)"/g, (_, attr, url)=>attr + '="' + basePath + (assetPaths[url] || url) + '"');
+await fs.outputFile('dist/index.html', html);
 await fs.outputFile('dist/.nojekyll', '');
-await fs.copy('static/boot.js', 'dist/boot.js');
 await fs.copy('client/homebrew/favicon.ico', 'dist/favicon.ico');
 console.log('Static frontend built in dist/. No server code, database, or API is required.');
