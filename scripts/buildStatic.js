@@ -60,5 +60,8 @@ const html = (await fs.readFile('static/index.html', 'utf8')).replace(/(href|src
 await fs.outputFile('dist/index.html', html);
 await fs.outputFile('dist/.nojekyll', '');
 await fs.copy('static/eula.html', 'dist/eula.html');
+await fs.copy('static/privacy.html', 'dist/privacy.html');
+// Keep Google's account-specific ownership proof at the root of the Pages site.
+await fs.copy('static/googlea05187bd2aa32598.html', 'dist/googlea05187bd2aa32598.html');
 await fs.copy('client/homebrew/favicon.ico', 'dist/favicon.ico');
 console.log('Static frontend built in dist/. No server code, database, or API is required.');
