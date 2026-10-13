@@ -1,5 +1,6 @@
 /* eslint-disable max-lines */
 import './newPage.less';
+import deltaGreenLicense from '../../../../themes/deltaGreenLicense.js';
 
 // Common imports
 import React, { useState, useEffect, useRef } from 'react';
@@ -38,7 +39,7 @@ const neverSaved      = true;
 
 const NewPage = (props)=>{
 	props = {
-		brew : DEFAULT_BREW,
+		brew : { ...DEFAULT_BREW, text: deltaGreenLicense.subsnippets[0].gen() },
 		...props
 	};
 
