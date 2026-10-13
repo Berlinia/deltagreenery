@@ -451,7 +451,7 @@ const pages = [
   [
     "# Save and print",
     "",
-    "The hosted tool is for **non-commercial purposes only**. Read **Terms / EULA** in the top bar for the website agreement.",
+    "The hosted tool is for **non-commercial purposes only**. Read **Terms of Service** in the top bar for the website agreement.",
     "",
     "## Where your work lives",
     "",
