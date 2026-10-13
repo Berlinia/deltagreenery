@@ -11,7 +11,7 @@ import { getThemeBundle } from './themeBundle.js';
 import { createDriveClient, loadGoogleIdentity } from './googleDrive.js';
 import Properties from './Properties.jsx';
 
-const welcome = '# Your next operation\n\n## A private workspace\n\nWrite your briefing here. Your changes are saved in this browser automatically.\n\nUse **Download Markdown** to keep a backup, or connect your own Google Drive to save a copy there.\n\n{{note\n##### Field notes\nUse the DG menu above the editor to insert timelines, disinformation, and other templates.\n}}\n\n\\column\n\n## Working with pages\n\nAdd `\\page` on its own line to begin a new page. The paintbrush tab lets you customize the document CSS.\n\nYour publication disclaimer is added to every page automatically.\n\n{{pageNumber,auto}}';
+import { createGuide } from './guide.js';
 const makeDraft = (document = emptyDocument())=>({ ...document, id: crypto.randomUUID(), revision: 0, driveDirty: true });
 
 function App() {
@@ -47,12 +47,12 @@ function App() {
 			else {
 				// Preserve the previous installation's unsaved editor draft, if present.
 				const previous = localStorage.getItem('HB_newPage_content');
-				const initial = emptyDocument(previous ?? welcome);
-				initial.title = previous ? 'Recovered browser draft' : 'Your next operation';
+				const initial = previous ? emptyDocument(previous) : createGuide();
+				if(previous) initial.title = 'Recovered browser draft';
 				if(previous) { initial.style = localStorage.getItem('HB_newPage_style') || ''; initial.snippets = localStorage.getItem('HB_newPage_snippets') || ''; }
 				persist(makeDraft(initial));
 			}
-		} catch(err) { show(makeDraft(emptyDocument(welcome))); locallySaved.current = false; setError('Browser storage is unavailable. Download Markdown to keep your work. ' + err.message); setStatus('Browser drafts unavailable'); }
+		} catch(err) { show(makeDraft(createGuide())); locallySaved.current = false; setError('Browser storage is unavailable. Download Markdown to keep your work. ' + err.message); setStatus('Browser drafts unavailable'); }
 		const unload = (event)=>{ if(!locallySaved.current) { event.preventDefault(); event.returnValue = ''; } };
 		const changed = (event)=>{ if(event.key?.startsWith('DG_draft_')) { try { refresh(); } catch(err) { setError(err.message); } } };
 		window.addEventListener('beforeunload', unload); window.addEventListener('storage', changed);
@@ -84,6 +84,7 @@ function App() {
 		try { store.current.select(draft.id); } catch(err) { setError(err.message); }
 	};
 	const create = ()=>{ if(canLeave()) { setError(''); const saved = persist(makeDraft()); if(saved) select(saved); } };
+	const openGuide = ()=>{ if(canLeave()) { const saved = persist(makeDraft(createGuide())); if(saved) select(saved); } };
 	const download = ()=>{
 		const url = URL.createObjectURL(new Blob([serializeDocument(current.current)], { type: 'text/markdown;charset=utf-8' }));
 		const anchor = document.createElement('a'); anchor.href = url; anchor.download = (current.current.title || 'operation').replace(/[\\/:*?"<>|]/g, '-') + '.md'; anchor.click();
@@ -128,6 +129,7 @@ function App() {
 			<a className='brand' href='./'>DELTA GREENERY</a>
 			<span className='storageStatus' role='status'>{status}{brew?.drive && (brew.driveDirty ? ' · Drive has an older copy' : ' · Drive copy saved')}</span>
 			<div className='actions'>
+				<button disabled={busy || !brew} onClick={openGuide}>Guide</button>
 				<button disabled={busy || !brew} onClick={create}>New</button>
 				<button disabled={busy || !brew} onClick={()=>upload.current.click()}>Import Markdown</button>
 				<button disabled={!brew} onClick={download}>Download Markdown</button>
@@ -160,7 +162,7 @@ function App() {
 			<SplitPane onDragFinish={()=>editor.current?.update()}>
 				<Editor key={brew.id} ref={editor} brew={brew} renderer={brew.renderer} onBrewChange={change} themeBundle={theme.bundle} propertiesComponent={Properties} browserOnly={true}
 					onCursorPageChange={setCursor} onViewPageChange={setViewPage} currentEditorCursorPageNum={cursor} currentEditorViewPageNum={viewPage} currentBrewRendererPageNum={previewPage} reportError={(err)=>setError(err.message)} />
-				<BrewRenderer key={brew.id} text={brew.text} style={brew.style} renderer={brew.renderer} theme={brew.theme} lang={brew.lang} themeBundle={theme.bundle} errors={Markdown.validate(brew.text)}
+				<BrewRenderer key={brew.id} title={brew.title} text={brew.text} style={brew.style} renderer={brew.renderer} theme={brew.theme} lang={brew.lang} themeBundle={theme.bundle} errors={Markdown.validate(brew.text)}
 					currentEditorCursorPageNum={cursor} currentEditorViewPageNum={viewPage} currentBrewRendererPageNum={previewPage} onPageChange={setPreviewPage} allowPrint={true} showNotifications={false} />
 			</SplitPane>
 		</main>}

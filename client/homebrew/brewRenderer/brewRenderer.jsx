@@ -338,6 +338,7 @@ const BrewRenderer = (props)=>{
 	};
 
 	const pagesStyle = {
+		'--HB_DocTitle': JSON.stringify(props.title || ''),
 		zoom      : `${displayOptions.zoomLevel}%`,
 		columnGap : `${displayOptions.columnGap}px`,
 		rowGap    : `${displayOptions.rowGap}px`
