@@ -16,7 +16,7 @@ ThemeSnippets['V3_FieldGuide']     = require('themes/V3/FieldGuide/snippets.js')
 ThemeSnippets['V3_Journal']   = require('themes/V3/Journal/snippets.js');
 ThemeSnippets['V3_Blank']     = require('themes/V3/Blank/snippets.js');
 
-const EditorThemes = require('build/homebrew/codeMirror/editorThemes.json');
+const EditorThemes = require('themes/codeMirror/editorThemes.json');
 
 const execute = function(val, props){
 	if(_.isFunction(val)) return val(props);
@@ -73,6 +73,8 @@ const Snippetbar = createClass({
 				snippets : this.compileSnippets()
 			});
 		};
+
+		if(this.props.browserOnly) return;
 
 		// Update history list if it has changed
 		const checkHistoryItems = await loadHistory(this.props.brew);

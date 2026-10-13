@@ -1,19 +1,12 @@
-FROM node:20-alpine
-
+FROM node:20-alpine AS build
+RUN apk add --no-cache git
 WORKDIR /app
-
-# Copy only dependency manifests first (good caching)
 COPY package*.json ./
-
-# Install deps, but DO NOT run postinstall/build yet
-RUN npm install --ignore-scripts
-
-# Now copy the full source tree (including /scripts)
+RUN npm ci --ignore-scripts --no-audit --no-fund
 COPY . .
-
-# Run the build explicitly (now the scripts exist)
 RUN npm run build
 
-EXPOSE 8000
-ENV NODE_ENV=local
-CMD ["npm","start"]
+FROM nginx:alpine
+COPY static/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80

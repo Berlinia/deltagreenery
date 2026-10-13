@@ -12,10 +12,10 @@
     "url": "git://github.com/naturalcrit/homebrewery.git"
   },
   "scripts": {
-    "dev": "node --experimental-require-module scripts/dev.js",
-    "quick": "node --experimental-require-module scripts/quick.js",
-    "build": "node --experimental-require-module scripts/buildHomebrew.js && node --experimental-require-module scripts/buildAdmin.js",
-    "builddev": "node --experimental-require-module scripts/buildHomebrew.js --dev",
+    "dev": "npm run build && npm start",
+    "quick": "npm run dev",
+    "build": "node --experimental-require-module scripts/buildStatic.js",
+    "builddev": "npm run build",
     "lint": "eslint --fix",
     "lint:dry": "eslint",
     "stylelint": "stylelint --fix **/*.{less}",
@@ -44,9 +44,11 @@
     "build:standalone": "node --experimental-require-module scripts/buildStandalone.js",
     "prod": "set NODE_ENV=production && npm run build",
     "postinstall": "npm run build",
-    "start": "node --experimental-require-module server.js",
+    "start": "node scripts/serveStatic.js",
     "docker:build": "docker build -t ${DOCKERID}/homebrewery:$npm_package_version .",
-    "docker:publish": "docker login && docker push  ${DOCKERID}/homebrewery:$npm_package_version"
+    "docker:publish": "docker login && docker push  ${DOCKERID}/homebrewery:$npm_package_version",
+    "build:legacy": "node --experimental-require-module scripts/buildHomebrew.js && node --experimental-require-module scripts/buildAdmin.js",
+    "test:static": "jest tests/static --runInBand"
   },
   "author": "stolksdorf",
   "license": "MIT",

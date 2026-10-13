@@ -16,7 +16,7 @@ function safeHTML(htmlString) {
 	const elements = div.querySelectorAll('*');
 
 	// Blacklisted tags
-	const blacklistTags = ['script', 'noscript', 'noembed'];
+	const blacklistTags = ['script', 'noscript', 'noembed', 'iframe', 'object', 'embed', 'base', 'meta'];
 	// Tests to remove attributes
 	const blacklistAttrs = [
 		(test)=>{return test.localName.indexOf('on') == 0;},
@@ -32,10 +32,9 @@ function safeHTML(htmlString) {
 			return;
 		}
 		// Check remaining elements for blacklisted attributes
-		for (const attribute of element.attributes){
+		for (const attribute of Array.from(element.attributes)){
 			if(blacklistAttrs.some((test)=>{return test(attribute);})) {
 				element.removeAttribute(attribute.localName);
-				break;
 			};
 		};
 	});

@@ -359,7 +359,7 @@ const BrewRenderer = (props)=>{
 			<ErrorBar errors={props.errors} />
 			<div className='popups' ref={mainRef}>
 				<RenderWarnings />
-				<NotificationPopup />
+				{props.showNotifications !== false && <NotificationPopup />}
 			</div>
 
 			<ToolBar displayOptions={displayOptions} onDisplayOptionsChange={handleDisplayOptionsChange} visiblePages={state.visiblePages.length > 0 ? state.visiblePages : [state.centerPage]} totalPages={rawPages.length} headerState={headerState} setHeaderState={setHeaderState}/>

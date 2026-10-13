@@ -59,3 +59,10 @@ test('Javascript via event delegation', function() {
 
 
 
+
+test('Removes every event attribute, including adjacent attributes', ()=>{
+ expect(safeHTML('<img onerror="evil()" onload="evil()" src="javascript:evil()">')).toBe('<img>');
+});
+test('Removes embedded browsing contexts and active objects', ()=>{
+ expect(safeHTML('<iframe srcdoc="evil"></iframe><object data="evil"></object><embed src="evil"><meta http-equiv="refresh"><base href="evil"><p>Keep</p>')).toBe('<p>Keep</p>');
+});

@@ -4,3 +4,7 @@ npm-debug.log
 Dockerfile
 docker-compose.yml
 tests
+dist
+build
+tmp
+output

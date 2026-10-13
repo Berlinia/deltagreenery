@@ -14,3 +14,7 @@ startMViewer.bat
 .vscode
 
 coverage
+
+# Static site build and local verification output
+dist/
+tmp/

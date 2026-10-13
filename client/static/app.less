@@ -1,0 +1,33 @@
+@navbarHeight: 0px;
+@viewerToolsHeight: 0px;
+@import '../homebrew/deltagreenery.less';
+@import '../../themes/fonts/iconFonts/fontAwesome.less';
+.staticApp {
+	display: flex; flex-direction: column; height: 100vh; color: #e7e9e3; background: #192321; font: 13px Arial, sans-serif;
+	button, select, input, textarea { font: inherit; }
+	button { cursor: pointer; color: #edf1e8; background: #344740; border: 1px solid #647970; border-radius: 3px; padding: 7px 10px; }
+	button:hover { background: #496056; }
+	button:disabled { opacity: .5; cursor: not-allowed; }
+	button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid #d5bc71; outline-offset: 2px; }
+	.appHeader { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding: 12px 18px; background: #15211d; border-bottom: 1px solid #586653; }
+	.brand { color: #eee4bf; text-decoration: none; font-weight: bold; letter-spacing: 2px; }
+	.storageStatus { font-size: 12px; color: #c0d2c4; }
+	.actions { display: flex; flex-wrap: wrap; gap: 7px; margin-left: auto; }
+	.workspaceBar { padding: 9px 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: #26312d; }
+	.workspaceBar select { margin-left: 8px; max-width: 230px; padding: 6px; }
+	.storageNote { color: #c9c9b7; font-size: 12px; margin-left: auto; }
+	.appError { padding: 10px 18px; background: #653b2e; display: flex; align-items: center; gap: 15px; }
+	.appError button { margin-left: auto; }
+	.workspace { flex: 1; min-height: 0; }
+	.workspace .brewRenderer { height: 100%; }
+	.editor { height: 100%; color: #222; }
+	.drivePicker { position: absolute; top: 110px; right: 20px; z-index: 3000; padding: 22px; background: #24322b; border: 1px solid #c9c9b7; width: 420px; max-height: 65vh; overflow: auto; }
+	.drivePicker h2 { font-size: 20px; margin-bottom: 12px; }
+	.drivePicker p { margin: 12px 0; }
+	.drivePicker button { display: block; margin: 6px 0; }
+	.localProperties { color: #222; background: #f2f1ec; padding: 25px; height: calc(100% - 55px); overflow: auto; }
+	.localProperties h2 { font-size: 22px; margin-bottom: 22px; }
+	.localProperties label { display: block; margin: 16px 0; }
+	.localProperties input, .localProperties textarea, .localProperties select { display: block; width: 100%; padding: 9px; margin-top: 5px; }
+	.localProperties p { line-height: 1.5; margin-top: 24px; }
+}

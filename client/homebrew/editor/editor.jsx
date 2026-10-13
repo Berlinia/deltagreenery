@@ -464,12 +464,13 @@ const Editor = createClass({
 			</>;
 		}
 		if(this.isMeta()){
+			const PropertiesEditor = this.props.propertiesComponent || MetadataEditor;
 			return <>
 				<CodeEditor key='codeEditor'
 					view={this.state.view}
 					style={{ display: 'none' }}
 					rerenderParent={this.rerenderParent} />
-				<MetadataEditor
+				<PropertiesEditor
 					metadata={this.props.brew}
 					themeBundle={this.props.themeBundle}
 					onChange={this.props.onBrewChange('metadata')}
@@ -478,7 +479,7 @@ const Editor = createClass({
 			</>;
 		}
 		if(this.isSnip()){
-			if(!this.props.brew.snippets) { this.props.brew.snippets = DEFAULT_SNIPPET_TEXT; }
+
 			return <>
 				<CodeEditor key='codeEditor'
 					ref={this.codeEditor}
@@ -518,6 +519,7 @@ const Editor = createClass({
 		return (
 			<div className='editor' ref={this.editor}>
 				<SnippetBar
+					browserOnly={this.props.browserOnly}
 					brew={this.props.brew}
 					view={this.state.view}
 					onViewChange={this.handleViewChange}
