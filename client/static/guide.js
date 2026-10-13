@@ -451,6 +451,8 @@ const pages = [
   [
     "# Save and print",
     "",
+    "The hosted tool is for **non-commercial purposes only**. Read **Terms / EULA** in the top bar for the website agreement.",
+    "",
     "## Where your work lives",
     "",
     "Every edit saves in **this browser**. Use the draft selector to return to another document. Clearing site data removes local copies. Drafts on localhost and on the hosted website are separate.",

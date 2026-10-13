@@ -130,6 +130,7 @@ function App() {
 			<a className='brand' href='./'>DELTA GREENERY</a>
 			<span className='storageStatus' role='status'>{status}{brew?.drive && (brew.driveDirty ? ' · Drive has an older copy' : ' · Drive copy saved')}</span>
 			<div className='actions'>
+				<a className='termsLink' href='./eula.html' target='_blank' rel='noopener noreferrer'>Terms / EULA</a>
 				<button disabled={busy} onClick={openGuide}>Home / Guide</button>
 				<button disabled={busy || !brew} onClick={create}>New</button>
 				<button disabled={busy || !brew} onClick={()=>upload.current.click()}>Import Markdown</button>
