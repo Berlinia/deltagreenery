@@ -1,7 +1,8 @@
 import yaml from 'js-yaml';
+import deltaGreenLicense from '../../themes/deltaGreenLicense.js';
 import { normalizeThemeName } from '../../shared/themeNames.js';
 
-export const emptyDocument = (text = '# New operation\n\nBegin your briefing here.\n')=>({
+export const emptyDocument = (text = deltaGreenLicense.subsnippets[0].gen() + '# New operation\n\nBegin your briefing here.\n')=>({
 	title: 'Untitled operation', text, style: '', snippets: '', renderer: 'V3',
 	theme: 'DeltaGreen', lang: 'en', description: '', tags: [], systems: ['Delta Green']
 });
