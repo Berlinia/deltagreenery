@@ -1,3 +1,4 @@
+import { normalizeThemeName } from './themeNames.js';
 import _       from 'lodash';
 import yaml    from 'js-yaml';
 import request from '../client/homebrew/utils/request-middleware.js';
@@ -95,6 +96,7 @@ const splitTextStyleAndMetadata = (brew)=>{
 		brew.snippets = yamlSnippetsToText(_.pick(metadata, ['snippets']).snippets || '');
 		brew.text = brew.text.slice(index + 6);
 	}
+	brew.theme = normalizeThemeName(brew.theme);
 	if(brew.text.startsWith('```css')) {
 		const index = brew.text.indexOf('\n```\n\n');
 		brew.style = brew.text.slice(7, index + 1);

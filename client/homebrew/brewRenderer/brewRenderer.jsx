@@ -82,6 +82,10 @@ const BrewPage = (props)=>{
 
 	return <div className={props.className} id={`p${props.index + 1}`} data-index={props.index} ref={pageRef} style={props.style} {...props.attributes}>
 	         <div className='columnWrapper' dangerouslySetInnerHTML={{ __html: cleanText }} />
+	         <footer className='publicationDisclaimer'>
+	           This document is not official Arc Dream Publishing material.<br />
+	           This document and its creators are not affiliated with Arc Dream Publishing.
+	         </footer>
 	       </div>;
 };
 
@@ -95,7 +99,7 @@ const BrewRenderer = (props)=>{
 		text                       : '',
 		style                      : '',
 		renderer                   : 'legacy',
-		theme                      : '5ePHB',
+		theme                      : 'DeltaGreen',
 		lang                       : '',
 		errors                     : [],
 		currentEditorCursorPageNum : 1,

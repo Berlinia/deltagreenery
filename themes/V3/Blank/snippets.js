@@ -3,7 +3,6 @@
 const WatercolorGen = require('./snippets/watercolor.gen.js');
 const ImageMaskGen = require('./snippets/imageMask.gen.js');
 const FooterGen = require('./snippets/footer.gen.js');
-const LicenseGenWotC = require('./snippets/licenseWotC.gen.js');
 const LicenseGenGNU = require('./snippets/licenseGNU.gen.js');
 const LicenseGen = require('./snippets/license.gen.js');
 const LicenseGenAelf = require('./snippets/licenseAELF.js');
@@ -126,7 +125,7 @@ module.exports = [
 				gen: (brew) => {
 					return `![]` +
 						`(https://api.qrserver.com/v1/create-qr-code/?data=` +
-						`https://homebrewery.naturalcrit.com${brew.shareId ? `/share/${brew.shareId}` : ''}` +
+						`${window.location.origin}${brew.shareId ? `/share/${brew.shareId}` : ''}` +
 						`&amp;size=100x100) {width:100px;mix-blend-mode:multiply}`;
 				}
 			},
@@ -141,17 +140,17 @@ module.exports = [
 				gen: '<!-- This is a comment that will not be rendered into your brew. Hotkey (Ctrl/Cmd + /). -->'
 			},
 			{
-				name: 'Homebrewery Credit',
+				name: 'Delta Greenery Credit',
 				icon: 'fas fa-dice-d20',
 				gen: function () {
 					return dedent`
-						{{homebreweryCredits
+						{{documentCredits
 						Made With
+
 						
-						{{homebreweryIcon}}
-						
-						The Homebrewery  
-						[Homebrewery.Naturalcrit.com](https://homebrewery.naturalcrit.com)
+
+						Delta Greenery
+						[Delta Greenery](https://github.com/Berlinia/deltagreenery)
 						}}\n\n`;
 				},
 			},
@@ -589,24 +588,7 @@ module.exports = [
 
 			},
 
-			{
-				name: 'Wizards of the Coast',
-				icon: 'fab fa-wizards-of-the-coast',
-				subsnippets: [
 
-					{
-						name: 'OGL 1.0 A',
-						icon: 'fab fa-wizards-of-the-coast',
-						gen: LicenseGenWotC.ogl1a,
-					},
-
-					{
-						name: 'WoTC Fan Content Policy',
-						icon: 'fas fa-w',
-						gen: LicenseGenWotC.fcp,
-					},
-				]
-			},
 		]
 	},
 	{
@@ -637,19 +619,19 @@ module.exports = [
 				name: 'Image Wrap Left',
 				icon: 'fac image-wrap-left',
 				gen: dedent`
-					![homebrewery_mug](http://i.imgur.com/hMna6G0.png) {width:280px,margin-right:-3cm,wrapLeft}`
+					![document illustration](http://i.imgur.com/hMna6G0.png) {width:280px,margin-right:-3cm,wrapLeft}`
 			},
 			{
 				name: 'Image Wrap Right',
 				icon: 'fac image-wrap-right',
 				gen: dedent`
-					![homebrewery_mug](http://i.imgur.com/hMna6G0.png) {width:280px,margin-left:-3cm,wrapRight}`
+					![document illustration](http://i.imgur.com/hMna6G0.png) {width:280px,margin-left:-3cm,wrapRight}`
 			},
 			{
 				name: 'Background Image',
 				icon: 'fas fa-tree',
 				gen: dedent`
-					![homebrew mug](http://i.imgur.com/hMna6G0.png) {position:absolute,top:50px,right:30px,width:280px}`
+					![document illustration](http://i.imgur.com/hMna6G0.png) {position:absolute,top:50px,right:30px,width:280px}`
 			},
 			{
 				name: 'Watercolor Splatter',
@@ -722,7 +704,7 @@ module.exports = [
 				name: 'Watermark',
 				icon: 'fas fa-id-card',
 				gen: dedent`
-				{{watermark Homebrewery}}\n`
+				{{watermark Delta Greenery}}\n`
 			},
 		]
 	},
@@ -766,29 +748,7 @@ module.exports = [
 						}}\n`;
 				}
 			},
-			{
-				name: 'Split Table',
-				icon: 'fas fa-th-large',
-				gen: function () {
-					return dedent`
-						##### Typical Difficulty Classes
-						{{column-count:2
-						| Task Difficulty | DC |
-						|:----------------|:--:|
-						| Very easy       | 5  |
-						| Easy            | 10 |
-						| Medium          | 15 |
-
-						| Task Difficulty   | DC |
-						|:------------------|:--:|
-						| Hard              | 20 |
-						| Very hard         | 25 |
-						| Nearly impossible | 30 |
-						}}
-						\n`;
-				}
-			}
-		]
+			]
 	},
 	/**************** FONTS *************/
 	{
@@ -866,21 +826,7 @@ module.exports = [
 				icon: 'font Overpass',
 				gen: dedent`{{font-family:Overpass Dummy Text}}`
 			},
-			{
-				name: 'Davek',
-				icon: 'font Davek',
-				gen: dedent`{{font-family:Davek Dummy Text}}`
-			},
-			{
-				name: 'Iokharic',
-				icon: 'font Iokharic',
-				gen: dedent`{{font-family:Iokharic Dummy Text}}`
-			},
-			{
-				name: 'Rellanic',
-				icon: 'font Rellanic',
-				gen: dedent`{{font-family:Rellanic Dummy Text}}`
-			},
+
 			{
 				name: 'Times New Roman',
 				icon: 'font TimesNewRoman',

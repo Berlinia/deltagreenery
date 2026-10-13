@@ -415,7 +415,7 @@ const VaultPage = (props)=>{
 	return (
 		<div className='sitePage vaultPage'>
 			<link href='/themes/V3/Blank/style.css' rel='stylesheet' />
-			<link href='/themes/V3/5ePHB/style.css' rel='stylesheet' />
+			<link href='/themes/V3/DeltaGreen/style.css' rel='stylesheet' />
 			{renderNavItems()}
 			<div className='content'>
 				<SplitPane showDividerButtons={false}>

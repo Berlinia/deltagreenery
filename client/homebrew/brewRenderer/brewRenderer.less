@@ -1,4 +1,4 @@
-@import (multiple, less) 'shared/naturalcrit/styles/reset.less';
+@import (multiple, less) 'shared/interface/reset.less';
 
 .brewRenderer {
 	height        : 100vh;
@@ -81,4 +81,30 @@
 		}
 	}
 	.headerNav { visibility : hidden; }
+}
+// Shared by V3 and Legacy pages, including the iframe used for PDF printing.
+// Keep the notice outside the text columns and below existing page footnotes.
+.brewRenderer .pages > .page {
+	padding-bottom : 1.7cm !important;
+
+	> .publicationDisclaimer {
+		position       : absolute;
+		z-index        : 250;
+		right          : 1.9cm;
+		bottom         : 0.15cm;
+		left           : 1.9cm;
+		margin         : 0;
+		padding        : 0.05cm 0.1cm;
+		background     : rgba(255, 255, 255, 0.9);
+		color          : #333333;
+		font-family    : Arial, sans-serif;
+		font-size      : 7pt;
+		font-style     : normal;
+		font-weight    : normal;
+		line-height    : 1.2;
+		text-align     : center;
+		text-indent    : 0;
+		text-transform : none;
+		letter-spacing : normal;
+	}
 }

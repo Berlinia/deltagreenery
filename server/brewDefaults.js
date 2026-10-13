@@ -11,7 +11,7 @@ const DEFAULT_BREW = {
 	createdAt   : undefined,
 	updatedAt   : undefined,
 	renderer    : 'V3',
-	theme       : '5ePHB',
+	theme       : 'DeltaGreen',
 	authors     : [],
 	tags        : [],
 	systems     : [],

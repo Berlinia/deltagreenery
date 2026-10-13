@@ -134,13 +134,13 @@ fs.emptyDirSync('./build');
 
 	// Possible method for generating separate bundles for theme snippets: factor-bundle first sending all common files to bundle.js, then again using default settings, keeping only snippet bundles
 	// await fs.outputFile('./build/junk.js', '');
-	// await fs.outputFile('./build/themes/Legacy/5ePHB/snippets.js', '');
+	// await fs.outputFile('./build/themes/Legacy/DeltaGreen/snippets.js', '');
 	//
-	// const files = ['./client/homebrew/homebrew.jsx','./themes/Legacy/5ePHB/snippets.js'];
+	// const files = ['./client/homebrew/homebrew.jsx','./themes/Legacy/DeltaGreen/snippets.js'];
 	//
 	// bundles = await pack(files, {
 	// 	dedupe: false,
-	// 	plugin : [['factor-bundle', { outputs: [ './build/junk.js','./build/themes/Legacy/5ePHB/snippets.js'], threshold : function(row, groups) {
+	// 	plugin : [['factor-bundle', { outputs: [ './build/junk.js','./build/themes/Legacy/DeltaGreen/snippets.js'], threshold : function(row, groups) {
 	// 		console.log(groups);
 	//     if (groups.some(group => /.*homebrew.jsx$/.test(group))) {
 	// 			console.log("found homebrewery")

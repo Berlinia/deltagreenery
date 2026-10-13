@@ -1,3 +1,4 @@
+import { normalizeThemeName } from '../shared/themeNames.js';
 /* eslint-disable max-lines */
 import _                             from 'lodash';
 import { model as HomebrewModel }    from './homebrew.model.js';
@@ -305,6 +306,7 @@ const api = {
 		let themeAuthor;
 
 		while (req.params.id) {
+			req.params.id = normalizeThemeName(req.params.id);
 			//=== User Themes ===//
 			if(!isStaticTheme(req.params.renderer, req.params.id)) {
 				await api.getBrew('share')(req, res, ()=>{})

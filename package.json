@@ -41,7 +41,7 @@
     "test:emojis": "jest tests/markdown/emojis.test.js --verbose --noStackTrace",
     "test:route": "jest tests/routes/static-pages.test.js --verbose",
     "test:safehtml": "jest tests/html/safeHTML.test.js --verbose",
-    "phb": "node --experimental-require-module scripts/phb.js",
+    "build:standalone": "node --experimental-require-module scripts/buildStandalone.js",
     "prod": "set NODE_ENV=production && npm run build",
     "postinstall": "npm run build",
     "start": "node --experimental-require-module server.js",

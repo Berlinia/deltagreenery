@@ -353,7 +353,7 @@ describe('Tests for api', ()=>{
 				shareId     : undefined,
 				systems     : [],
 				tags        : [],
-				theme       : '5ePHB',
+				theme       : 'DeltaGreen',
 				thumbnail   : '',
 				textBin     : undefined,
 				version     : undefined,
@@ -562,7 +562,7 @@ brew`);
 				tags        : [],
 				text        : undefined,
 				textBin     : expect.objectContaining({}),
-				theme       : '5ePHB',
+				theme       : 'DeltaGreen',
 				thumbnail   : '',
 				title       : 'asdf',
 				trashed     : false,
@@ -622,7 +622,7 @@ brew`);
 				tags        : [],
 				text        : undefined,
 				textBin     : undefined,
-				theme       : '5ePHB',
+				theme       : 'DeltaGreen',
 				thumbnail   : '',
 				title       : 'asdf',
 				trashed     : false,
@@ -689,22 +689,22 @@ brew`);
 			});
 		});
 
-		it('should return Theme Bundle for a Static Theme', async ()=>{
-			const req = { params: { renderer: 'V3', id: '5ePHB' }, get: ()=>{ return 'localhost'; }, protocol: 'https' };
+		it.each(['DeltaGreen', '5ePHB'])('should return Theme Bundle for static theme %s', async (theme)=>{
+			const req = { params: { renderer: 'V3', id: theme }, get: ()=>{ return 'localhost'; }, protocol: 'https' };
 
 			await api.getThemeBundle(req, res);
 
 			expect(res.status).toHaveBeenCalledWith(200);
 			expect(res.send).toHaveBeenCalledWith({
-				name   : '5ePHB',
+				name   : 'DeltaGreen',
 				author : undefined,
 				styles : [
 					`/* From Theme Blank */\n\n@import url("/themes/V3/Blank/style.css");`,
-					`/* From Theme 5ePHB */\n\n@import url("/themes/V3/5ePHB/style.css");`
+					`/* From Theme DeltaGreen */\n\n@import url("/themes/V3/DeltaGreen/style.css");`
 				],
 				snippets : [
 					'V3_Blank',
-					'V3_5ePHB'
+					'V3_DeltaGreen'
 				]
 			});
 		});
@@ -713,7 +713,7 @@ brew`);
 			const brews = {
 				userThemeAID : { title: 'User Theme A', renderer: 'V3', theme: 'userThemeBID', shareId: 'userThemeAID', style: 'User Theme A Style', tags: ['meta:theme'], authors: ['authorName'] },
 				userThemeBID : { title: 'User Theme B', renderer: 'V3', theme: 'userThemeCID', shareId: 'userThemeBID', style: 'User Theme B Style', tags: ['meta:theme'], authors: ['authorName'] },
-				userThemeCID : { title: 'User Theme C', renderer: 'V3', theme: '5eDMG', shareId: 'userThemeCID', style: 'User Theme C Style', tags: ['meta:theme'], authors: ['authorName'] }
+				userThemeCID : { title: 'User Theme C', renderer: 'V3', theme: 'FieldGuide', shareId: 'userThemeCID', style: 'User Theme C Style', tags: ['meta:theme'], authors: ['authorName'] }
 			};
 
 			const toBrewPromise = (brew)=>new Promise((res)=>res({ toObject: ()=>brew }));
@@ -728,16 +728,16 @@ brew`);
 				author : 'authorName',
 				styles : [
 					`/* From Theme Blank */\n\n@import url("/themes/V3/Blank/style.css");`,
-					`/* From Theme 5ePHB */\n\n@import url("/themes/V3/5ePHB/style.css");`,
-					`/* From Theme 5eDMG */\n\n@import url("/themes/V3/5eDMG/style.css");`,
+					`/* From Theme DeltaGreen */\n\n@import url("/themes/V3/DeltaGreen/style.css");`,
+					`/* From Theme FieldGuide */\n\n@import url("/themes/V3/FieldGuide/style.css");`,
 					'/* From Brew: https://localhost/share/userThemeCID */\n\nUser Theme C Style',
 					'/* From Brew: https://localhost/share/userThemeBID */\n\nUser Theme B Style',
 					'/* From Brew: https://localhost/share/userThemeAID */\n\nUser Theme A Style'
 				],
 				snippets : [
 					'V3_Blank',
-					'V3_5ePHB',
-					'V3_5eDMG'
+					'V3_DeltaGreen',
+					'V3_FieldGuide'
 				]
 			});
 		});
@@ -1078,7 +1078,7 @@ brew`);
 					'tags: [ \'tag a\' , \'tag b\' ]\n' +
 					'systems: [ test system ]\n' +
 					'renderer: legacy\n' +
-					'theme: 5ePHB\n' +
+					'theme: DeltaGreen\n' +
 					'lang: en\n' +
 					'\n' +
 					'```\n' +
@@ -1100,7 +1100,7 @@ brew`);
 			expect(testBrew.tags).toEqual(['tag a', 'tag b']);
 			expect(testBrew.systems).toEqual(['test system']);
 			expect(testBrew.renderer).toEqual('legacy');
-			expect(testBrew.theme).toEqual('5ePHB');
+			expect(testBrew.theme).toEqual('DeltaGreen');
 			expect(testBrew.lang).toEqual('en');
 			// Style
 			expect(testBrew.style).toEqual('style\nstyle\nstyle\n');

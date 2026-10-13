@@ -10,9 +10,9 @@ import { brewSnippetsToJSON } from '../../../../shared/helpers.js';
 
 //Import all themes
 const ThemeSnippets = {};
-ThemeSnippets['Legacy_5ePHB'] = require('themes/Legacy/5ePHB/snippets.js');
-ThemeSnippets['V3_5ePHB']     = require('themes/V3/5ePHB/snippets.js');
-ThemeSnippets['V3_5eDMG']     = require('themes/V3/5eDMG/snippets.js');
+ThemeSnippets['Legacy_DeltaGreen'] = require('themes/Legacy/DeltaGreen/snippets.js');
+ThemeSnippets['V3_DeltaGreen']     = require('themes/V3/DeltaGreen/snippets.js');
+ThemeSnippets['V3_FieldGuide']     = require('themes/V3/FieldGuide/snippets.js');
 ThemeSnippets['V3_Journal']   = require('themes/V3/Journal/snippets.js');
 ThemeSnippets['V3_Blank']     = require('themes/V3/Blank/snippets.js');
 

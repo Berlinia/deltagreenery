@@ -79,7 +79,8 @@ const Editor = createClass({
 		this.codeEditor.current.codeMirror.on('cursorActivity', (cm)=>{this.updateCurrentCursorPage(cm.getCursor());});
 		this.codeEditor.current.codeMirror.on('scroll', _.throttle(()=>{this.updateCurrentViewPage(this.codeEditor.current.getTopVisibleLine());}, 200));
 
-		const editorTheme = window.localStorage.getItem(EDITOR_THEME_KEY);
+		const savedTheme = window.localStorage.getItem(EDITOR_THEME_KEY);
+		const editorTheme = ({ darkbrewery: 'delta-dark', darkvision: 'night-ops' })[savedTheme] || savedTheme;
 		if(editorTheme) {
 			this.setState({
 				editorTheme : editorTheme

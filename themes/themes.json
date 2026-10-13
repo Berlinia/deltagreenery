@@ -1,27 +1,13 @@
 {
   "Legacy": {
-    "5ePHB": {
-      "name": "5e PHB",
+    "DeltaGreen": {
+      "name": "Delta Green",
       "renderer": "legacy",
       "baseTheme": false,
-      "path": "5ePHB"
+      "path": "DeltaGreen"
     }
   },
   "V3": {
-    "5eDMG": {
-      "name": "5e DMG",
-      "renderer": "V3",
-      "baseTheme": "5ePHB",
-      "baseSnippets": "5ePHB",
-      "path": "5eDMG"
-    },
-    "5ePHB": {
-      "name": "5e PHB",
-      "renderer": "V3",
-      "baseTheme": "Blank",
-      "baseSnippets": false,
-      "path": "5ePHB"
-    },
     "Blank": {
       "name": "Blank",
       "renderer": "V3",
@@ -29,19 +15,33 @@
       "baseSnippets": false,
       "path": "Blank"
     },
+    "Briefing": {
+      "name": "Briefing",
+      "renderer": "V3",
+      "baseTheme": "Blank",
+      "baseSnippets": false,
+      "path": "Briefing"
+    },
+    "DeltaGreen": {
+      "name": "Delta Green",
+      "renderer": "V3",
+      "baseTheme": "Blank",
+      "baseSnippets": false,
+      "path": "DeltaGreen"
+    },
+    "FieldGuide": {
+      "name": "Field Guide",
+      "renderer": "V3",
+      "baseTheme": "DeltaGreen",
+      "baseSnippets": "DeltaGreen",
+      "path": "FieldGuide"
+    },
     "Journal": {
       "name": "Journal",
       "renderer": "V3",
       "baseTheme": "Blank",
-      "baseSnippets": "5ePHB",
+      "baseSnippets": "DeltaGreen",
       "path": "Journal"
-    },
-    "UnearthedArcana": {
-      "name": "UnearthedArcana",
-      "renderer": "V3",
-      "baseTheme": "Blank",
-      "baseSnippets": false,
-      "path": "UnearthedArcana"
     }
   }
 }
