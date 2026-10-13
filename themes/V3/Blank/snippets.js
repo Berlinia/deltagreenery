@@ -207,6 +207,7 @@ module.exports = [
 		icon: 'fas fa-copyright',
 		view: 'text',
 		snippets: [
+			require('../../deltaGreenLicense.js'),
 			{
 				name: 'AELF',
 				subsnippets: [

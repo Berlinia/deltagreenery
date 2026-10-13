@@ -4,6 +4,12 @@ const TableOfContentsGen = require('./snippets/tableOfContents.gen.js');
 const dedent             = require('dedent-tabs').default;
 
 module.exports = [
+	{
+		groupName: 'License',
+		icon: 'fas fa-copyright',
+		view: 'text',
+		snippets: [require('../../deltaGreenLicense.js')]
+	},
 
 	{
 		groupName : 'Text Editor',
