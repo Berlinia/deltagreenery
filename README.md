@@ -48,7 +48,7 @@ So on Linux/macOS just run the above commands in a terminal, in the directory yo
 
 Special thanks to discord user TFA303 for helping me test things.
 
-
+Published by arrangement with the Delta Green Partnership. The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here. The contents of this document are ©Berlinia's, excepting those elements that are components of the Delta Green intellectual property.
 
 
 
