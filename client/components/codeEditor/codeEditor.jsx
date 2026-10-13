@@ -1,3 +1,4 @@
+import { assetUrl } from 'assetUrl.js';
 /* eslint-disable max-lines */
 require('./codeEditor.less');
 const React = require('react');
@@ -455,7 +456,7 @@ const CodeEditor = createClass({
 
 	render : function(){
 		return <>
-			<link href={`../homebrew/cm-themes/${this.props.editorTheme}.css`} type='text/css' rel='stylesheet' />
+			<link href={assetUrl(`/homebrew/cm-themes/${this.props.editorTheme}.css`)} type='text/css' rel='stylesheet' />
 			<div className='codeEditor' ref={this.editor} style={this.props.style}/>
 		</>;
 	}

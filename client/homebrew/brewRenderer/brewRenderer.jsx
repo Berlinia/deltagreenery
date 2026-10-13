@@ -17,6 +17,7 @@ const dedent = require('dedent-tabs').default;
 const { printCurrentBrew } = require('../../../shared/helpers.js');
 
 import HeaderNav from './headerNav/headerNav.jsx';
+import { assetUrl } from 'assetUrl.js';
 import { safeHTML } from './safeHTML.js';
 
 const PAGEBREAK_REGEX_V3 = /^(?=\\page(?:break)?(?: *{[^\n{}]*})?$)/m;
@@ -29,7 +30,7 @@ const TOOLBAR_STATE_KEY = 'HB_renderer_toolbarState';
 const INITIAL_CONTENT = dedent`
 	<!DOCTYPE html><html><head>
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-	<link href='/homebrew/bundle.css' type="text/css" rel='stylesheet' />
+	<link href='${assetUrl('/homebrew/bundle.css')}' type="text/css" rel='stylesheet' />
 	<base target=_blank>
 	</head><body style='overflow: hidden'><div></div></body></html>`;
 
@@ -223,7 +224,7 @@ const BrewRenderer = (props)=>{
 	};
 
 	const renderStyle = ()=>{
-		const themeStyles = props.themeBundle?.joinedStyles ?? '<style>@import url("/themes/V3/Blank/style.css");</style>';
+		const themeStyles = props.themeBundle?.joinedStyles ?? `<style>@import url("${assetUrl('/themes/V3/Blank/style.css')}");</style>`;
 		const cleanStyle = safeHTML(`${themeStyles} \n\n <style> ${props.style} </style>`);
 		return <div style={{ display: 'none' }} dangerouslySetInnerHTML={{ __html: cleanStyle }} />;
 	};

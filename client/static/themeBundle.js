@@ -1,3 +1,4 @@
+import { assetUrl } from '../../shared/assetUrl.js';
 import themes from '../../themes/themes.json';
 import { normalizeThemeName } from '../../shared/themeNames.js';
 export function getThemeBundle(renderer, theme) {
@@ -11,7 +12,7 @@ export function getThemeBundle(renderer, theme) {
 		visited.add(id);
 		const current = themes[family][id];
 		if(!current) throw new Error('Missing base theme: ' + id);
-		styles.unshift('@import url("/themes/' + family + '/' + id + '/style.css");');
+		styles.unshift('@import url("' + assetUrl('/themes/' + family + '/' + id + '/style.css') + '");');
 		snippets.unshift(family + '_' + (current.baseSnippets || id));
 		id = current.baseTheme;
 	}

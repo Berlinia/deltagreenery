@@ -7,7 +7,7 @@ This repository is a fork of [the Homebrewery](https://homebrewery.naturalcrit.c
 
 ## Static website
 
-The default build is now a frontend-only editor. Deploy the contents of `dist/` to a static host at the domain root. There is no application server, MongoDB, site account, or document upload to the host. The older server source remains for reference and is excluded from the deployed output.
+The default build is now a frontend-only editor. Deploy the contents of `dist/` to a static host. Builds default to the domain root; `BASE_PATH=/deltagreenery` supports repository subpaths. There is no application server, MongoDB, site account, or document upload to the host. The older server source remains for reference and is excluded from the deployed output.
 
 ### Run locally
 
@@ -64,3 +64,25 @@ See Google's [browser token model](https://developers.google.com/identity/oauth2
 - `static/`: HTML bootstrap, public configuration and nginx configuration.
 
 Run `npm run test:static` for storage and Drive regression tests. All generated pages retain the Arc Dream Publishing disclaimer.
+
+### GitHub Pages
+
+The workflow in `.github/workflows/pages.yml` builds and deploys **only `development-branch`**. `master` remains the MongoDB/local version with the disclaimer. No third branch is needed; Actions uploads `dist/` as a Pages artifact.
+
+1. In this repository's **Settings > Pages**, select **GitHub Actions** as the build source.
+2. Under **Settings > Environments > github-pages**, ensure deployment branch rules allow `development-branch`.
+3. Push the website and Pages workflow to `development-branch`. Subsequent pushes deploy automatically. Inspect **Actions > Deploy public website** for the result. The workflow is deliberately absent from `master`; the manual Run workflow button may not appear until a workflow exists on the default branch, so use a push to trigger it.
+4. Without a custom domain, the expected address is `https://berlinia.github.io/deltagreenery/`. The workflow obtains the actual base path from GitHub, including when a custom domain is configured later.
+5. Add **`https://berlinia.github.io`** to the Google OAuth client's authorized JavaScript origins. Do not include `/deltagreenery/`. Keep the localhost origin for local testing.
+
+Google connections and browser drafts remain client-side. Browser drafts at localhost do not appear on GitHub Pages; export/import Markdown or use Drive to transfer them. Browser storage is scoped to the origin, so other repositories under the same GitHub Pages account share that storage boundary.
+
+To preview the repository path locally in PowerShell:
+
+```powershell
+$env:BASE_PATH = '/deltagreenery'
+npm run build
+npm start
+```
+
+Then open `http://localhost:8000/deltagreenery/`. Clear `BASE_PATH` and rebuild to return to the default root preview.
