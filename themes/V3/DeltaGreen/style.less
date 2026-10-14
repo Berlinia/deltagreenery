@@ -394,81 +394,70 @@
 	   NOTE
 	   ========================= */
 	.note {
-		.useSansSerif();
-
-		background-color: #ffee9b;
-		background-image: linear-gradient(180deg, #ffee9b 0%, #ffee9b 100%);
-
-		border: none;
+		box-sizing: border-box;
+		position: relative;
+		padding: 0.35cm 0.4cm;
+		margin: 0.25cm 0 0.4cm;
+		background: #edf1e9;
+		color: #253b30;
+		border: 1px solid #819386;
+		border-top: 3px solid #425e4b;
 		border-image: none;
-		padding: 0.6cm 0.6cm;
-		padding-left: 0.9m;
-		padding-right: 0.9cm;
-		padding-top: 0.4cm;
-		border-radius: 0px;
-
-		box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.25);
-		transform: rotate(-2deg);
-
-		.page :where(&) {
-			margin-top: 10px;
-		}
-
-		&+* {
-			margin-top: 0.45cm;
-		}
-
-		h5 {
-			font-family: "Typewriter";
-			font-size: 0.38cm;
-			font-weight: normal;
-
-			text-align: center;
-			text-transform: uppercase;
-			font-variant: small-caps;
-			margin: 0 0 0.15cm 0;
-			padding: 0;
-
-			color: #2e2d2b;
-			letter-spacing: 0.02em;
-		}
-
-		p {
-			font-family: "BookInsanityRemake";
-			font-size: 10.0pt;
-			line-height: 1.4em;
-			color: #292826;
-		}
-
-		/* Kill dropcaps inside notes */
-		p::first-letter {
-			all: unset;
-		}
-	}
-
-	.note::before {
-		content: "";
-		position: absolute;
-		top: -6px;
-		left: 30%;
-		width: 40%;
-		height: 12px;
-		background: rgba(255, 255, 255, 0.6);
 		border-radius: 2px;
-	}
+		box-shadow: none;
+		transform: none;
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 9pt;
+		line-height: 1.4;
+		text-align: left;
+		break-inside: avoid;
+		overflow-wrap: anywhere;
 
-	.note::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: -0.15cm;
-		width: 0.4cm;
-		height: 100%;
+		& + * { margin-top: 0.4cm; }
 
-		background: repeating-radial-gradient(circle, #ffffff 0 3px, transparent 4px 18px);
+		h1, h2, h3, h4, h5, h6 {
+			font-family: inherit;
+			font-size: 10pt;
+			font-weight: bold;
+			font-variant: normal;
+			text-align: left;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			color: #304f3c;
+			border: none;
+			margin: 0 0 0.2cm;
+			padding: 0 0 0.12cm;
+			border-bottom: 1px solid #a8b5a8;
+			&::before { content: '> '; }
+		}
 
-		box-shadow: inset -1px 0 2px rgba(0, 0, 0, 0.25);
-		pointer-events: none;
+		p, ul, ol, dl, table {
+			font-family: inherit;
+			font-size: inherit;
+			line-height: inherit;
+			color: inherit;
+		}
+		p { text-indent: 0; }
+		p::first-letter { all: unset; }
+		ul, ol { padding-left: 1.4em; }
+		strong { font-weight: bold; }
+		a { color: #24513b; text-decoration: underline; }
+		table {
+			border: 1px solid #819386;
+			background: transparent;
+			box-shadow: none;
+			transform: none;
+			thead tr { background: #d3dfd1; }
+			thead th, tbody td {
+				font-family: inherit;
+				color: inherit;
+				padding: 0.12cm 0.16cm;
+			}
+			th { border-bottom: 1px solid #819386; }
+			tbody tr:nth-child(odd) { background: #e2e9df; }
+			tbody tr:nth-child(even) { background: transparent; }
+		}
+		&::before, &::after { content: none; }
 	}
 
 	/* =========================
