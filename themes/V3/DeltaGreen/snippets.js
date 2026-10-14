@@ -46,17 +46,7 @@ module.exports = [
 			{
 				name: 'Timeline',
 				icon: 'fas fa-scroll',
-				gen: function () {
-					return dedent`
-					{{wide\n
-					{{timeline\n
-					* **27 OCT 1865:** No book to be *The King in Yellow* is reported in London for the first time.^[1]\n
-					* **28 MAY 1886:** Asa Daribondi is born in Paris.\n
-					##### THE BROTHERHOOD (1865–1905)\n
-					* **OCTOBER 1894:** *Le Roi en jaune* turns up in bookshops across Paris.\n
-					}}\n
-				}}\n`;
-				},
+				gen: require('./snippets/timeline.gen.js'),
 			},
 			{
 				name: 'Unnatural Tome (TODO)',

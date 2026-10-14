@@ -1333,7 +1333,8 @@
 	font-weight: 700;
 }
 
-.timeline li>strong:first-child {
+.timeline li>strong:first-child,
+.timeline li>p:first-child>strong:first-child {
 	font-weight: 800;
 	letter-spacing: 0.02em;
 }
@@ -1400,4 +1401,9 @@
 	letter-spacing: 0.04em;
 
 	color: #ffffff;
+}
+/* Older timeline snippets generated loose Markdown lists with paragraph wrappers. */
+.page .timeline li > p {
+	margin: 0;
+	text-indent: 0;
 }
