@@ -15,13 +15,19 @@ const output = path.resolve('dist');
 if(output !== path.join(process.cwd(), 'dist')) throw new Error('Unexpected build output directory.');
 await fs.emptyDir(output);
 const themes = { Legacy: {}, V3: {} };
+const themeAssetPaths = {};
 for(const family of Object.keys(themes)) {
 	for(const name of await fs.readdir('themes/' + family)) {
 		const directory = 'themes/' + family + '/' + name;
 		const settings = await fs.readJSON(directory + '/settings.json');
 		themes[family][name] = { ...settings, path: name };
 		const { css } = await less.render(await fs.readFile(directory + '/style.less', 'utf8'), { compress: true });
-		await fs.outputFile('dist/' + directory + '/style.css', rebaseCss(css, directory + '/style.css', basePath));
+		const themeCss = rebaseCss(css, directory + '/style.css', basePath);
+		const themeHash = createHash('sha256').update(themeCss).digest('hex').slice(0, 16);
+		const themePath = '/' + directory + '/style.css';
+		themeAssetPaths[themePath] = '/' + directory + '/style.' + themeHash + '.css';
+		await fs.outputFile('dist' + themePath, themeCss);
+		await fs.outputFile('dist' + themeAssetPaths[themePath], themeCss);
 		for(const image of ['dropdownTexture.png', 'dropdownPreview.png']) {
 			if(await fs.pathExists(directory + '/' + image)) await fs.copy(directory + '/' + image, 'dist/' + directory + '/' + image);
 		}
@@ -45,8 +51,9 @@ const { bundle } = await vitreum.pack('./client/static/App.jsx', {
 const css = rebaseCss(await lessTransform.generate({ paths: ['./shared', './'] }), 'homebrew/bundle.css', basePath);
 const config = await fs.readFile('static/config.js', 'utf8');
 const boot = await fs.readFile('static/boot.js', 'utf8');
-const version = createHash('sha256').update(bundle + css + config + boot + basePath).digest('hex').slice(0, 16);
+const version = createHash('sha256').update(bundle + css + config + boot + basePath + JSON.stringify(themeAssetPaths)).digest('hex').slice(0, 16);
 const assetPaths = {
+ ...themeAssetPaths,
  '/homebrew/bundle.js': '/homebrew/bundle.' + version + '.js',
  '/homebrew/bundle.css': '/homebrew/bundle.' + version + '.css',
  '/config.js': '/config.' + version + '.js',
