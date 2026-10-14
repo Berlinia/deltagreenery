@@ -130,6 +130,7 @@ function App() {
 			<a className='brand' href='./'>DELTA GREENERY</a>
 			<span className='storageStatus' role='status'>{status}{brew?.drive && (brew.driveDirty ? ' · Drive has an older copy' : ' · Drive copy saved')}</span>
 			<div className='actions'>
+				<a className='termsLink' href='https://github.com/Berlinia/deltagreenery' target='_blank' rel='noopener noreferrer'>GitHub</a>
 				<a className='termsLink' href='./privacy.html' target='_blank' rel='noopener noreferrer'>Privacy Policy</a>
 				<a className='termsLink' href='./terms.html' target='_blank' rel='noopener noreferrer'>Terms of Service</a>
 				<button disabled={busy} onClick={openGuide}>Home / Guide</button>
