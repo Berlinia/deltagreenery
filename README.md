@@ -100,3 +100,15 @@ npm start
 Then open `http://localhost:8000/deltagreenery/`. Clear `BASE_PATH` and rebuild to return to the default root preview.
 
 The homepage always opens the built-in guide, including for returning users. Select a browser draft to resume editing. **Home / Guide** returns to the guide without creating extra drafts; editing the guide saves a separate local copy.
+
+## Optional visitor analytics (public website)
+
+Set `googleAnalyticsId` in `static/config.js` to the GA4 web stream Measurement ID (`G-...`). Leave it empty to disable analytics and the consent prompt. This is a public identifier, not a secret. The integration belongs only to the frontend deployment branch.
+
+Before enabling the ID, configure the web stream in Google Analytics:
+
+- Turn **Enhanced measurement off**, including page changes, form interactions, site search, outbound links and file downloads. The editor contains private user content; only the configured site visit should be measured.
+- Leave Google Signals, user-provided data collection and advertising integrations disabled. Do not add document fields or Google Drive account data as events or user properties.
+- Set event-data retention to **2 months** and review your property's data-sharing settings.
+
+Deploy, then open the site and choose **Allow analytics**. Check Analytics **Realtime** for the visit (ad blockers may prevent collection). No Analytics script or request is sent before consent or after a fresh-page decline. Visitors can withdraw through **Analytics preferences**; this disables the tag and clears the app's host-scoped analytics cookies. Consent choices and cookies last up to 180 days. Counts therefore represent consenting, unblocked visitors, not every visit. Draft storage and Google Drive authorization are independent of analytics consent.

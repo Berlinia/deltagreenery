@@ -35,3 +35,13 @@
 .staticApp .guideWelcome { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 12px 18px; color: #eee4bf; background: #344740; border-bottom: 1px solid #647970; }
 
 .staticApp .termsLink { color: #eee4bf; align-self: center; padding: 7px 5px; }
+
+.staticApp .analyticsConsent {
+ position: fixed; bottom: 18px; right: 18px; z-index: 5000;
+ width: 440px; max-width: calc(100vw - 36px); max-height: 80vh; overflow: auto;
+ padding: 18px; background: #24322b; color: #edf1e8; border: 1px solid #a2b49e;
+ box-shadow: 0 3px 18px #0006; line-height: 1.5;
+ p { margin: 10px 0; } a { color: #eee4bf; }
+ div { display: flex; flex-wrap: wrap; gap: 10px; }
+}
+@media print { .analyticsConsent { display: none !important; } }

@@ -10,6 +10,7 @@ import { emptyDocument, parseDocument, serializeDocument } from './documentForma
 import { getThemeBundle } from './themeBundle.js';
 import { createDriveClient, loadGoogleIdentity } from './googleDrive.js';
 import Properties from './Properties.jsx';
+import AnalyticsConsent from './AnalyticsConsent.jsx';
 
 import { createGuide } from './guide.js';
 const GUIDE_ID = 'builtin-guide';
@@ -130,6 +131,7 @@ function App() {
 			<a className='brand' href='./'>DELTA GREENERY</a>
 			<span className='storageStatus' role='status'>{status}{brew?.drive && (brew.driveDirty ? ' · Drive has an older copy' : ' · Drive copy saved')}</span>
 			<div className='actions'>
+				<AnalyticsConsent />
 				<a className='termsLink' href='https://github.com/Berlinia/deltagreenery' target='_blank' rel='noopener noreferrer'>GitHub</a>
 				<a className='termsLink' href='./privacy.html' target='_blank' rel='noopener noreferrer'>Privacy Policy</a>
 				<a className='termsLink' href='./terms.html' target='_blank' rel='noopener noreferrer'>Terms of Service</a>
