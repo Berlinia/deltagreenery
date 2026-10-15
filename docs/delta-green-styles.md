@@ -78,8 +78,12 @@ Existing monster stat-block templates are retained; their rules/fields have not 
 
 The Delta Green theme uses 10 pt serif prose with 15 pt leading. Sabon Roman and Bold are used for regular text and emphasis; the existing EB Garamond Italic and Bold Italic files are explicit fallbacks until suitable Sabon italic webfonts are available. Futura handles editorial headings, captions and compact labels; Typestar handles running headers and typewritten titles. Ordinary bold prose keeps its serif face and normal tracking.
 
-Headings have no decorative rules by default. The DG menu offers **Section Divider** (`sectionDivider,wide`) for a double rule, **Framed Title** (`framedTitle,wide`) for a title enclosed by slashes, and **Loose-paper Table** (`loosePaperTable`) for a slightly rotated paper insert. Normal tables are upright. Guide page 17 demonstrates all three.
+Second-level headings have a column-contained double rule by default. The DG menu offers **Section Divider** (`sectionDivider,wide`) for a typewritten heading with a double rule, **Framed Title** (`framedTitle,wide`) for a title enclosed by slashes, and **Loose-paper Table** (`loosePaperTable`) for a slightly rotated paper insert. Normal tables are upright. Guide page 17 demonstrates all three.
 
 Running headers align with the text margins, and neutral page numbers sit at the foot of the page. Existing rough page background images are preserved. Paper grain affects only the advice, chapter and pink-paper panels.
 
 Sabon Pro Italic and Bold Italic are sold by Linotype through https://www.myfonts.com/collections/sabon-font-linotype. They were not downloaded or added: a desktop purchase alone does not cover hosting fonts on the website. Any future font acquisition should cover the editor's actual web and document-generation use and repository distribution.
+
+The opening website guide is a live showcase: its Markdown is visible in the editor rather than duplicated in printed code blocks. The Style and Snippet tabs contain working examples of their respective features.
+
+Full-size `chapterOpener,wide` blocks fill the entire page, including its margins, and belong on their own page. Text remains inset, running headers are hidden on that page, and the publication disclaimer uses light text over the green background. Add `compact` to keep an opener inline. Guide page 14 demonstrates the full-page version. Edge-to-edge physical printing requires a borderless-capable printer; PDF output fills the page.
