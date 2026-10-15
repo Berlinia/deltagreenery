@@ -1407,3 +1407,106 @@
 	margin: 0;
 	text-indent: 0;
 }
+
+/* Unnatural document entries: a typographic record, not a creature stat block. */
+.page .unnaturalTome {
+ margin: 0 0 0.4cm;
+ color: #252421;
+ font-family: 'BookInsanityRemake', Georgia, serif;
+ font-size: 10pt;
+ line-height: 1.35;
+ break-inside: avoid;
+ overflow-wrap: anywhere;
+ h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 13pt;
+  font-weight: bold;
+  font-variant: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  color: inherit;
+  border: none;
+  border-bottom: 1px solid #49463f;
+  margin: 0 0 0.1cm;
+  padding: 0 0 0.04cm;
+  &::before, &::after { content: none; }
+ }
+ p { text-indent: 0; margin: 0 0 0.18cm; }
+ .tomeDetails { margin-bottom: 0.2cm; }
+ blockquote {
+  margin: 0.25cm 0.25cm 0.3cm;
+  padding: 0;
+  background: none;
+  border: none;
+  border-image: none;
+  box-shadow: none;
+  font: italic 10pt/1.4 'BookInsanityRemake', Georgia, serif;
+  color: inherit;
+  p { font: inherit; }
+ }
+ .tomeRituals strong {
+  font-family: 'ScalySansRemake', Arial, sans-serif;
+  font-size: 9pt;
+  font-weight: bold;
+  text-transform: uppercase;
+ }
+}
+
+/* Original CSS-only rose dossier paper; no artwork from the source books. */
+.page .pinkBackground {
+ position: relative;
+ box-sizing: border-box;
+ margin: 0.25cm 0 0.45cm;
+ padding: 0.45cm 0.4cm 0.45cm 0.85cm;
+ background-color: #edacc5;
+ background-image: linear-gradient(115deg, #ffffff20, transparent 65%);
+ border: 1px solid #b97891;
+ border-radius: 1px 7px 2px 2px;
+ box-shadow: 2px 3px 5px #33202a30;
+ color: #32232b;
+ font: 9pt/1.4 'Courier New', Courier, monospace;
+ text-align: left;
+ break-inside: avoid;
+ overflow-wrap: anywhere;
+ print-color-adjust: exact;
+ -webkit-print-color-adjust: exact;
+ &::before {
+  content: '';
+  position: absolute;
+  top: 0.2cm; bottom: 0.2cm; left: 0.5cm;
+  border-left: 1px dashed #935c75;
+  pointer-events: none;
+ }
+ &::after {
+  content: '';
+  position: absolute;
+  top: 0.3cm; bottom: 0.3cm; left: 0.12cm; width: 0.26cm;
+  background: radial-gradient(circle at center, #f3eee8 0 3px, #925f7550 3px 4px, transparent 4px) center top / 0.26cm 2.1cm repeat-y;
+  pointer-events: none;
+ }
+ p, ul, ol, dl { font: inherit; color: inherit; }
+ p { margin: 0 0 0.2cm; text-indent: 0; }
+ ul, ol { padding-left: 1.3em; }
+ h5 {
+  font: bold 11pt/1.3 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  font-variant: normal;
+  text-align: center;
+  color: inherit;
+  margin: 0.2cm 0 0.3cm;
+  &::before, &::after { content: none; }
+ }
+ .dossierLabel { display: block; text-align: center; font-size: 8pt; letter-spacing: 0.08em; }
+ .dossierStamp { display: block; text-align: right; font-size: 8pt; letter-spacing: 0.1em; color: #714057; margin-top: 0.3cm; }
+ table {
+  font: inherit;
+  background: transparent;
+  border: 1px solid #935c75;
+  box-shadow: none;
+  transform: none;
+  thead tr { background: #d98eac; }
+  thead th, tbody td { font: inherit; color: inherit; padding: 0.12cm; }
+  tbody tr:nth-child(odd) { background: #ffffff25; }
+  tbody tr:nth-child(even) { background: transparent; }
+ }
+}

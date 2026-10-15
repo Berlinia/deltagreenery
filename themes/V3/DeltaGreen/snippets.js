@@ -1,8 +1,6 @@
 /* eslint-disable max-lines */
 
 const MonsterBlockGen = require('./snippets/monsterblock.gen.js');
-const ClassFeatureGen = require('./snippets/classfeature.gen.js');
-const CoverPageGen = require('./snippets/coverpage.gen.js');
 const QuoteGen = require('./snippets/quote.gen.js');
 const dedent = require('dedent-tabs').default;
 
@@ -49,9 +47,9 @@ module.exports = [
 				gen: require('./snippets/timeline.gen.js'),
 			},
 			{
-				name: 'Unnatural Tome (TODO)',
+				name: 'Unnatural Tome',
 				icon: 'fas fa-mask',
-				gen: ClassFeatureGen,
+				gen: require('./snippets/unnaturalTome.gen.js'),
 			},
 			{
 				name: 'Ritual (TODO)',
@@ -104,10 +102,9 @@ module.exports = [
 				gen: MonsterBlockGen.monster('monster,frame,wide', 4),
 			},
 			{
-				name: 'Pink Bakcground (TODO)',
+				name: 'Pink Background',
 				icon: 'fac book-front-cover',
-				gen: CoverPageGen.front,
-				experimental: true
+				gen: require('./snippets/pinkBackground.gen.js')
 			},
 			{
 				name: 'Artist Credit',
