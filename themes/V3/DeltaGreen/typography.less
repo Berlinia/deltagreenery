@@ -1,5 +1,6 @@
 // Opt-in decoration and consistent page furniture. The page backgrounds are untouched.
 .page {
+ h2 { border-bottom: 3px double #343a32; padding-bottom: 0.12cm; }
  > .columnWrapper { position: static; }
  .pageNumber, &:nth-child(even) .pageNumber {
   position: absolute; left: calc(50% - 25px); right: auto; bottom: 1cm;
@@ -10,7 +11,7 @@
  .sectionDivider {
   margin: 0.4cm 0 0.2cm; padding-bottom: 0.2cm;
   border-bottom: 3px double #343a32;
-  h2 { margin: 0; font-family: 'DGTypewriter', monospace; }
+  h2 { margin: 0; border-bottom: none; padding-bottom: 0; font-family: 'DGTypewriter', monospace; }
  }
  .framedTitle h1 {
   &::before { content: '// '; }
@@ -44,4 +45,18 @@
   border: 1px solid #61725d;
  }
  .evidenceCaption strong, .mapCaption strong { font-size: 8pt; font-weight: 700; letter-spacing: normal; }
+}
+
+// A full-size chapter opener owns its page; compact examples remain inline.
+.page .chapterOpener.wide:not(.compact) {
+ position: absolute; inset: 0; width: auto; height: auto; min-height: 0;
+ margin: 0; border: none; padding: 1.9cm 1.9cm 2cm; z-index: 5;
+}
+.page:has(.chapterOpener.wide:not(.compact)) {
+ &::before { content: none; display: none; }
+ .runningHeader { display: none; }
+ .pageNumber { color: #f2f0da; z-index: 6; }
+}
+.brewRenderer .pages > .page:has(.chapterOpener.wide:not(.compact)) > .publicationDisclaimer {
+ background: transparent; color: #f2f0da;
 }
