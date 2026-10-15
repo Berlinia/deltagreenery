@@ -29,6 +29,13 @@
       "baseSnippets": false,
       "path": "DeltaGreen"
     },
+    "DeltaGreenClassic": {
+      "name": "Delta Green Classic (previous styling)",
+      "renderer": "V3",
+      "baseTheme": "Blank",
+      "baseSnippets": "DeltaGreen",
+      "path": "DeltaGreenClassic"
+    },
     "FieldGuide": {
       "name": "Field Guide",
       "renderer": "V3",

@@ -89,3 +89,7 @@ The opening website guide is a live showcase: its Markdown is visible in the edi
 Full-size `chapterOpener,wide` blocks fill the entire page, including its margins, and belong on their own page. Text remains inset, running headers are hidden on that page, and the publication disclaimer uses light text over the green background. Add `compact` to keep an opener inline. Guide page 11 demonstrates the full-page version. Edge-to-edge physical printing requires a borderless-capable printer; PDF output fills the page.
 
 The website guide groups related layouts into 12 pages: timelines with notes and Handler advice (5), tomes with rituals (8), dossiers with briefings (9), and photographs with maps (10). The full-page chapter opener remains on its own page (11).
+
+## Previous styling
+
+Choose **Delta Green Classic (previous styling)** in Document properties, with the Standard renderer. It preserves the theme immediately before the New Styling update (commit `dcf67a02`): earlier font aliases, 11 pt body text, tighter leading, decorated titles, table treatment and panels. The current Delta Green theme remains the default. Both themes use the same DG snippet menu, publication disclaimer and full-page chapter behavior. Theme selection is document metadata and survives Markdown export/import; switching may change pagination.

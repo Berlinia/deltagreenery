@@ -1,0 +1,13 @@
+// A full-size chapter opener owns its page; compact examples remain inline.
+.page .chapterOpener.wide:not(.compact) {
+ position: absolute; inset: 0; width: auto; height: auto; min-height: 0;
+ margin: 0; border: none; padding: 1.9cm 1.9cm 2cm; z-index: 5;
+}
+.page:has(.chapterOpener.wide:not(.compact)) {
+ &::before { content: none; display: none; }
+ .runningHeader { display: none; }
+ .pageNumber { color: #f2f0da; z-index: 6; }
+}
+.brewRenderer .pages > .page:has(.chapterOpener.wide:not(.compact)) > .publicationDisclaimer {
+ background: transparent; color: #f2f0da;
+}
