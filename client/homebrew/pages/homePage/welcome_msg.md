@@ -30,24 +30,27 @@ Follow a page link, then find the matching heading in the editor. The examples a
 | [2](#p2) | Text, lists and links |
 | [3](#p3) | Images and tables |
 | [4](#p4) | Page layout |
-| [5](#p5) | Timelines |
-| [6](#p6) | Notes and DG tools |
-| [7](#p7) | Advanced formatting |
-| [8](#p8) | Saving and printing |
-| [9](#p9) | Unnatural Tome |
-| [10](#p10) | Pink Background |
-| [11](#p11) | Ritual |
-| [12](#p12) | Handler Advice |
-| [13](#p13) | Evidence Photo |
-| [14](#p14) | Chapter Opener |
-| [15](#p15) | Briefing Handout |
-| [16](#p16) | Map Sheet |
-| [17](#p17) | Typography and decoration |
+| [5](#p5) | Timelines, notes and Handler advice |
+| [6](#p6) | Advanced formatting |
+| [7](#p7) | Saving and printing |
+| [8](#p8) | Tomes and rituals |
+| [9](#p9) | Dossiers and briefings |
+| [10](#p10) | Photographs and maps |
+| [11](#p11) | Full-page chapter opener |
+| [12](#p12) | Typography and decoration |
 
 {{note
 ##### Start with the Delta Green theme
 These examples use **Standard (V3)** and **Delta Green**. Select them in Document properties to get the same appearance.
 }}
+
+## Rights and licence
+
+<!-- Place this notice on the FIRST PAGE of your publication. Replace Delta Greenery contributors with the author name before publishing. Read the linked guidelines to check whether your work is permitted. -->
+
+Published by arrangement with the Delta Green Partnership. The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here. The contents of this document are ©Delta Greenery contributors, excepting those elements that are components of the Delta Green intellectual property.
+
+This tool is for **non-commercial use only**. Read the [Delta Green Publishing Guidelines](https://www.delta-green.com/publishing-guidelines/) before publishing.
 
 {{pageNumber,auto}}
 
@@ -130,7 +133,9 @@ The image above fits its column. The **Images** menu offers wrapped images, back
 
 A wrapped image lets text flow around it; an absolutely positioned image stays at a chosen place on the page. Check these layouts after changing the page size.
 
-For a photograph with a caption and tape, see [Evidence Photo](#p13). For a titled map and legend, see [Map Sheet](#p16).
+For a photograph with a caption and tape, see [Evidence Photo](#p10). For a titled map and legend, see [Map Sheet](#p10).
+
+**Artist Credit** adds a positioned attribution near an image. A credit identifies the creator; it does not grant permission to use their work.
 
 \column
 
@@ -160,7 +165,7 @@ A single cell can stretch across several columns. The **Tables** menu offers fur
 
 This last example combines the first cell across two rows. Use merged cells sparingly so the table remains easy to read.
 
-Ordinary tables sit flat on the paper. A [loose-paper table](#p17) adds a tilted insert when the document calls for it.
+Ordinary tables sit flat on the paper. A [loose-paper table](#p12) adds a tilted insert when the document calls for it.
 
 {{pageNumber,auto}}
 
@@ -217,9 +222,11 @@ Keep each panel together. If a panel needs another page, finish it and begin a n
 
 \page
 
-# Timelines
+# Timelines and notes
 
-Choose **DG > Timeline** to insert a chronology. Dates stand out from the event descriptions, and stage headings separate parts of an investigation.
+{{wide
+Choose **DG > Timeline** for a chronology. Dates stand out from events, while stage headings divide the investigation into phases.
+}}
 
 {{timeline,wide
 ##### THE INVESTIGATION
@@ -232,19 +239,6 @@ Choose **DG > Timeline** to insert a chronology. Dates stand out from the event 
 - **14 OCT, 21:00:** The signal returns. No trains are scheduled.
 }}
 
-{{wide
-## Build the sequence
-Replace the dates and events in the editor, or duplicate an event to add another. Keep adjacent events together for a compact list.
-
-For a longer investigation, use several timelines on separate pages. A timeline should end before the page footer; it does not continue itself onto another page.
-}}
-
-{{pageNumber,auto}}
-
-\page
-
-# Delta Green tools
-
 ## Disinformation
 
 {{note
@@ -254,41 +248,39 @@ The witness remembers a train. There were no trains that night.
 **Handler only:** the signal was real.
 }}
 
-Choose **DG > Disinformation** for a note like this, or **Disinformation Wide** for one spanning both columns. Notes accept lists, tables and emphasis.
-
-## A descriptive panel
+Choose **DG > Disinformation** for a note, or **Disinformation Wide** for one spanning both columns. Notes accept lists, tables and emphasis.
 
 {{descriptive
 ##### The room
-A cold receiver rests beside the bed. Its cord ends at the door, cleanly cut. Somewhere inside the wall, a telephone is ringing.
+A cold receiver rests beside the bed. Its cord ends at the door, cleanly cut.
 }}
 
-Boxed descriptions separate a location or read-aloud passage from the surrounding investigation.
-
-## Credit your images
-
-The **Artist Credit** option adds an attribution you can position near an illustration. A credit identifies the creator; it does not grant permission to use their work.
+Descriptive panels separate a location or read-aloud passage from the surrounding investigation.
 
 \column
 
-## Choose a layout
+## Handler Advice
 
-- [Timeline](#p5): dated events and stages.
-- [Unnatural Tome](#p9): a document or book entry.
-- [Pink Background](#p10): a typewritten dossier insert.
-- [Ritual](#p11): requirements, effects and costs.
-- [Handler Advice](#p12): guidance kept visually separate.
-- [Evidence Photo](#p13): a photograph, caption and credit.
-- [Chapter Opener](#p14): a major section divider.
-- [Briefing Handout](#p15): objectives and case details.
-- [Map Sheet](#p16): a plan with a caption and legend.
-- [Typography](#p17): framed titles and paper tables.
+{{advicePanel
+##### Handler advice
+Keep this information separate from the player briefing.
 
-## Stat blocks
+- State the immediate concern.
+- Give a practical response.
 
-The DG menu also offers framed, unframed and wide monster stat blocks. These are editable starting points; some buttons remain works in progress. Replace inherited placeholder fields with the information your scenario needs.
+**Remember:** Replace this example with your own advice.
+}}
 
-The templates provide layout, not validated game rules or official content.
+Choose **DG > Handler Advice** for practical guidance. Give it a short heading; lists and links work inside it. Enable background graphics when printing.
+
+## Build the sequence
+
+Replace timeline dates and descriptions, or duplicate an event. Keep adjacent events together for a compact list. Split long chronologies across pages.
+
+## More DG tools
+
+The DG menu also includes framed, unframed and wide monster stat blocks. Some buttons remain works in progress: replace inherited placeholder fields with the information your scenario needs. Templates supply layout, not validated game rules.
+
 
 {{pageNumber,auto}}
 
@@ -360,9 +352,11 @@ The Arc Dream Publishing disclaimer appears below the normal content on every pa
 
 \page
 
-# Unnatural Tome
+# Tomes and rituals
 
-Choose **DG > Unnatural Tome** for a document entry with a ruled serif title, italic study details, an optional quotation and a recommended-rituals line.
+## Unnatural Tome
+
+Choose **DG > Unnatural Tome** for a book or document entry. A ruled title, italic study details and a compact rituals label make it easy to consult during play.
 
 {{unnaturalTome
 ### Title of the tome
@@ -379,23 +373,44 @@ Describe the document's author, physical condition, provenance, and the unsettli
 }}
 }}
 
+Replace the sample details with your own document. Keep the quotation only when it adds something to the entry. Study values are placeholders, not game rules.
+
+Entries can fit one column or span both. Keep a long entry clear of the footer and continue it in a new block on the next page.
+
 \column
 
-## Customize the entry
+## Ritual
 
-Replace the sample details with your own document. The study values are placeholders, not game rules. Keep the quotation only when it adds something to the entry.
+Choose **DG > Ritual** to lay out the requirements, activation, effect and consequences of an unnatural practice.
 
-A ruled title introduces the tome. Italic study details sit beneath it, followed by a description and a compact rituals label.
+{{ritualEntry
+### Ritual name
+{{ritualDetails
+*[Complexity]. Study: [duration]; [SAN cost]. Activation: [duration]; [WP cost], [SAN cost].*
+}}
 
-The example fits one column. A wide entry can span both; keep long entries clear of the footer and continue them in a new block on the next page.
+**Requirements:** Describe the knowledge, materials and conditions required.
+
+**Test:** State the activation test or other resolution procedure.
+
+**Effect:** Describe the outcome, range and duration.
+
+**Consequences:** Describe failure, side effects and lasting costs.
+}}
+
+Replace the bracketed fields with the rules for your scenario; the template supplies no game mechanics. Use the labels to help the Handler find each detail quickly.
+
+Keep each entry together on one page. For longer rituals, split the description at a natural break and start another block on the following page.
 
 {{pageNumber,auto}}
 
 \page
 
-# Pink Background
+# Dossiers and briefings
 
-Choose **DG > Pink Background** for a typewritten dossier on rose paper, with a perforated margin and editable labels. The panel grows with its text; it does not recolor the whole page.
+## Pink Background
+
+Choose **DG > Pink Background** for a typewritten dossier on rose paper, with a perforated margin and editable labels.
 
 <!-- A pink dossier insert. Remove ,wide for a single-column insert. Split long inserts across pages manually. -->
 {{pinkBackground
@@ -414,132 +429,15 @@ Write your briefing here. This panel grows with its contents; the pink sheet sta
 {{dossierStamp WORKING COPY}}
 }}
 
-\column
+The menu inserts a full-width sheet; this example fits one column. Edit the classification, subject and stamp. Lists, emphasis and tables work inside the sheet.
 
-## Customize the sheet
-
-The menu inserts a full-width sheet. This example uses a single column for a smaller dossier insert.
-
-Edit the classification, subject and stamp to suit your briefing. Lists, emphasis and tables work inside the sheet.
-
-Keep each insert on one page. Close the block before a page break and start another insert for longer briefings. Enable **background graphics** in the print dialog for the pink paper.
-
-{{pageNumber,auto}}
-
-\page
-
-# Ritual
-
-Choose **DG > Ritual**. Study and activation details use italic text below a ruled title. Replace the bracketed fields with the rules for your scenario; the template supplies no game mechanics.
-
-{{ritualEntry
-### Ritual name
-{{ritualDetails
-*[Complexity]. Study: [duration]; [SAN cost]. Activation: [duration]; [WP cost], [SAN cost].*
-}}
-
-**Requirements:** Describe the knowledge, materials and conditions required.
-
-**Test:** State the activation test or other resolution procedure.
-
-**Effect:** Describe the outcome, range and duration.
-
-**Consequences:** Describe failure, side effects and lasting costs.
-}}
+Keep each insert on one page and enable **background graphics** when printing. The panel grows with its text; it does not recolour the whole page.
 
 \column
 
-## Customize
+## Briefing Handout
 
-Organize the ritual around its requirements, test, effect and consequences. Use the labels to help the Handler find the information during play.
-
-These are Standard (V3), Delta Green layouts. Keep each block within one page; close it before adding a page break.
-
-Next: [Handler Advice](#p12).
-
-{{pageNumber,auto}}
-
-\page
-
-# Handler Advice
-
-Choose **DG > Handler Advice**. A dark green panel separates Handler guidance from the main text. The light sans-serif text remains readable against its muted background.
-
-{{advicePanel
-##### Handler advice
-Keep this information separate from the player briefing.
-
-- State the immediate concern.
-- Give a practical response.
-
-**Remember:** Replace this example with your own advice.
-}}
-
-\column
-
-## Customize
-
-Give the panel a short heading and practical advice. Lists and links work here too. Enable background graphics when printing to preserve the dark green paper.
-
-These are Standard (V3), Delta Green layouts. Keep each block within one page; close it before adding a page break.
-
-Next: [Evidence Photo](#p13).
-
-{{pageNumber,auto}}
-
-\page
-
-# Evidence Photo
-
-Choose **DG > Evidence Photo**. A white photo border, two translucent tape strips, a caption and a credit line create an evidence photograph. The bundled illustration is an original placeholder.
-
-{{evidencePhoto,taped
-![Replace with your photograph](/assets/dg-photo-placeholder.svg)
-
-{{evidenceCaption
-**EXHIBIT A / 01** — Describe what the photograph shows.
-}}
-{{evidenceSource Source: [creator / credit / date]}}
-}}
-
-\column
-
-## Customize
-
-Replace the picture with your own image and give it a meaningful description. The tape is optional. The frame contains the whole image without cropping, with the caption and credit underneath.
-
-These are Standard (V3), Delta Green layouts. Keep each block within one page; close it before adding a page break.
-
-Next: [Chapter Opener](#p14).
-
-The next page shows a full-bleed **Chapter Opener**. Choose it from the DG menu and give it its own page. Its background extends beyond the normal margins; the title, picture and disclaimer stay safely inside.
-{{pageNumber,auto}}
-
-\page
-
-<!-- DG > Chapter Opener creates a full-bleed page. Keep it on its own page; the background reaches every edge, while text and the disclaimer remain inset. Add ,compact for a normal inset panel. -->
-<!-- Start on a fresh page. Add a page break AFTER the closing block. -->
-{{chapterOpener,wide
-{{chapterKicker CASE FILE / 01}}
-### Chapter Opener
-
-A full-page divider for the next stage of your operation.
-
-{{evidencePhoto,taped
-![Replace with your chapter image](/assets/dg-photo-placeholder.svg)
-{{evidenceCaption Your image caption}}
-}}
-
-{{chapterFooter UNOFFICIAL SCENARIO / WORKING COPY}}
-}}
-
-{{pageNumber,auto}}
-
-\page
-
-# Briefing Handout
-
-Choose **DG > Briefing Handout**. An inset paper briefing with file metadata, objectives, dated events and open questions. It complements the Timeline snippet with a complete handout structure.
+Choose **DG > Briefing Handout** for an inset paper assignment with file metadata, objectives and dated events.
 
 {{briefingSheet
 ### Operation / briefing title
@@ -562,23 +460,38 @@ List the gaps in the briefing and the next steps.
 }}
 }}
 
-\column
-
-## Customize
-
-The menu inserts a full-width briefing with two internal columns. This example is a smaller, single-column handout. Adapt its headings and objectives to the assignment; split long briefings across pages.
-
-These are Standard (V3), Delta Green layouts. Keep each block within one page; close it before adding a page break.
-
-Next: [Map Sheet](#p16).
+The menu inserts a full-width briefing with two internal columns. This example is a smaller single-column handout. Adapt its headings and objectives to the assignment; split long briefings across pages.
 
 {{pageNumber,auto}}
 
 \page
 
-# Map Sheet
+# Photographs and maps
 
-Choose **DG > Map Sheet**. A paper-backed map with a title, figure caption, numbered legend and source credit. The bundled schematic is only a placeholder.
+## Evidence Photo
+
+Choose **DG > Evidence Photo** for a white photo border, optional tape, a caption and a credit line.
+
+{{evidencePhoto,taped
+![Replace with your photograph](/assets/dg-photo-placeholder.svg)
+
+{{evidenceCaption
+**EXHIBIT A / 01** — Describe what the photograph shows.
+}}
+{{evidenceSource Source: [creator / credit / date]}}
+}}
+
+Replace the placeholder with your own photograph and a meaningful description. The frame contains the whole image without cropping; captions and credits stay underneath it.
+
+## Chapter Opener
+
+The [next page](#p11) shows a full-page divider. Choose **DG > Chapter Opener** and give it its own page. The background reaches every edge, while the title, picture and disclaimer stay inset. A compact opener can instead sit within the normal page margins.
+
+\column
+
+## Map Sheet
+
+Choose **DG > Map Sheet** for a paper-backed plan with a title, caption, numbered legend and source credit.
 
 {{mapSheet
 ### Location / evidence map
@@ -593,13 +506,27 @@ Choose **DG > Map Sheet**. A paper-backed map with a title, figure caption, numb
 {{evidenceSource Source: [creator / credit]. Schematic only; not to scale.}}
 }}
 
-\column
+Replace the schematic with your map and match the legend to its markings. Editing the legend does not draw markers on the image. Use separate sheets for additional plans; maps are shown without cropping.
 
-## Customize
+{{pageNumber,auto}}
 
-Replace the illustration with your map and match the numbered legend to its markings. Editing the legend does not draw markers on the image. Use separate sheets for additional plans; the whole map is shown without cropping.
+\page
 
-These are Standard (V3), Delta Green layouts. Keep each block within one page; close it before adding a page break.
+<!-- DG > Chapter Opener creates a full-bleed page. Keep it on its own page; the background reaches every edge, while text and the disclaimer remain inset. Add ,compact for a normal inset panel. -->
+<!-- Start on a fresh page. Add a page break AFTER the closing block. -->
+{{chapterOpener,wide
+{{chapterKicker CASE FILE / 01}}
+### Chapter Opener
+
+A full-page divider for the next stage of your operation.
+
+{{evidencePhoto,taped
+![Replace with your chapter image](/assets/dg-photo-placeholder.svg)
+{{evidenceCaption Your image caption}}
+}}
+
+{{chapterFooter UNOFFICIAL SCENARIO / WORKING COPY}}
+}}
 
 {{pageNumber,auto}}
 
