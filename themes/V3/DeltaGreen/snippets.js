@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 
 const MonsterBlockGen = require('./snippets/monsterblock.gen.js');
+const Typography = require('./snippets/typography.gen.js');
 const FieldLayouts = require('./snippets/fieldLayouts.gen.js');
 const dedent = require('dedent-tabs').default;
 
@@ -106,6 +107,9 @@ module.exports = [
 				icon: 'fac book-front-cover',
 				gen: require('./snippets/pinkBackground.gen.js')
 			},
+			{ name: 'Section Divider', icon: 'fas fa-grip-lines', gen: Typography.divider },
+			{ name: 'Framed Title', icon: 'fas fa-heading', gen: Typography.title },
+			{ name: 'Loose-paper Table', icon: 'fas fa-table', gen: Typography.table },
 			{ name: 'Handler Advice', icon: 'fas fa-exclamation-circle', gen: FieldLayouts.advice },
 			{ name: 'Evidence Photo', icon: 'fas fa-camera', gen: FieldLayouts.photo },
 			{ name: 'Chapter Opener', icon: 'fas fa-book-open', gen: FieldLayouts.chapter },

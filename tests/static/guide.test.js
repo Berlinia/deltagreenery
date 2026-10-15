@@ -12,9 +12,9 @@ test('DG timeline produces full-width lists matching timeline CSS selectors',()=
  expect(panel.querySelectorAll('li > p')).toHaveLength(0);
  expect(wrapper.textContent).not.toContain('{{'); expect(wrapper.textContent).not.toContain('^[1]');
 });
-test('guide has sixteen valid pages, a real timeline example and protected source examples',()=>{
+test('guide has seventeen valid pages, a real timeline example and protected source examples',()=>{
  const guide=createGuide(); const pages=guide.text.split(/^\\page$/m);
- expect(pages).toHaveLength(16); expect(Markdown.validate(guide.text)).toEqual([]);
+ expect(pages).toHaveLength(17); expect(Markdown.validate(guide.text)).toEqual([]);
  const wrapper=document.createElement('div'); wrapper.innerHTML=pages.map((page,i)=>Markdown.render(page,i)).join('');
  expect(wrapper.querySelectorAll('.timeline')).toHaveLength(1);
  expect(wrapper.querySelectorAll('.unnaturalTome')).toHaveLength(1);
@@ -23,7 +23,7 @@ test('guide has sixteen valid pages, a real timeline example and protected sourc
  expect(wrapper.textContent).not.toContain('Unnatural Tome (TODO)');
  expect(wrapper.querySelector('pre').textContent).toContain('.page .runningHeader');
  expect(wrapper.textContent).toContain('\\snippet Evidence note');
- for(const selector of ['.ritualEntry','.advicePanel','.evidencePhoto','.chapterOpener','.briefingSheet','.mapSheet']) expect(wrapper.querySelector(selector)).not.toBeNull();
+ for(const selector of ['.ritualEntry','.advicePanel','.evidencePhoto','.chapterOpener','.briefingSheet','.mapSheet','.sectionDivider','.framedTitle','.loosePaperTable']) expect(wrapper.querySelector(selector)).not.toBeNull();
  expect(wrapper.textContent).not.toMatch(/__(FIELD|DEMO)_/);
  expect(guide.title).toBe('Delta Greenery Guide');
 });

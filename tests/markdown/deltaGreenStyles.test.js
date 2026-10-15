@@ -27,7 +27,7 @@ test('other DG menu entries remain available',()=>{
  for(const name of ['Timeline','Ritual','Disinformation','Disinformation Wide','Monster Stat Block','Artist Credit']) expect(snippets.some(s=>s.name===name)).toBe(true);
 });
 
-for(const [name, selector] of [['Ritual','.ritualEntry'], ['Handler Advice','.advicePanel'], ['Evidence Photo','.evidencePhoto.taped'], ['Chapter Opener','.chapterOpener.wide'], ['Briefing Handout','.briefingSheet.wide .briefingColumns'], ['Map Sheet','.mapSheet.wide .mapLegend']]) {
+for(const [name, selector] of [['Section Divider','.sectionDivider.wide'], ['Framed Title','.framedTitle.wide'], ['Loose-paper Table','.loosePaperTable table'], ['Ritual','.ritualEntry'], ['Handler Advice','.advicePanel'], ['Evidence Photo','.evidencePhoto.taped'], ['Chapter Opener','.chapterOpener.wide'], ['Briefing Handout','.briefingSheet.wide .briefingColumns'], ['Map Sheet','.mapSheet.wide .mapLegend']]) {
  test(name + ' generates a complete editable layout',()=>{
   const root=render(name); expect(root.querySelector(selector)).not.toBeNull();
   expect(root.textContent).not.toMatch(/TODO|undefined/);

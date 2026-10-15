@@ -1,0 +1,47 @@
+// Opt-in decoration and consistent page furniture. The page backgrounds are untouched.
+.page {
+ > .columnWrapper { position: static; }
+ .pageNumber, &:nth-child(even) .pageNumber {
+  position: absolute; left: calc(50% - 25px); right: auto; bottom: 1cm;
+  color: #30352f; font: 400 9pt/1 'DGSans', Arial, sans-serif;
+ }
+ .footnote { color: #30352f; font-family: 'DGSans', Arial, sans-serif; }
+ .runningHeader .sectionTitle:empty { display: none; }
+ .sectionDivider {
+  margin: 0.4cm 0 0.2cm; padding-bottom: 0.2cm;
+  border-bottom: 3px double #343a32;
+  h2 { margin: 0; font-family: 'DGTypewriter', monospace; }
+ }
+ .framedTitle h1 {
+  &::before { content: '// '; }
+  &::after { content: ' //'; }
+ }
+ .loosePaperTable {
+  padding: 0.2cm; margin: 0.3cm 0 0.45cm; background: #faf9f4;
+  box-shadow: 1px 2px 4px #0003; transform: rotate(-0.4deg); break-inside: avoid;
+  table { margin: 0; }
+ }
+ .unnaturalTome {
+  line-height: 1.5;
+  h3 { font-size: 12pt; margin-bottom: 0.06cm; }
+  .tomeDetails { margin-bottom: 0.15cm; }
+  .tomeRituals strong { font-size: 8pt; }
+ }
+ .ritualEntry .ritualDetails { margin-bottom: 0.15cm; }
+ .pinkBackground {
+  background-image: url('/assets/dg-paper-grain.svg'); background-size: 5cm 5cm;
+  box-shadow: 1px 2px 3px #33202a25;
+  &::after {
+   background: radial-gradient(circle at center, #f3eee8 0 3.5px, #925f7570 3.5px 4.5px, transparent 4.5px) center top / 0.26cm 2.1cm repeat-y;
+  }
+ }
+ .advicePanel {
+  background-image: url('/assets/dg-paper-grain.svg'); background-color: #243c2e; background-size: 5cm 5cm;
+  clip-path: polygon(0 1%, 8% 0, 18% 1%, 32% 0, 48% 1%, 66% 0, 83% 1%, 100% 0, 99.5% 30%, 100% 65%, 99.5% 100%, 83% 99%, 66% 100%, 48% 99%, 32% 100%, 18% 99%, 0 100%, .5% 65%, 0 30%);
+ }
+ .chapterOpener {
+  background-image: url('/assets/dg-paper-grain.svg'); background-size: 5cm 5cm;
+  border: 1px solid #61725d;
+ }
+ .evidenceCaption strong, .mapCaption strong { font-size: 8pt; font-weight: 700; letter-spacing: normal; }
+}
