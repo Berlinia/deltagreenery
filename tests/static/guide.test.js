@@ -12,11 +12,15 @@ test('DG timeline produces full-width lists matching timeline CSS selectors',()=
  expect(panel.querySelectorAll('li > p')).toHaveLength(0);
  expect(wrapper.textContent).not.toContain('{{'); expect(wrapper.textContent).not.toContain('^[1]');
 });
-test('guide has eight valid pages, a real timeline example and protected source examples',()=>{
+test('guide has ten valid pages, a real timeline example and protected source examples',()=>{
  const guide=createGuide(); const pages=guide.text.split(/^\\page$/m);
- expect(pages).toHaveLength(8); expect(Markdown.validate(guide.text)).toEqual([]);
+ expect(pages).toHaveLength(10); expect(Markdown.validate(guide.text)).toEqual([]);
  const wrapper=document.createElement('div'); wrapper.innerHTML=pages.map((page,i)=>Markdown.render(page,i)).join('');
  expect(wrapper.querySelectorAll('.timeline')).toHaveLength(1);
+ expect(wrapper.querySelectorAll('.unnaturalTome')).toHaveLength(1);
+ expect(wrapper.querySelectorAll('.pinkBackground')).toHaveLength(1);
+ expect(wrapper.querySelector('a[href="#p10"]')).not.toBeNull();
+ expect(wrapper.textContent).not.toContain('Unnatural Tome (TODO)');
  expect(wrapper.querySelector('pre').textContent).toContain('.page .runningHeader');
  expect(wrapper.textContent).toContain('\\snippet Evidence note');
  expect(guide.title).toBe('Delta Greenery Guide');

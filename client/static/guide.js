@@ -1,11 +1,14 @@
 import { emptyDocument } from './documentFormat.js';
 const timeline = require('../../themes/V3/DeltaGreen/snippets/timeline.gen.js');
 
+const tome = require('../../themes/V3/DeltaGreen/snippets/unnaturalTome.gen.js');
+const pink = require('../../themes/V3/DeltaGreen/snippets/pinkBackground.gen.js');
+
 const pages = [
   [
     "# Start here",
     "",
-    "Welcome to **Delta Greenery**: write Markdown on the left and see printable pages on the right. This guide opens whenever you visit the homepage. Choose **New** for an empty operation, select a saved browser draft to continue writing, or use **Home / Guide** to return here. Editing the guide saves a separate browser copy; the original stays available.",
+    "Welcome to **Delta Greenery**: write Markdown on the left and see printable pages on the right. This guide opens whenever you visit the homepage. Choose **New** for an operation starting with the rights notice, select a saved browser draft to continue writing, or use **Home / Guide** to return here. Editing the guide saves a separate browser copy; the original stays available.",
     "",
     "## Name your document",
     "",
@@ -45,6 +48,8 @@ const pages = [
     "| [6](#p6) | DG notes and templates |",
     "| [7](#p7) | CSS, variables and advanced syntax |",
     "| [8](#p8) | Saving, printing and troubleshooting |",
+    "| [9](#p9) | Unnatural Tome |",
+    "| [10](#p10) | Pink Background |",
     "",
     "{{note",
     "##### Choose the Standard renderer",
@@ -353,9 +358,9 @@ const pages = [
     "- **Monster Stat Block (unframed):** editable stat-block scaffolding.",
     "- **Monster Stat Block:** a framed version.",
     "- **Wide Monster Stat Block:** a wider framed version.",
-    "- **Unnatural Tome (TODO):** unfinished template.",
+    "- **Unnatural Tome:** ruled document entry; [example on page 9](#p9).",
     "- **Ritual (TODO):** unfinished template.",
-    "- **Pink Bakcground (TODO):** experimental background/cover scaffolding; its current menu spelling is retained.",
+    "- **Pink Background:** pink dossier sheet; [example on page 10](#p10).",
     "- **Artist Credit:** a positioned attribution block.",
     "",
     "The TODO templates and stat blocks may contain inherited placeholder fields. They are layout starting points, not validated Delta Green rules or finished official content.",
@@ -487,7 +492,7 @@ const pages = [
     "",
     "## Other menus",
     "",
-    "**License** inserts declarations and badges for various licenses and publishing programs. These are optional text templates, not a claim that any particular license applies to your document. The publication disclaimer is independent of them.",
+    "**License** inserts declarations and badges for various licenses and publishing programs. New documents include the Delta Green rights notice: replace `[AUTHOR NAME]` before publishing. Use **License > Delta Green** to insert the notice or publishing guidelines again. These are text templates, not a claim that any particular license applies to your document. The publication disclaimer is independent of them.",
     "",
     "**Images**, **Tables**, **Fonts** and **Text Editor** provide editable examples of the syntax in this guide. Experimental labels indicate unfinished tools. Nothing in those menus saves your document to a website database.",
     "",
@@ -497,9 +502,63 @@ const pages = [
     "}}",
     "",
     "{{pageNumber,auto}}"
-  ]
+  ],
+  [
+    "# Unnatural Tome",
+    "",
+    "Choose **DG > Unnatural Tome** for a document entry with a ruled serif title, italic study details, an optional quotation and a recommended-rituals line.",
+    "",
+    "## Source example",
+    "",
+    "```markdown",
+    "__TOME__",
+    "```",
+    "",
+    "\\column",
+    "",
+    "## Rendered example",
+    "",
+    "__TOME__",
+    "",
+    "## Customize the entry",
+    "",
+    "Replace all bracketed placeholders with your own details. The sample values are not game rules. Remove the `>` quotation if it is not needed.",
+    "",
+    "Keep the title as `###` inside `{{unnaturalTome`. The `tomeDetails` block formats the study information; `tomeRituals` formats the final label.",
+    "",
+    "Use `{{unnaturalTome,wide` to span both columns. Split oversized entries into separate blocks around a page break; do not place `\\page` inside an open block.",
+    "",
+    "{{pageNumber,auto}}"
+],
+  [
+    "# Pink Background",
+    "",
+    "Choose **DG > Pink Background** for a typewritten dossier on rose paper, with a perforated margin and editable labels. The panel grows with its text; it does not recolor the whole page.",
+    "",
+    "## Source example",
+    "",
+    "```markdown",
+    "__PINK__",
+    "```",
+    "",
+    "\\column",
+    "",
+    "## Customize the sheet",
+    "",
+    "The snippet uses `{{pinkBackground,wide` to span both columns. Remove `,wide` for a single-column insert.",
+    "",
+    "Edit `dossierLabel`, the `#####` subject heading and `dossierStamp`. Lists, emphasis and tables work inside the sheet. The labels are your own document text.",
+    "",
+    "Keep each insert on one page. Close the block before a page break and start another insert for longer briefings. Enable **background graphics** in the print dialog for the pink paper.",
+    "",
+    "## Rendered column example",
+    "",
+    "__PINK_COLUMN__",
+    "",
+    "{{pageNumber,auto}}"
+]
 ];
 
 export function createGuide() {
- return { ...emptyDocument(pages.map((lines)=>lines.join('\n').replaceAll('__TIMELINE__', timeline().trim())).join('\n\n\\page\n\n')), title: 'Delta Greenery Guide', style: '.page pre { white-space: pre-wrap; overflow-wrap: anywhere; }\n.page pre code { font-size: 11px; }' };
+ return { ...emptyDocument(pages.map((lines)=>lines.join('\n').replaceAll('__TIMELINE__', timeline().trim()).replaceAll('__TOME__', tome().trim()).replaceAll('__PINK__', pink().trim()).replaceAll('__PINK_COLUMN__', pink().trim().replace('pinkBackground,wide', 'pinkBackground'))).join('\n\n\\page\n\n')), title: 'Delta Greenery Guide', style: '.page pre { white-space: pre-wrap; overflow-wrap: anywhere; }\n.page pre code { font-size: 11px; }' };
 }
