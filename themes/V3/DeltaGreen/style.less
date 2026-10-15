@@ -4,18 +4,18 @@
 	// Colors
 	--HB_Color_Background: #EEE5CE; // Light parchment
 	--HB_Color_Accent: #E0E5C1; // Pastel green
-	--HB_Color_HeaderUnderline: #C0AD6A; // Gold
+	--HB_Color_HeaderUnderline: #555c53; // Neutral rules
 	--HB_Color_HorizontalRule: #eb2910; // Maroon
-	--HB_Color_HeaderText: #58180D; // Dark Maroon
+	--HB_Color_HeaderText: #202420; // Neutral heading ink
 	--HB_Color_MonsterStatBackground: #F2E5B5; // Light orange parchment
-	--HB_Color_CaptionText: #766649; // Brown
+	--HB_Color_CaptionText: #454b43; // Caption ink
 	--HB_Color_WatercolorStain: #BBAD82; // Light brown
-	--HB_Color_Footnotes: #C9AD6A; // Gold
+	--HB_Color_Footnotes: #30352f; // Neutral footer ink
 	--TOC: 'include';
 }
 
 .useSansSerif() {
-	font-family: 'ScalySansRemake';
+	font-family: 'DGSans';
 	font-size: 0.318cm;
 
 	p,
@@ -35,8 +35,8 @@
 	}
 
 	strong {
-		font-weight: 800;
-		letter-spacing: -0.02em;
+		font-weight: 700;
+		letter-spacing: normal;
 	}
 
 	h5+* {
@@ -65,9 +65,10 @@
    ========================================================= */
 .page {
 	.useColumns();
-	font-family: 'BookInsanityRemake';
-	font-size: 11pt;
-	line-height: 1.25;
+	font-family: 'DGSerif', Georgia, serif;
+	font-size: 10pt;
+	line-height: 1.5;
+	color: #252421;
 
 	/* Background */
 	background-image: @backgroundImage;
@@ -89,173 +90,57 @@
 	/* =========================
 	   BASE TEXT
 	   ========================= */
-	p {
-		line-height: 1.25em;
-
-		&+* {
-			margin-top: 0.325cm;
-		}
-
-		&+p {
-			margin-top: 0;
-		}
-	}
-
-	ul,
-	ol {
-		padding-left: 1.4em;
-		margin-bottom: 0.8em;
-		line-height: 1.25em;
-	}
-
-	/* Indents after p or lists */
-	p+p,
-	ul+p,
-	ol+p {
-		text-indent: 1em;
-	}
-
+	p { line-height: inherit; margin: 0; }
+	p + p { text-indent: 1em; }
+	p + ul, p + ol { margin-top: 0.15cm; }
+	ul, ol { padding-left: 1.4em; margin: 0 0 0.25cm; line-height: inherit; }
+	ul + p, ol + p { text-indent: 0; }
 	img {
 		z-index: -1;
 	}
 
 	strong {
 		font-weight: bold;
-		letter-spacing: -0.02em;
+		letter-spacing: normal;
 	}
 
 	/* =========================
 	   HEADERS
 	   ========================= */
 	h1 {
-		font-family: 'MrEavesRemake';
-		color: var(--HB_Color_HeaderText);
-	}
-
-	h1 {
-		/* keep full-width heading */
 		column-span: all;
-		-webkit-column-span: all;
-		-moz-column-span: all;
-
-		/* final overrides from later block */
-		font-family: "HeaderFont" !important;
-		font-weight: normal;
-		letter-spacing: 0.02em;
-		font-size: 25.0pt;
-		line-height: 1.05em;
-
-		margin-bottom: 0.35cm;
-
-		&::before {
-			content: "// ";
-		}
-
-		&::after {
-			content: " //";
-		}
+		font: 400 25pt/1.15 'DGTypewriter', monospace;
+		color: var(--HB_Color_HeaderText);
+		letter-spacing: normal;
+		margin: 0 0 0.4cm;
+		&::before, &::after { content: none; }
 	}
-
 	h2 {
-		font-family: "Timelines";
-		margin: 0 0 0.12cm 0;
-		font-size: 13.0pt;
-		line-height: 1.05em;
-		color: #000000;
-		font-weight: 700;
-		border: none;
+		font: 700 16pt/1.2 'DGSans', Arial, sans-serif;
+		color: #202420;
+		margin: 0.4cm 0 0.15cm;
 		padding: 0;
+		border: none;
+		&::before, &::after { content: none; }
 	}
-
-	/* H3: final intent = Typestar + custom divider artwork */
-	h2 {
-		font-family: "Typestar-Black" !important;
-		font-weight: normal;
-		font-style: normal;
-		color: #1a1a1a;
-
-		/* keep earlier sizing/spacing intent unless explicitly contradicted */
-		font-size: 0.575cm;
-		line-height: 0.995em;
-
-		/* divider artwork overrides border-bottom */
-		border-bottom: none !important;
-		position: relative;
-		padding-bottom: 0.35cm;
-
-		&+* {
-			margin-top: 0.17cm;
-		}
-
-		&::after {
-			content: "";
-			position: absolute;
-			left: -100vw;
-			right: -100vw;
-			bottom: 0;
-
-			height: 18px;
-			background-image: url('/assets/h3-double-rule.png');
-			background-repeat: no-repeat;
-			background-position: center bottom;
-			background-size: auto 100%;
-			background-color: rgba(235, 240, 245, 0.10); // cool wash
-			pointer-events: none;
-		}
-	}
-
-	*+h2 {
-		margin-top: 0.155cm; // (0.325 - 0.17)
-	}
-
 	h3 {
+		font: 400 14pt/1.2 'DGSans', Arial, sans-serif;
 		color: var(--HB_Color_HorizontalRule);
-		font-family: "Header4";
-		font-size: 12.0pt;
-		line-height: 0.971em;
-
-		&+* {
-			margin-top: 0.09cm;
-		}
+		margin: 0.35cm 0 0.12cm;
+		border: none;
 	}
-
-	* + h2 {
-		margin-top: 0.235cm; // (0.325 - 0.09)
-	}
-
 	h4 {
-	/* h2 font + color */
-	font-family: "Timelines";
-	color: #000000;
-	font-weight: 700;
-
-	/* h3 scale */
-	font-size: 12.0pt;
-	line-height: 0.971em;
-
-	/* keep your existing spacing behavior (optional) */
-	& + * { margin-top: 0.09cm; }
-}
-
-.page * + h4 {
-	margin-top: 0.235cm;
-}
-
-/* Safety: ensure no divider artwork sneaks onto h4 */
-.page h4::after {
-	content: none !important;
-}
-
-
-	h5 {
-		font-family: 'ScalySansSmallCapsRemake';
-		font-size: 0.423cm;
-		line-height: 0.951em;
-
-		&+* {
-			margin-top: 0.2cm;
-		}
+		font: 700 12pt/1.25 'DGSerif', Georgia, serif;
+		color: #202420;
+		margin: 0.3cm 0 0.12cm;
 	}
+	h5, h6 {
+		font: 700 10pt/1.3 'DGSans', Arial, sans-serif;
+		color: #202420;
+		margin: 0.3cm 0 0.12cm;
+	}
+	h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+	h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p { text-indent: 0; }
 
 	/* =========================
 	   TABLES
@@ -267,10 +152,10 @@
 		border-collapse: collapse;
 		border-spacing: 0;
 
-		border: 2px solid rgba(0, 0, 0, 0.85);
+		border: 1px solid #737971;
 		background: rgba(255, 255, 255, 0.92);
 
-		box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.25);
+		box-shadow: none;
 		transform-origin: center center;
 
 		&+* {
@@ -287,10 +172,10 @@
 
 		thead th {
 			color: #ffffff;
-			font-family: "Header4";
-			font-weight: 800;
+			font-family: "DGSans";
+			font-weight: 700;
 			text-align: left;
-			padding: 6px 8px;
+			padding: 4px 6px;
 		}
 
 		thead th:last-child {
@@ -298,8 +183,8 @@
 		}
 
 		tbody td {
-			padding: 6px 8px;
-			font-family: "BookInsanityRemake";
+			padding: 4px 6px;
+			font-family: 'DGSans';
 			text-align: left;
 			vertical-align: top;
 		}
@@ -309,15 +194,15 @@
 		}
 
 		tbody tr:nth-child(odd) {
-			background: #caccd0;
+			background: #e2e4df;
 		}
 
 		tbody tr:nth-child(even) {
-			background: #f8f5fa;
+			background: #f7f7f2;
 		}
 
 		tbody td:first-child {
-			font-weight: 700;
+			font-weight: 400;
 		}
 	}
 
@@ -329,30 +214,10 @@
 	h5:has(+ table) {
 		text-transform: uppercase;
 		letter-spacing: 0.04em;
-		font-weight: 800;
+		font-weight: 700;
 		margin-bottom: 0.12cm;
 	}
 
-	/* Pseudo-random rotation pool */
-	table:nth-of-type(5n + 1) {
-		transform: rotate(-0.6deg);
-	}
-
-	table:nth-of-type(5n + 2) {
-		transform: rotate(0.4deg);
-	}
-
-	table:nth-of-type(5n + 3) {
-		transform: rotate(-0.2deg);
-	}
-
-	table:nth-of-type(5n + 4) {
-		transform: rotate(0.7deg);
-	}
-
-	table:nth-of-type(5n) {
-		transform: rotate(-0.4deg);
-	}
 
 	/* =========================
 	   QUOTE
@@ -419,7 +284,7 @@
 		}
 
 		h5 {
-			font-family: "Typewriter";
+			font-family: "DGTypewriter";
 			font-size: 0.38cm;
 			font-weight: normal;
 
@@ -434,7 +299,7 @@
 		}
 
 		p {
-			font-family: "BookInsanityRemake";
+			font-family: "DGSerif";
 			font-size: 10.0pt;
 			line-height: 1.4em;
 			color: #292826;
@@ -596,7 +461,7 @@
 	   MONSTER
 	   ========================= */
 	.monster {
-		font-family: "BookInsanityRemake";
+		font-family: "DGSerif";
 		text-align: left;
 		color: #111;
 		background: none;
@@ -641,7 +506,7 @@
 		}
 
 		h2 {
-			font-family: "Timelines";
+			font-family: "DGSerif";
 			margin: 0 0 0.12cm 0;
 			font-size: 13.0pt;
 			line-height: 1.05em;
@@ -1064,7 +929,7 @@
 				&:last-child {
 					display: inline-block;
 					align-self: flex-end;
-					font-family: 'BookInsanityRemake';
+					font-family: 'DGSerif';
 					font-size: 10.75pt;
 					font-weight: normal;
 					color: #000000;
@@ -1148,7 +1013,7 @@
 			}
 
 			th {
-				font-family: 'BookInsanityRemake';
+				font-family: 'DGSerif';
 				font-size: 0.45cm;
 			}
 
@@ -1237,8 +1102,8 @@
 .page .runningHeader {
 	position: absolute;
 	top: 0.8cm;
-	left: 0.9cm;
-	right: 0.9cm;
+	left: 1.9cm;
+	right: 1.9cm;
 	z-index: 200;
 	display: flex;
 	justify-content: space-between;
@@ -1260,26 +1125,26 @@
 
 .page .runningHeader .docTitle,
 .page .runningHeader .sectionTitle {
-	font-family: "HeaderFont";
-	font-size: 14.0pt;
+	font-family: "DGTypewriter";
+	font-size: 12pt;
 	letter-spacing: 0.02em;
 	color: #000;
 
 	position: absolute;
 	white-space: nowrap;
-	max-width: 44%;
+	max-width: 46%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	transform: none;
 }
 
 .page .runningHeader .sectionTitle {
-	left: 1cm;
+	left: 0;
 	text-align: left;
 }
 
 .page .runningHeader .docTitle {
-	right: 1cm;
+	right: 0;
 	text-align: right;
 }
 
@@ -1314,8 +1179,8 @@
 	break-inside: avoid;
 	page-break-inside: avoid;
 
-	font-family: "Timelines";
-	line-height: 1em;
+	font-family: "DGSerif";
+	line-height: 1.5;
 	color: #1e1e1e;
 	list-style: none;
 
@@ -1335,14 +1200,14 @@
 
 .timeline li>strong:first-child,
 .timeline li>p:first-child>strong:first-child {
-	font-weight: 800;
-	letter-spacing: 0.02em;
+	font: 700 8pt/1.4 'DGSans', Arial, sans-serif;
+	letter-spacing: normal;
 }
 
 .timeline h5,
 .timeline h4,
 .timeline h3 {
-	font-family: "Typewriter";
+	font-family: "DGTypewriter";
 	text-transform: uppercase;
 	font-size: larger;
 	text-align: center;
@@ -1360,7 +1225,7 @@
 .opint {
 	position: relative;
 
-	font-family: 'BookInsanityRemake';
+	font-family: 'DGSerif';
 	color: #f5f5f5;
 
 	background-color: none;
@@ -1393,7 +1258,7 @@
 	padding: 0;
 	text-align: center;
 
-	font-family: 'MrEavesRemake';
+	font-family: 'DGSans';
 	font-size: 13.0pt;
 	line-height: 1.05em;
 
@@ -1412,13 +1277,13 @@
 .page .unnaturalTome {
  margin: 0 0 0.4cm;
  color: #252421;
- font-family: 'BookInsanityRemake', Georgia, serif;
+ font-family: 'DGSerif', Georgia, serif;
  font-size: 10pt;
  line-height: 1.35;
  break-inside: avoid;
  overflow-wrap: anywhere;
  h3 {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'DGSerif', Georgia, serif;
   font-size: 13pt;
   font-weight: bold;
   font-variant: normal;
@@ -1440,12 +1305,12 @@
   border: none;
   border-image: none;
   box-shadow: none;
-  font: italic 10pt/1.4 'BookInsanityRemake', Georgia, serif;
+  font: italic 10pt/1.4 'DGSerif', Georgia, serif;
   color: inherit;
   p { font: inherit; }
  }
  .tomeRituals strong {
-  font-family: 'ScalySansRemake', Arial, sans-serif;
+  font-family: 'DGSans', Arial, sans-serif;
   font-size: 9pt;
   font-weight: bold;
   text-transform: uppercase;
@@ -1464,7 +1329,7 @@
  border-radius: 1px 7px 2px 2px;
  box-shadow: 2px 3px 5px #33202a30;
  color: #32232b;
- font: 9pt/1.4 'Courier New', Courier, monospace;
+ font: 9pt/1.5 'DGTypewriter', 'Courier New', monospace;
  text-align: left;
  break-inside: avoid;
  overflow-wrap: anywhere;
@@ -1488,7 +1353,7 @@
  p { margin: 0 0 0.2cm; text-indent: 0; }
  ul, ol { padding-left: 1.3em; }
  h5 {
-  font: bold 11pt/1.3 'Courier New', Courier, monospace;
+  font: 700 11pt/1.3 'DGTypewriter', 'Courier New', monospace;
   text-transform: uppercase;
   font-variant: normal;
   text-align: center;
@@ -1512,3 +1377,4 @@
 }
 
 @import './themes/V3/DeltaGreen/fieldLayouts.less';
+@import './themes/V3/DeltaGreen/typography.less';

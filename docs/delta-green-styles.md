@@ -72,3 +72,14 @@ Photo and map snippets include original bundled SVG placeholders, so inserting a
 A chapter opener has a minimum height of 20 cm and should occupy its own page. Its `compact` variant is used in the guide. Long content in any panel still needs manual page breaks: close a block, add `\page`, and reopen it on the next page. Keep the disclaimer area clear. Blank or very long captions and unusual image aspect ratios should be checked in print preview.
 
 Existing monster stat-block templates are retained; their rules/fields have not been redesigned in this change.
+
+
+## Typography and optional decoration
+
+The Delta Green theme uses 10 pt serif prose with 15 pt leading. Sabon Roman and Bold are used for regular text and emphasis; the existing EB Garamond Italic and Bold Italic files are explicit fallbacks until suitable Sabon italic webfonts are available. Futura handles editorial headings, captions and compact labels; Typestar handles running headers and typewritten titles. Ordinary bold prose keeps its serif face and normal tracking.
+
+Headings have no decorative rules by default. The DG menu offers **Section Divider** (`sectionDivider,wide`) for a double rule, **Framed Title** (`framedTitle,wide`) for a title enclosed by slashes, and **Loose-paper Table** (`loosePaperTable`) for a slightly rotated paper insert. Normal tables are upright. Guide page 17 demonstrates all three.
+
+Running headers align with the text margins, and neutral page numbers sit at the foot of the page. Existing rough page background images are preserved. Paper grain affects only the advice, chapter and pink-paper panels.
+
+Sabon Pro Italic and Bold Italic are sold by Linotype through https://www.myfonts.com/collections/sabon-font-linotype. They were not downloaded or added: a desktop purchase alone does not cover hosting fonts on the website. Any future font acquisition should cover the editor's actual web and document-generation use and repository distribution.

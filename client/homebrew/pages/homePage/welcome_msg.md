@@ -67,3 +67,70 @@ Use the following code to define your documents title
 
 {{pageNumber 2}}
 {{footnote PART 2 | BORING STUFF}}
+
+
+\page
+
+# Typography and decoration
+
+Body text uses a book serif at 10 pt with 15 pt line spacing. Ordinary **bold** remains serif; metadata labels and captions use compact sans-serif type. Italics currently use a Garamond fallback.
+
+## Plain headings
+
+Headings are plain by default. Use the DG menu to add deliberate decoration to a particular section or title.
+
+### Section Divider
+
+```markdown
+{{sectionDivider,wide
+## Section heading
+}}
+```
+
+{{sectionDivider
+## Section heading
+}}
+
+### Framed Title
+
+```markdown
+{{framedTitle,wide
+# Operation title
+}}
+```
+
+{{framedTitle
+# Operation title
+}}
+
+\column
+
+## Tables
+
+Normal tables sit flat on the page. Choose **DG > Loose-paper Table** for a slightly tilted paper insert.
+
+```markdown
+{{loosePaperTable
+| Item | Status |
+|:---|:---|
+| Evidence A | Secured |
+| Evidence B | Pending |
+}}
+```
+
+{{loosePaperTable
+| Item | Status |
+|:---|:---|
+| Evidence A | Secured |
+| Evidence B | Pending |
+}}
+
+## Paragraph spacing
+
+Separate paragraphs with a blank line. Consecutive prose paragraphs indent automatically; the first paragraph after a heading starts flush left.
+
+Keep a heading with its following paragraph. Use explicit page or column breaks when a long block needs more room.
+
+The rough page backgrounds remain unchanged. Advice, chapter and pink-paper panels have their own subtle grain.
+
+{{pageNumber,auto}}
