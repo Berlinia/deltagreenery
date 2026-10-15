@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 
 const MonsterBlockGen = require('./snippets/monsterblock.gen.js');
-const QuoteGen = require('./snippets/quote.gen.js');
+const FieldLayouts = require('./snippets/fieldLayouts.gen.js');
 const dedent = require('dedent-tabs').default;
 
 module.exports = [
@@ -52,9 +52,9 @@ module.exports = [
 				gen: require('./snippets/unnaturalTome.gen.js'),
 			},
 			{
-				name: 'Ritual (TODO)',
+				name: 'Ritual',
 				icon: 'fas fa-quote-right',
-				gen: QuoteGen,
+				gen: FieldLayouts.ritual,
 			},
 			{
 				name: 'Disinformation',
@@ -106,6 +106,11 @@ module.exports = [
 				icon: 'fac book-front-cover',
 				gen: require('./snippets/pinkBackground.gen.js')
 			},
+			{ name: 'Handler Advice', icon: 'fas fa-exclamation-circle', gen: FieldLayouts.advice },
+			{ name: 'Evidence Photo', icon: 'fas fa-camera', gen: FieldLayouts.photo },
+			{ name: 'Chapter Opener', icon: 'fas fa-book-open', gen: FieldLayouts.chapter },
+			{ name: 'Briefing Handout', icon: 'fas fa-file-alt', gen: FieldLayouts.briefing },
+			{ name: 'Map Sheet', icon: 'fas fa-map', gen: FieldLayouts.map },
 			{
 				name: 'Artist Credit',
 				icon: 'fas fa-signature',

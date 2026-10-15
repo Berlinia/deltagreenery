@@ -38,9 +38,9 @@ Your briefing goes here.
 }}
 ```
 
-The classes `dossierLabel` and `dossierStamp` contain editable text; neither is an official classification or logo. Existing notes, timelines and other DG buttons remain available. Ritual remains a separate unfinished snippet.
+The classes `dossierLabel` and `dossierStamp` contain editable text; neither is an official classification or logo. Existing notes, timelines and other DG buttons remain available. Ritual and the additional field layouts below are also available.
 
-## Reference review and future candidates
+## Reference review
 
 References below use the supplied PDFs' page numbers (PDF viewer numbering); printed page numbers are given where verified. These are layout observations, not reproduced content.
 
@@ -48,10 +48,27 @@ References below use the supplied PDFs' page numbers (PDF viewer numbering); pri
 | --- | --- | --- |
 | Handler's Guide, PDF p. 158 / printed p. 156 | Ruled serif tome headings, italic study details, inset quotations, bold ritual labels | Implemented as Unnatural Tome. |
 | Handler's Guide, PDF p. 39 / printed p. 37 | Pink typewritten dossier insert, punched/perforated margin and small administrative labels | Implemented as Pink Background, using original CSS paper decoration. |
-| Agent's Handbook, PDF p. 129 / printed p. 127 | Dark green advice box with light sans-serif text and rough edges | A dedicated advice/caution panel would complement the existing yellow notes. |
-| Agent's Handbook, PDF p. 129 / printed p. 127 | White-bordered photograph held by translucent tape | A reusable evidence-photo component with caption and optional tape would reduce manual image positioning. |
-| A Night at the Opera, PDF p. 24 | Standalone briefing sheet with a large heading and dated two-column events | A briefing-handout template would extend the existing timeline with a page-sized document layout. |
-| Agent's Handbook, PDF p. 14 | Dark green chapter divider with a centered heading and photo | A chapter-opener template with user-supplied artwork. |
-| A Night at the Opera, PDF p. 177 | Stacked maps/plans with clear captions and paper backing | A map/evidence plate with numbered annotations and source captions. |
+| Agent's Handbook, PDF p. 129 / printed p. 127 | Dark green advice box with light sans-serif text and rough edges | Implemented as Handler Advice. |
+| Agent's Handbook, PDF p. 129 / printed p. 127 | White-bordered photograph held by translucent tape | Implemented as Evidence Photo with optional tape, caption and credit. |
+| A Night at the Opera, PDF p. 24 | Standalone briefing sheet with a large heading and dated two-column events | Implemented as Briefing Handout, with metadata and two internal columns. |
+| Agent's Handbook, PDF p. 14 | Dark green chapter divider with a centered heading and photo | Implemented as Chapter Opener, with optional user-supplied artwork. |
+| A Night at the Opera, PDF p. 177 | Stacked maps/plans with clear captions and paper backing | Implemented as Map Sheet, with a numbered legend and source caption. |
 
-The books also have compact ritual and character entries. A dedicated ritual block (cost, test, effects and consequences) is the next natural replacement for **Ritual (TODO)**. The current monster snippets should be audited separately for remaining fantasy-specific fields before expanding them.
+## Additional DG menu components
+
+All six components below have source examples, rendered previews and customization instructions on **pages 11–16 of the opening website guide**. They use Standard (V3) with the Delta Green theme. Examples contain editable placeholders, not official game rules.
+
+| Menu entry | Class / options | Purpose |
+| --- | --- | --- |
+| Ritual | `ritualEntry`; optional `wide` | Ruled title, italic study/activation requirements, test, effects and consequences. Reference: Handler's Guide PDF p. 176 / printed p. 174. |
+| Handler Advice | `advicePanel`; optional `wide` | Dark green guidance panel with light text. Enable print backgrounds. |
+| Evidence Photo | `evidencePhoto,taped`; optional `wide` | White photo frame, tape, `evidenceCaption` and `evidenceSource`. Remove `taped` for a plain photograph. |
+| Chapter Opener | `chapterOpener,wide`; `compact` for a smaller insert | Green chapter divider, title, subtitle and optional image. Use a fresh page and a page break after the block. The running header and disclaimer are preserved. |
+| Briefing Handout | `briefingSheet,wide` with `briefingColumns` | Paper handout with metadata and two internal columns. Removing `wide` gives one internal column. |
+| Map Sheet | `mapSheet,wide` with `mapCaption` and `mapLegend` | Contained map image, caption, numbered legend and source credit. Remove `wide` for a column plate. |
+
+Photo and map snippets include original bundled SVG placeholders, so inserting a snippet requires no external image service. Replace the Markdown image URL and alt text with your own image. Images are scaled without cropping. Legend numbers are editable text: they do not place markers onto an uploaded map. Credits should identify your image source.
+
+A chapter opener has a minimum height of 20 cm and should occupy its own page. Its `compact` variant is used in the guide. Long content in any panel still needs manual page breaks: close a block, add `\page`, and reopen it on the next page. Keep the disclaimer area clear. Blank or very long captions and unusual image aspect ratios should be checked in print preview.
+
+Existing monster stat-block templates are retained; their rules/fields have not been redesigned in this change.

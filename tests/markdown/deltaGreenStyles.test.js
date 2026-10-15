@@ -24,5 +24,21 @@ test('pink paper is a wide editable dossier with labels and body content',()=>{
  expect(root.querySelector('img')).toBeNull();
 });
 test('other DG menu entries remain available',()=>{
- for(const name of ['Timeline','Ritual (TODO)','Disinformation','Disinformation Wide','Monster Stat Block','Artist Credit']) expect(snippets.some(s=>s.name===name)).toBe(true);
+ for(const name of ['Timeline','Ritual','Disinformation','Disinformation Wide','Monster Stat Block','Artist Credit']) expect(snippets.some(s=>s.name===name)).toBe(true);
+});
+
+for(const [name, selector] of [['Ritual','.ritualEntry'], ['Handler Advice','.advicePanel'], ['Evidence Photo','.evidencePhoto.taped'], ['Chapter Opener','.chapterOpener.wide'], ['Briefing Handout','.briefingSheet.wide .briefingColumns'], ['Map Sheet','.mapSheet.wide .mapLegend']]) {
+ test(name + ' generates a complete editable layout',()=>{
+  const root=render(name); expect(root.querySelector(selector)).not.toBeNull();
+  expect(root.textContent).not.toMatch(/TODO|undefined/);
+ });
+}
+test('image placeholders work on GitHub Pages as well as the local server',()=>{
+ const previous=window.DELTA_GREENERY_CONFIG;
+ try {
+  window.DELTA_GREENERY_CONFIG={basePath:'/deltagreenery'};
+  expect(render('Evidence Photo').querySelector('img').getAttribute('src')).toBe('/deltagreenery/assets/dg-photo-placeholder.svg');
+  window.DELTA_GREENERY_CONFIG={};
+  expect(render('Map Sheet').querySelector('img').getAttribute('src')).toBe('/assets/dg-map-placeholder.svg');
+ } finally { window.DELTA_GREENERY_CONFIG=previous; }
 });
