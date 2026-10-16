@@ -1,0 +1,6 @@
+// A paragraph without a blank source line runs directly into its list.
+.page {
+ p:has(+ ul.list-tight), p:has(+ ol.list-tight) { margin-bottom: 0; }
+ p + ul.list-tight, p + ol.list-tight { margin-top: 0; }
+ p + ul.list-separated, p + ol.list-separated { margin-top: var(--DG_ListGap, 0.15cm); }
+}

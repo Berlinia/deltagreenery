@@ -24,6 +24,30 @@ import fontAwesome   from '../themes/fonts/iconFonts/fontAwesome.js';
 const renderer  = new Marked.Renderer();
 const tokenizer = new Marked.Tokenizer();
 
+// Preserve the source separator: HTML alone cannot distinguish a blank line
+// between a paragraph and its list from a single newline.
+const sourceListSpacing = {
+ name: 'list',
+ level: 'block',
+ tokenizer(src, tokens) {
+  const token = this.lexer.tokenizer.list(src);
+  if(!token) return;
+  let index = tokens.length - 1;
+  let separator = '';
+  while(index >= 0 && tokens[index].type === 'space') separator = tokens[index--].raw + separator;
+  const previous = tokens[index];
+  if(previous && ['paragraph', 'text'].includes(previous.type)) {
+   separator = (previous.raw.match(/\s*$/)?.[0] || '') + separator;
+   token.sourceSpacing = /\n[ \t]*\n/.test(separator) ? 'separated' : 'tight';
+  }
+  return token;
+ }
+};
+renderer.list = function(token) {
+ const html = Marked.Renderer.prototype.list.call(this, token);
+ return token.sourceSpacing ? html.replace(/^<(ul|ol)/, `<$1 class="list-${token.sourceSpacing}"`) : html;
+};
+
 //Processes the markdown within an HTML block if it's just a class-wrapper
 renderer.html = function (token) {
 	let html = token.text;
@@ -360,7 +384,7 @@ Marked.use(mustacheInjectBlock);
 Marked.use(MarkedAlignedParagraphs());
 Marked.use(MarkedSubSuperText());
 Marked.use(MarkedNonbreakingSpaces());
-Marked.use({ renderer: renderer, tokenizer: tokenizer, mangle: false });
+Marked.use({ renderer: renderer, tokenizer: tokenizer, mangle: false, extensions: [sourceListSpacing] });
 Marked.use(MarkedExtendedTables({ interruptPatterns: tableTerminators }), MarkedGFMHeadingId({ globalSlugs: true }),
 	MarkedSmartypantsLite(), MarkedEmojis(MarkedEmojiOptions));
 

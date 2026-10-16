@@ -83,6 +83,8 @@ const pages = [
     "",
     "## Lists",
     "",
+    "A list immediately below a paragraph has no extra gap. Leave a blank line before the list to add breathing room, as shown below.",
+    "",
     "- A cassette in a sealed envelope.",
     "- A photograph of the station.",
     "  - A handwritten date on the reverse.",
