@@ -14,13 +14,7 @@ const EDITOR_THEME_KEY = 'HB_editor_theme';
 
 const PAGEBREAK_REGEX_V3 = /^(?=\\page(?:break)?(?: *{[^\n{}]*})?$)/m;
 const SNIPPETBREAK_REGEX_V3 = /^\\snippet\ .*$/;
-const DEFAULT_STYLE_TEXT = dedent`
-				/*=======---  Example CSS styling  ---=======*/
-				/* Any CSS here will apply to your document! */
-
-				.myExampleClass {
-					color: black;
-				}`;
+const DEFAULT_STYLE_TEXT = require('../../../shared/styleOptions.js');
 
 const DEFAULT_SNIPPET_TEXT = dedent`
 				\snippet example snippet
@@ -152,6 +146,9 @@ const Editor = createClass({
 	},
 
 	handleViewChange : function(newView){
+		if(newView === 'style' && !this.props.brew.style?.trim())
+			this.props.onBrewChange('style')(DEFAULT_STYLE_TEXT);
+
 		this.props.setMoveArrows(newView === 'text');
 
 		this.setState({

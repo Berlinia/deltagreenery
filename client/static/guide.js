@@ -1,3 +1,4 @@
+import styleOptions from '../../shared/styleOptions.js';
 import { emptyDocument } from './documentFormat.js';
 const deltaGreenLicense = require('../../themes/deltaGreenLicense.js');
 const timeline = require('../../themes/V3/DeltaGreen/snippets/timeline.gen.js');
@@ -286,7 +287,7 @@ const pages = [
     "**Evidence A:** a damaged cassette recovered from the station locker.",
     "}}",
     "",
-    "The Style tab also contains optional, commented examples for hiding the section name in the running header and setting a different printed title. Properties still controls the saved filename.",
+    "The Style tab includes commented options for backgrounds, fonts, spacing, tables and headers. Enable an option by removing the comment markers around its CSS. Existing documents can insert the same examples from **Style Editor > Common CSS Options**. Properties still controls the saved filename.",
     "",
     "## Fonts and printing",
     "",
@@ -516,5 +517,5 @@ export function createGuide() {
   const demo = source.replace('chapterOpener,wide', 'chapterOpener,compact').replace('briefingSheet,wide', 'briefingSheet').replace('mapSheet,wide', 'mapSheet');
   return result.replaceAll('__FIELD_' + key.toUpperCase() + '__', source).replaceAll('__DEMO_' + key.toUpperCase() + '__', demo);
  }, text);
- return { ...emptyDocument(pages.map((lines)=>expandFields(lines.join('\n').replaceAll('__GUIDE_LICENSE__', deltaGreenLicense.subsnippets[0].gen().trim().replaceAll('[AUTHOR NAME]', 'Delta Greenery contributors')).replaceAll('__GUIDE_CHAPTER__', fieldLayouts.chapter().trim().replace('### Chapter title', '### Chapter Opener').replace('A short subtitle or briefing classification.', 'A full-page divider for the next stage of your operation.')).replaceAll('__PHOTO_ASSET__', asset('dg-photo-placeholder.svg')).replaceAll('__TIMELINE__', timeline().trim()).replaceAll('__TOME__', tome().trim()).replaceAll('__PINK__', pink().trim()).replaceAll('__PINK_COLUMN__', pink().trim().replace('pinkBackground,wide', 'pinkBackground')))).join('\n\n\\page\n\n')), title: 'Delta Greenery Guide', style: '.page .guideEvidence { border-left: 3px solid #742f25; padding: 10px; background: #ffffff50; }\n\n/* Optional: hide the section name in the running header. Remove the comment markers to enable.\n.page .runningHeader .sectionTitle { display: none; }\n*/\n\n/* Optional: a different printed title.\n.page { --HB_DocTitle: "BLACK LANTERN"; }\n*/', snippets: '\\snippet Evidence note\n{{note\n##### Evidence\nDescribe the discovery here.\n}}' };
+ return { ...emptyDocument(pages.map((lines)=>expandFields(lines.join('\n').replaceAll('__GUIDE_LICENSE__', deltaGreenLicense.subsnippets[0].gen().trim().replaceAll('[AUTHOR NAME]', 'Delta Greenery contributors')).replaceAll('__GUIDE_CHAPTER__', fieldLayouts.chapter().trim().replace('### Chapter title', '### Chapter Opener').replace('A short subtitle or briefing classification.', 'A full-page divider for the next stage of your operation.')).replaceAll('__PHOTO_ASSET__', asset('dg-photo-placeholder.svg')).replaceAll('__TIMELINE__', timeline().trim()).replaceAll('__TOME__', tome().trim()).replaceAll('__PINK__', pink().trim()).replaceAll('__PINK_COLUMN__', pink().trim().replace('pinkBackground,wide', 'pinkBackground')))).join('\n\n\\page\n\n')), title: 'Delta Greenery Guide', style: styleOptions + '\n.page .guideEvidence { border-left: 3px solid #742f25; padding: 10px; background: #ffffff50; }\n\n/* Optional: hide the section name in the running header. Remove the comment markers to enable.\n.page .runningHeader .sectionTitle { display: none; }\n*/\n\n/* Optional: a different printed title.\n.page { --HB_DocTitle: "BLACK LANTERN"; }\n*/', snippets: '\\snippet Evidence note\n{{note\n##### Evidence\nDescribe the discovery here.\n}}' };
 }

@@ -11,6 +11,7 @@ module.exports = [
 		icon: 'fas fa-pencil-alt',
 		view: 'style',
 		snippets: [
+			{ name: 'Common CSS Options', icon: 'fas fa-sliders-h', gen: ()=>require('../../../shared/styleOptions.js') },
 			{
 				name: 'Remove Drop Cap',
 				icon: 'fas fa-remove-format',

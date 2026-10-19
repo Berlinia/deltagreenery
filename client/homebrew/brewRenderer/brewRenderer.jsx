@@ -92,8 +92,6 @@ const BrewPage = (props)=>{
 
 
 //v=====--------------------< Brew Renderer Component >-------------------=====v//
-let renderedPages = [];
-let rawPages      = [];
 
 const BrewRenderer = (props)=>{
 	props = {
@@ -110,6 +108,11 @@ const BrewRenderer = (props)=>{
 		onPageChange               : ()=>{},
 		...props
 	};
+
+	// Each mounted document owns its cache; equal page counts must not reuse another document's pages.
+	const pageCache = useRef([]);
+	const mountTimer = useRef(null);
+	useEffect(()=>()=>clearTimeout(mountTimer.current), []);
 
 	const [state, setState] = useState({
 		isMounted    : false,
@@ -181,11 +184,7 @@ const BrewRenderer = (props)=>{
 	const mainRef  = useRef(null);
 	const pagesRef = useRef(null);
 
-	if(props.renderer == 'legacy') {
-		rawPages = props.text.split(PAGEBREAK_REGEX_LEGACY);
-	} else {
-		rawPages = props.text.split(PAGEBREAK_REGEX_V3);
-	}
+	const rawPages = props.text.split(props.renderer === 'legacy' ? PAGEBREAK_REGEX_LEGACY : PAGEBREAK_REGEX_V3);
 
 	const handlePageVisibilityChange = (pageNum, isVisible, isCenter)=>{
 		setState((prevState)=>{
@@ -266,6 +265,7 @@ const BrewRenderer = (props)=>{
 	};
 
 	const renderPages = ()=>{
+		const renderedPages = pageCache.current;
 		if(props.errors && props.errors.length)
 			return renderedPages;
 
@@ -281,7 +281,7 @@ const BrewRenderer = (props)=>{
 				renderedPages[index] = renderPage(page, index); // Render any page not yet rendered, but only re-render those in PPR range
 			}
 		});
-		return renderedPages;
+		return renderedPages.slice();
 	};
 
 	const handleControlKeys = (e)=>{
@@ -317,7 +317,7 @@ const BrewRenderer = (props)=>{
 	const frameDidMount = ()=>{	//This triggers when iFrame finishes internal "componentDidMount"
 		scrollToHash(window.location.hash);
 
-		setTimeout(()=>{	//We still see a flicker where the style isn't applied yet, so wait 100ms before showing iFrame
+		mountTimer.current = setTimeout(()=>{	//We still see a flicker where the style isn't applied yet, so wait 100ms before showing iFrame
 			renderPages(); //Make sure page is renderable before showing
 			setState((prevState)=>({
 				...prevState,
@@ -345,7 +345,7 @@ const BrewRenderer = (props)=>{
 	};
 
 	const renderedStyle = useMemo(()=>renderStyle(), [props.style, props.themeBundle]);
-	renderedPages = useMemo(()=>renderPages(), [props.text, displayOptions]);
+	const renderedPages = useMemo(()=>renderPages(), [props.text, props.renderer, displayOptions, state.isMounted, props.currentEditorCursorPageNum, props.currentBrewRendererPageNum]);
 
 	return (
 		<>
