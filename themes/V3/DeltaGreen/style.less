@@ -1380,3 +1380,9 @@
 @import './themes/V3/DeltaGreen/typography.less';
 
 @import './themes/V3/DeltaGreen/listSpacing.less';
+
+// Soften the paper texture while keeping text and panels fully opaque.
+.page:nth-child(n) {
+  background-blend-mode: screen;
+  background-color: rgba(255, 255, 255, 0.45);
+}
