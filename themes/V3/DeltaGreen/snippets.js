@@ -43,6 +43,7 @@ module.exports = [
 		icon: 'fas fa-book',
 		view: 'text',
 		snippets: [
+			{ name: 'Read Aloud', icon: 'fas fa-comment', gen: require('./snippets/readAloud.gen.js') },
 			{
 				name: 'Timeline',
 				icon: 'fas fa-scroll',
